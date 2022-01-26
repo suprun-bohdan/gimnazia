@@ -100,7 +100,7 @@
                     </figure>
                 </li>
                 <li>
-                    <span>Версія сайту: 0.0.1 alpha</span>
+                    <span>Версія сайту: {{ $tag }}</span>
                 </li>
             </ul>
         </div>

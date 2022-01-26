@@ -41,6 +41,7 @@ return [
 
     'debug' => env('APP_DEBUG', false),
     'suspended' => env('APP_SUSPENDED', false),
+    'gitToken' => env('APP_GIT_TOKEN', 'null'),
     /*
     |--------------------------------------------------------------------------
     | Application URL
