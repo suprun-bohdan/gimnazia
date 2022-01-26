@@ -12,7 +12,19 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+if (config('app.suspended') == true) :
+    Route::get('/', function () {
+        return view('suspended');
+    });
+else :
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+    Route::get('/', function () {
+        return view('template.index');
+    });
+    Route::get('/news', function () {
+        return view('template.news');
+    });
+
+
+endif;
