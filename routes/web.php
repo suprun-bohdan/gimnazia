@@ -20,7 +20,10 @@ else :
 
 
     Route::get('/', function () {
-        return view('welcome');
+        return view('template.index');
+    });
+    Route::get('/news', function () {
+        return view('template.news');
     });
 
 
