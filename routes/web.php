@@ -16,4 +16,12 @@ if (config('app.suspended') == true) :
     Route::get('/', function () {
         return view('suspended');
     });
+else :
+
+
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
+
 endif;
