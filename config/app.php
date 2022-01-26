@@ -40,7 +40,7 @@ return [
     */
 
     'debug' => env('APP_DEBUG', false),
-
+    'suspended' => env('APP_SUSPENDED', false),
     /*
     |--------------------------------------------------------------------------
     | Application URL
