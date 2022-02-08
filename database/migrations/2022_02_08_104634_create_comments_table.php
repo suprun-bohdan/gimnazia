@@ -18,7 +18,7 @@ class CreateCommentsTable extends Migration
             $table->integer('news_id');
             $table->text('comment');
             $table->integer('user_id')->nullable();
-            $table->integer('user_ip')->nullable();
+            $table->ipAddress('user_ip')->nullable();
             $table->timestamps();
         });
     }
