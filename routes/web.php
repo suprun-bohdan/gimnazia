@@ -28,3 +28,7 @@ else :
 
 
 endif;
+
+Route::prefix('admin')->group(function () {
+    Route::get('/', 'AdminController@index');
+});
