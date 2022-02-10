@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('admin')->group(function (){
-    Route::get('/', 'Admin\AdminController@index');
+    Route::get('/', 'Admin\AdminController@index')->name('admin');
+    Route::get('/news/create', 'Admin\AdminController@news')->name('newsAdd');
 });
 
 
