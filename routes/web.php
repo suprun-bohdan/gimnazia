@@ -30,7 +30,5 @@ else :
 endif;
 
 Route::prefix('admin')->group(function (){
-    Route::get('/', function () {
-        echo 1;
-    });
+    Route::get('/', 'Admin/AdminController@index');
 });
