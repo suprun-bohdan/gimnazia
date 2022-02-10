@@ -16,27 +16,34 @@
         <div class="tile">
             <div class="row">
                 <div class="col-lg-12">
-                    <form>
+                    <form method="get" action="/">
                         <div class="form-group">
                             <label for="news_title">Заголовок</label>
                             <input class="form-control" id="news_title" type="text" aria-describedby="titleHelp" placeholder="Введіть заголовок"><small class="form-text text-muted" id="titleHelp">Кількість символів обмежена</small>
                         </div>
-                        <div class="form-group">
-                            <div class="form-control" id="editor">
-
-                            </div>
-                        </div>
+                        <textarea name="editor1" id="editor1" rows="10" cols="80">
+                This is my textarea to be replaced with CKEditor 4.
+            </textarea>
+                        <script>
+                            // Replace the <textarea id="editor1"> with a CKEditor 4
+                            // instance, using default configuration.
+                            CKEDITOR.replace( 'editor1' );
+                        </script>
                         <div class="form-group">
                             <label for="exampleInputFile">Виберіть зображення для прев'ю</label>
                             <input class="form-control-file" id="exampleInputFile" type="file" aria-describedby="fileHelp"><small class="form-text text-muted" id="fileHelp">Це зображення буде виводитись</small>
                         </div>
+                        {{ csrf_field() }}
+
+                        <div class="tile-footer">
+                            <button class="btn btn-primary" type="submit">Зберегти</button>
+                        </div>
                     </form>
                 </div>
-            </div>
-            <div class="tile-footer">
-                <button class="btn btn-primary" type="submit">Зберегти</button>
             </div>
         </div>
     </div>
 </div>
+    <?
+    var_dump($_GET)?>
 @endsection

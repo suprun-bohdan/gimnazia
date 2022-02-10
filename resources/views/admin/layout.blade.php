@@ -21,7 +21,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/tmp_admin_layout') }}/css/main.css">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
+    <script src="{{ asset('/tmp_admin_layout') }}/js/jquery-3.3.1.min.js"></script>
+    <script src="{{ asset('ckeditor') }}/ckeditor.js"></script>
 </head>
 <body class="app sidebar-mini">
 <!-- Navbar-->
@@ -35,6 +36,8 @@
         </li>
 @include('admin.events')
     </ul>
+
+
 </header>
 <!-- Sidebar menu-->
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
@@ -44,13 +47,15 @@
 </main>
 <!-- Essential javascripts for application to work-->
 <script src="{{ asset('/tmp_admin_layout') }}/js/jquery-3.3.1.min.js"></script>
+<script src="{{ asset('ckeditor') }}/ckeditor.js"></script>
 <script src="{{ asset('/tmp_admin_layout') }}/js/popper.min.js"></script>
 <script src="{{ asset('/tmp_admin_layout') }}/js/bootstrap.min.js"></script>
 <script src="{{ asset('/tmp_admin_layout') }}/js/main.js"></script>
 <!-- The javascript plugin to display page loading on top-->
 <script src="{{ asset('/tmp_admin_layout') }}/js/plugins/pace.min.js"></script>
 <!-- Page specific javascripts-->
-<script type="text/javascript" src="js/plugins/chart.js"></script>
+<script type="text/javascript" src="{{ asset('/tmp_admin_layout') }}/js/plugins/chart.js"></script>
+
 <script type="text/javascript">
     var data = {
         labels: ["January", "February", "March", "April", "May"],
@@ -108,17 +113,6 @@
         ga('create', 'UA-72504830-1', 'auto');
         ga('send', 'pageview');
     }
-</script>
-
-<script>
-    ClassicEditor
-        .create( document.querySelector( '#editor' ) )
-        .then( editor => {
-            console.log( editor );
-        } )
-        .catch( error => {
-            console.error( error );
-        } );
 </script>
 </body>
 </html>
