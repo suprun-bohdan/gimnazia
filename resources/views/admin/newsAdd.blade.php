@@ -21,8 +21,10 @@
                             <label for="news_title">Заголовок</label>
                             <input class="form-control" id="news_title" type="text" aria-describedby="titleHelp" placeholder="Введіть заголовок"><small class="form-text text-muted" id="titleHelp">Кількість символів обмежена</small>
                         </div>
-                        <div id="editor">
+                        <div class="form-group">
+                            <div class="form-control" id="editor">
 
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputFile">Виберіть зображення для прев'ю</label>
