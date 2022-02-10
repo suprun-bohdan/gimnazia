@@ -4,22 +4,22 @@
 
 @font-face {
     font-family: e-UkraineHead-Thin;
-    src: url(/public/site/fonts/e-UkraineHead-Thin.ttf);
+    src: url(/site/fonts/e-UkraineHead-Thin.ttf);
 }
 
 @font-face {
     font-family: e-Ukraine-Light;
-    src: url(/public/site/fonts/e-Ukraine-Light.ttf);
+    src: url(/site/fonts/e-Ukraine-Light.ttf);
 }
 
 @font-face {
     font-family: e-UkraineHead-UltraLight;
-    src: url(/public/site/fonts/e-UkraineHead-UltraLight.ttf);
+    src: url(/site/fonts/e-UkraineHead-UltraLight.ttf);
 }
 
 @font-face {
     font-family: e-Ukraine-Thin;
-    src: url(/public/site/fonts/e-Ukraine-Thin.ttf);
+    src: url(/site/fonts/e-Ukraine-Thin.ttf);
 }
 
 body {
