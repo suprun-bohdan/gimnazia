@@ -53,12 +53,8 @@ if (config('app.suspended') == true) :
 else :
 
 
-    Route::get('/', function () {
-        return view('template.index');
-    })->name('index');
-    Route::get('/news', function () {
-        return view('template.news');
-    });
+    Route::get('/', 'IndexController@index')->name('index');
+    Route::get('/news', 'IndexController@news');
 
 
 endif;
