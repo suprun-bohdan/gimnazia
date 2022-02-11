@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/register', 'UserController@register');
+Route::post('/register', 'UserController@store')->name('register');
 Route::post('/upload-image', 'CkeditorController@uploadImage')->name('ckUploadImage');
 Route::prefix('admin')->group(function (){
     Route::get('/', 'Admin\AdminController@index')->name('admin');
