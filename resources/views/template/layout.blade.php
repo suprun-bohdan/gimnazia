@@ -26,7 +26,9 @@
 {{--                <a class="btn btn-info lang en" href="#">EN</a>--}}
             </div>
             <div class="col-6 text-right">
-                <a class="btn btn-info lang" href="#">Учнівський куток</a>
+                @if(Auth::user()->role)
+                    <a class="btn btn-info lang" href="{{ route('admin') }}">Адмін панель</a>
+                @endif
             </div>
         </div>
         <div class="row">
