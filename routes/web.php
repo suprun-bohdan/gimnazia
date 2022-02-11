@@ -1,7 +1,7 @@
 <?php
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,15 +12,21 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-if (config('app.register') == true):
+if (config('app.register')):
     if (auth()->check()) :
         Route::get('/register', 'UserController@register');
         Route::post('/register', 'UserController@store')->name('register');
     endif;
 endif;
-if (config('app.login') == true):
-    Route::get('/login', 'UserController@login');
+
+if (config('app.login')):
+    if (!auth()->check()) :
+        Route::get('/login', 'UserController@login');
+        Route::post('/login', 'UserController@check')->name('login');
+        Route::get('/logout', 'UserController@logout')->name('logout');
+    endif;
 endif;
+
 Route::post('/upload-image', 'CkeditorController@uploadImage')->name('ckUploadImage');
 Route::prefix('admin')->group(function (){
     Route::get('/', 'Admin\AdminController@index')->name('admin');
@@ -40,7 +46,7 @@ else :
 
     Route::get('/', function () {
         return view('template.index');
-    });
+    })->name('index');
     Route::get('/news', function () {
         return view('template.news');
     });
