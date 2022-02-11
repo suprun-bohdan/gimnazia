@@ -42,6 +42,14 @@
                     <li><a class="treeview-item" href="page-error.html"><i class="icon fa fa-circle-o"></i> Error Page</a></li>
                 </ul>
             </li>
-            <li><a class="app-menu__item" href="docs.html"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Docs</span></a></li>
+            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Документація</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a class="treeview-item" href="/guide"><i class="icon fa fa-file-word-o"></i> Інструкція користувача</a></li>
+                    <li><a class="treeview-item" href="/guide"><i class="icon fa fa-file-code-o"></i> Інструкція для розробника</a></li>
+                    <li><a class="treeview-item" href="/guide"><i class="icon fa-question-circle-o "></i> Питання / Відповіть</a></li>
+                    <li><a class="treeview-item" href="/guide"><i class="icon fa fa-comments-o"></i> Онлайн чат</a></li>
+                </ul>
+            </li>
+            <li><a class="app-menu__item" href="/settings"><i class="app-menu__icon fa fa-cog" aria-hidden="true"></i><span class="app-menu__label">Налаштування</span></a></li>
         </ul>
     </aside>
