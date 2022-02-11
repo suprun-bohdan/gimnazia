@@ -37,6 +37,14 @@
                 </a>
             </div>
         </div>
+        @if(auth()->check())
+        <hr>
+        <div class="row">
+            <div class="col-12 text-center">
+                    Вітаємо Вас на сайті {{ Auth::user()->first_name  }} {{ Auth::user()->last_name }}
+            </div>
+        </div>
+        @endif
         <hr>
         <div class="row">
             <div class="col-12 text-center">
@@ -46,11 +54,14 @@
                     <a class="nav-link" href="{{ url('/news') }}">Новини</a>
                     <a class="nav-link" href="#">Для батьків</a>
                     @if(config('app.login') == true)
-                    <a class="nav-link disabled" href="#">Авторизація</a>
+                        @if(!Auth::check())
+                            <a class="nav-link disabled" href="/login">Авторизація</a>
+                            <a class="nav-link disabled" href="/register">Реєстрація</a>
+                        @endif
                     @endif
                     @if(config('app.register') == true)
-                        @if(!Auth::check())
-                            <a class="nav-link disabled" href="/register">Реєстрація</a>
+                        @if(Auth::check())
+                            <a class="nav-link disabled" href="/logout">Вихід</a>
                         @endif
                     @endif
                 </nav>

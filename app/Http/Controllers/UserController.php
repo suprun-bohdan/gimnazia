@@ -37,4 +37,29 @@ class UserController extends Controller
         Auth::login($user);
         return redirect()->back;
     }
+
+    public function login()
+    {
+        return view('template.login');
+    }
+
+    public function check(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            return redirect()->route('index');
+        };
+
+        return redirect()->back();
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('index');
+    }
 }
