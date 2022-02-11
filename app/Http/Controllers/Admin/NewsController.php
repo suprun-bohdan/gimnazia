@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NewsController extends Controller
 {
@@ -22,9 +24,16 @@ class NewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        dd($request->all());
+/*        $post = Post::create([
+            'title' => $request->title,
+            'category_id' => $request->category_id,
+            'text' => $request->text,
+            'tags' => $request->tags,
+            'author_id' => Auth::id(),
+        ]);*/
     }
 
     /**

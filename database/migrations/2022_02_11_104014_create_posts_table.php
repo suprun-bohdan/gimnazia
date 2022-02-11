@@ -18,9 +18,13 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->integer('category_id');
             $table->longText('text');
+            $table->string('p_img')->nullable();
             $table->integer('likes')->default(0);
             $table->integer('dislikes')->default(0);
-            $table->string('tags');
+            $table->integer('visitors')->default(0);
+            $table->string('tags')->nullable();
+            $table->integer('author_id')->nullable();
+            $table->timestamp('time')->nullable();
             $table->timestamps();
         });
     }
