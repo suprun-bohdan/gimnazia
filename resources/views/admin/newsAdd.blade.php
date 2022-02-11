@@ -1,0 +1,59 @@
+@extends('admin.layout')
+@section('content')
+    <script type="text/javascript" src="js/plugins/select2.min.js"></script>
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-edit"></i> Додати новину</h1>
+        <p>В цьому розділі ви маєте можливість додати/створити новину</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item">Записи</li>
+        <li class="breadcrumb-item"><a href="#">Створення новин</a></li>
+    </ul>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form method="post" action="{{ route('ckUploadImage') }}">
+                        <div class="form-group">
+                            <label for="news_title">Заголовок</label>
+                            <input class="form-control" id="news_title" type="text" aria-describedby="titleHelp" placeholder="Введіть заголовок"><small class="form-text text-muted" id="titleHelp">Кількість символів обмежена</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="newsAdd">Текст новини</label>
+                            <textarea name="newsAdd" id="newsAdd" rows="10" cols="80"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Виберіть категорію</label>
+                            <select class="form-control" id="category">
+                                <option>Без категорії</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">Виберіть зображення для прев'ю</label>
+                            <input class="form-control-file" id="exampleInputFile" type="file" aria-describedby="fileHelp"><small class="form-text text-muted" id="fileHelp">Це зображення буде виводитись</small>
+                        </div>
+                        {{ csrf_field() }}
+
+                        <div class="tile-footer">
+                            <button class="btn btn-primary" type="submit">Зберегти</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // $('#demoSelect').select2();
+    // Replace the <textarea id="editor1"> with a CKEditor 4
+    // instance, using default configuration.
+    CKEDITOR.replace('newsAdd', {
+        filebrowserUploadUrl: "{{route('ckUploadImage', ['_token' => csrf_token() ])}}",
+        filebrowserUploadMethod: 'post'
+    });
+</script>
+@endsection

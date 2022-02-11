@@ -12,6 +12,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::post('/upload-image', 'CkeditorController@uploadImage')->name('ckUploadImage');
+Route::prefix('admin')->group(function (){
+    Route::get('/', 'Admin\AdminController@index')->name('admin');
+    Route::get('/news/create', 'Admin\AdminController@news')->name('newsAdd');
+    Route::prefix('settings')->group(function () {
+        Route::get('/', 'Admin\AdminController@settings')->name('settings');
+    });
+});
+
+
 if (config('app.suspended') == true) :
     Route::get('/', function () {
         return view('suspended');
@@ -28,3 +38,4 @@ else :
 
 
 endif;
+
