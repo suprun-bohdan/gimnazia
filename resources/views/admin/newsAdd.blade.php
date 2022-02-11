@@ -21,17 +21,10 @@
                             <label for="news_title">Заголовок</label>
                             <input class="form-control" id="news_title" type="text" aria-describedby="titleHelp" placeholder="Введіть заголовок"><small class="form-text text-muted" id="titleHelp">Кількість символів обмежена</small>
                         </div>
-                        <textarea name="editor1" id="editor1" rows="10" cols="80">
-                This is my textarea to be replaced with CKEditor 4.
+                        <textarea name="newsAdd" id="newsAdd" rows="10" cols="80">
+
             </textarea>
-                        <script>
-                            // Replace the <textarea id="editor1"> with a CKEditor 4
-                            // instance, using default configuration.
-                            CKEDITOR.replace('editor1', {
-                                filebrowserUploadUrl: "{{route('ckUploadImage', ['_token' => csrf_token() ])}}",
-                                filebrowserUploadMethod: 'post'
-                            });
-                        </script>
+
                         <div class="form-group">
                             <label for="exampleInputFile">Виберіть зображення для прев'ю</label>
                             <input class="form-control-file" id="exampleInputFile" type="file" aria-describedby="fileHelp"><small class="form-text text-muted" id="fileHelp">Це зображення буде виводитись</small>
@@ -47,4 +40,12 @@
         </div>
     </div>
 </div>
+<script>
+    // Replace the <textarea id="editor1"> with a CKEditor 4
+    // instance, using default configuration.
+    CKEDITOR.replace('newsAdd', {
+        filebrowserUploadUrl: "{{route('ckUploadImage', ['_token' => csrf_token() ])}}",
+        filebrowserUploadMethod: 'post'
+    });
+</script>
 @endsection
