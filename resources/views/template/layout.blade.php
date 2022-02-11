@@ -22,8 +22,8 @@
     <header>
         <div class="row">
             <div class="col-6">
-                <a class="btn btn-info lang ua" href="#">UA</a>
-                <a class="btn btn-info lang en" href="#">EN</a>
+{{--                <a class="btn btn-info lang ua" href="#">UA</a>--}}
+{{--                <a class="btn btn-info lang en" href="#">EN</a>--}}
             </div>
             <div class="col-6 text-right">
                 <a class="btn btn-info lang" href="#">Учнівський куток</a>

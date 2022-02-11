@@ -1,6 +1,7 @@
 @extends('admin.layout')
 @section('content')
-    <script type="text/javascript" src="js/plugins/select2.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js') }}/plugins/select2.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js') }}/plugins/bootstrap-datepicker.min.js"></script>
 <div class="app-title">
     <div>
         <h1><i class="fa fa-edit"></i> Додати новину</h1>
@@ -17,7 +18,7 @@
         <div class="tile">
             <div class="row">
                 <div class="col-lg-12">
-                    <form method="post" action="{{ route('ckUploadImage') }}">
+                    <form method="post" action="{{ route('newsCreate') }}">
                         <div class="form-group">
                             <label for="news_title">Заголовок</label>
                             <input class="form-control" id="news_title" type="text" aria-describedby="titleHelp" placeholder="Введіть заголовок"><small class="form-text text-muted" id="titleHelp">Кількість символів обмежена</small>
@@ -36,6 +37,11 @@
                             <label for="exampleInputFile">Виберіть зображення для прев'ю</label>
                             <input class="form-control-file" id="exampleInputFile" type="file" aria-describedby="fileHelp"><small class="form-text text-muted" id="fileHelp">Це зображення буде виводитись</small>
                         </div>
+
+                        <div class="form-group">
+                            <label for="createDate">Виберіть дату</label>
+                            <input class="form-control" id="createDate" type="text" placeholder="Виберіть дату">
+                        </div>
                         {{ csrf_field() }}
 
                         <div class="tile-footer">
@@ -47,13 +53,20 @@
         </div>
     </div>
 </div>
-<script>
-    // $('#demoSelect').select2();
-    // Replace the <textarea id="editor1"> with a CKEditor 4
-    // instance, using default configuration.
-    CKEDITOR.replace('newsAdd', {
-        filebrowserUploadUrl: "{{route('ckUploadImage', ['_token' => csrf_token() ])}}",
-        filebrowserUploadMethod: 'post'
-    });
-</script>
+    <script>
+        // $('#demoSelect').select2();
+        // Replace the <textarea id="editor1"> with a CKEditor 4
+        // instance, using default configuration.
+        CKEDITOR.replace('newsAdd', {
+            filebrowserUploadUrl: "{{route('ckUploadImage', ['_token' => csrf_token() ])}}",
+            filebrowserUploadMethod: '{{ route('ckUploadImage') }}'
+        });
+    </script>
+    <script>
+        $('#createDate').datepicker({
+            format: "dd/mm/yyyy",
+            autoclose: true,
+            todayHighlight: true
+        });
+    </script>
 @endsection

@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 |
 */
 if (config('app.register')):
-    if (auth()->check()) :
+    if (!auth()->check()) :
         Route::get('/register', 'UserController@register');
         Route::post('/register', 'UserController@store')->name('register');
     endif;
@@ -34,7 +34,11 @@ Route::post('/upload-image', 'CkeditorController@uploadImage')->name('ckUploadIm
 Route::group(['middleware' => 'admin'], function () {
     Route::prefix('admin')->group(function () {
         Route::get('/', 'Admin\AdminController@index')->name('admin');
-        Route::get('/news/create', 'Admin\AdminController@news')->name('newsAdd');
+
+        Route::prefix('news')->group(function () {
+            Route::get('/create', 'Admin\AdminController@news')->name('newsAdd');
+            Route::post('/create', 'Admin\NewsController@create')->name('newsCreate');
+        });
         Route::prefix('settings')->group(function () {
             Route::get('/', 'Admin\AdminController@settings')->name('settings');
         });

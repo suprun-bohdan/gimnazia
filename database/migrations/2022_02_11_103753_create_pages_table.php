@@ -15,10 +15,12 @@ class CreatePagesTable extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->increments('page_id');
+            $table->string('p_img')->nullable();
             $table->string('title');
             $table->string('tags');
             $table->longText('text');
             $table->integer('likes');
+            $table->timestamp('time')->nullable();
             $table->timestamps();
         });
     }

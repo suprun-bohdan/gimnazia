@@ -35,7 +35,7 @@ class UserController extends Controller
 
         session()->flash('success', 'Успішна реєстрація');
         Auth::login($user);
-        return redirect()->back;
+        return redirect()->back();
     }
 
     public function login()
@@ -54,7 +54,7 @@ class UserController extends Controller
             return redirect()->route('index');
         };
 
-        return redirect()->back();
+        return redirect()->route('index');
     }
 
     public function logout()
