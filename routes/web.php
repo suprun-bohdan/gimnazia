@@ -16,6 +16,9 @@ Route::post('/upload-image', 'CkeditorController@uploadImage')->name('ckUploadIm
 Route::prefix('admin')->group(function (){
     Route::get('/', 'Admin\AdminController@index')->name('admin');
     Route::get('/news/create', 'Admin\AdminController@news')->name('newsAdd');
+    Route::prefix('settings')->group(function () {
+        Route::get('/', 'Admin\AdminController@settings')->name('settings');
+    });
 });
 
 
