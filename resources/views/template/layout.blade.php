@@ -26,9 +26,9 @@
 {{--                <a class="btn btn-info lang en" href="#">EN</a>--}}
             </div>
             <div class="col-6 text-right">
-                @if(Auth::user()->role)
+{{--                @if(Auth::check()->role)
                     <a class="btn btn-info lang" href="{{ route('admin') }}">Адмін панель</a>
-                @endif
+                @endif--}}
             </div>
         </div>
         <div class="row">

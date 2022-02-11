@@ -19,7 +19,6 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -29,7 +28,8 @@ class NewsController extends Controller
      */
     public function create(Request $request)
     {
-        $p_img = $request->file('preview_image')->store('images');
+        $folderName = date('Y-m-d');
+        $p_img = $request->file('preview_image')->store("img/{$folderName}", 'public');
 
         $post = Post::create([
             'title' => $request->title,
@@ -51,7 +51,7 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -62,7 +62,7 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
