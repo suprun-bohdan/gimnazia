@@ -13,8 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 if (config('app.register') == true):
-Route::get('/register', 'UserController@register');
-Route::post('/register', 'UserController@store')->name('register');
+    if (auth()->check()) :
+        Route::get('/register', 'UserController@register');
+        Route::post('/register', 'UserController@store')->name('register');
+    endif;
 endif;
 if (config('app.login') == true):
     Route::get('/login', 'UserController@login');

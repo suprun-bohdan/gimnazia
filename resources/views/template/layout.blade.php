@@ -12,6 +12,7 @@
     <!--    <link rel="stylesheet" href="css/owl.theme.default.min.css">-->
     <script src="https://use.fontawesome.com/646c13d065.js"></script>
     <title>ЗЗСО - @yield('title')</title>
+    <link href="{{ asset('site') }}/img/index.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 </head>
 <body>
 <script src="{{ asset('site/js/jquery-3.6.0.min.js') }}"></script>
@@ -48,7 +49,9 @@
                     <a class="nav-link disabled" href="#">Авторизація</a>
                     @endif
                     @if(config('app.register') == true)
-                        <a class="nav-link disabled" href="/register">Реєстрація</a>
+                        @if(!Auth::check())
+                            <a class="nav-link disabled" href="/register">Реєстрація</a>
+                        @endif
                     @endif
                 </nav>
             </div>
