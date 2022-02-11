@@ -26,7 +26,7 @@
 </head>
 <body class="app sidebar-mini">
 <!-- Navbar-->
-<header class="app-header"><a class="app-header__logo" href="/">√ Admin panel</a>
+<header class="app-header"><a class="app-header__logo" title="перейти на сайт" href="{{ url('/') }}">√ Admin panel</a>
     <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Приховати меню"></a>
     <!-- Navbar Right Menu-->
     <ul class="app-nav">
