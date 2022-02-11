@@ -33,8 +33,9 @@ CKEDITOR.editorConfig = function( config ) {
 	// Set the most common block elements.
 	config.format_tags = 'p;h1;h2;h3;pre';
 
-	config.filebrowserUploadUrl = '/upload-image';
-
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
+    config.extraPlugins = 'uploadimage';
+    config.removePlugins = 'easyimage';
+    config.filebrowserUploadMethod = 'form';
 };

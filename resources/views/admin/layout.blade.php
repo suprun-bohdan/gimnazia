@@ -46,8 +46,8 @@
     @yield('content')
 </main>
 <!-- Essential javascripts for application to work-->
-<script src="{{ asset('/tmp_admin_layout') }}/js/jquery-3.3.1.min.js"></script>
-<script src="{{ asset('ckeditor') }}/ckeditor.js"></script>
+{{--<script src="{{ asset('/tmp_admin_layout') }}/js/jquery-3.3.1.min.js"></script>--}}
+{{--<script src="{{ asset('ckeditor') }}/ckeditor.js"></script>--}}
 <script src="{{ asset('/tmp_admin_layout') }}/js/popper.min.js"></script>
 <script src="{{ asset('/tmp_admin_layout') }}/js/bootstrap.min.js"></script>
 <script src="{{ asset('/tmp_admin_layout') }}/js/main.js"></script>

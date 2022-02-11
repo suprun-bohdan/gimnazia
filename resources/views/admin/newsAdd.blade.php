@@ -16,7 +16,7 @@
         <div class="tile">
             <div class="row">
                 <div class="col-lg-12">
-                    <form method="get" action="/">
+                    <form method="post" action="{{ route('ckUploadImage') }}">
                         <div class="form-group">
                             <label for="news_title">Заголовок</label>
                             <input class="form-control" id="news_title" type="text" aria-describedby="titleHelp" placeholder="Введіть заголовок"><small class="form-text text-muted" id="titleHelp">Кількість символів обмежена</small>
@@ -27,7 +27,10 @@
                         <script>
                             // Replace the <textarea id="editor1"> with a CKEditor 4
                             // instance, using default configuration.
-                            CKEDITOR.replace( 'editor1' );
+                            CKEDITOR.replace('editor1', {
+                                filebrowserUploadUrl: "{{route('ckUploadImage', ['_token' => csrf_token() ])}}",
+                                filebrowserUploadMethod: 'post'
+                            });
                         </script>
                         <div class="form-group">
                             <label for="exampleInputFile">Виберіть зображення для прев'ю</label>
@@ -44,6 +47,4 @@
         </div>
     </div>
 </div>
-    <?
-    var_dump($_GET)?>
 @endsection
