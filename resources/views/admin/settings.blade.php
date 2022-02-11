@@ -1,6 +1,6 @@
 @extends('admin.layout')
 @section('content')
-    <div class="app-title">
+<div class="app-title">
         <div>
             <h1><i class="fa fa-edit"></i> Налаштування сайту</h1>
         </div>
@@ -10,6 +10,32 @@
         </ul>
     </div>
     <div class="row">
+        <div class="col-md-6">
+            <div class="tile">
+                <h3 class="tile-title">Соціальні мережі</h3>
+                <form action="#">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="news_title">YouTube</label>
+                            <input class="form-control" id="news_title" type="text" aria-describedby="titleHelp" placeholder="Введіть посилання">
+                        </div>
+                        <div class="form-group">
+                            <label for="news_title">Instagram</label>
+                            <input class="form-control" id="news_title" type="text" aria-describedby="titleHelp" placeholder="Введіть посилання">
+                        </div>
+                        <div class="form-group">
+                            <label for="news_title">Facebook</label>
+                            <input class="form-control" id="news_title" type="text" aria-describedby="titleHelp" placeholder="Введіть посилання">
+                        </div>
+                        <div class="tile-footer">
+                            <button class="btn btn-primary" type="submit">Зберегти</button>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
         <div class="col-md-6">
             <div class="tile">
                 <h3 class="tile-title">Animated Toggle Button</h3>

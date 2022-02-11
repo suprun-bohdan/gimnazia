@@ -1,5 +1,6 @@
 @extends('admin.layout')
 @section('content')
+    <script type="text/javascript" src="js/plugins/select2.min.js"></script>
 <div class="app-title">
     <div>
         <h1><i class="fa fa-edit"></i> Додати новину</h1>
@@ -21,10 +22,16 @@
                             <label for="news_title">Заголовок</label>
                             <input class="form-control" id="news_title" type="text" aria-describedby="titleHelp" placeholder="Введіть заголовок"><small class="form-text text-muted" id="titleHelp">Кількість символів обмежена</small>
                         </div>
-                        <textarea name="newsAdd" id="newsAdd" rows="10" cols="80">
-
-            </textarea>
-
+                        <div class="form-group">
+                            <label for="newsAdd">Текст новини</label>
+                            <textarea name="newsAdd" id="newsAdd" rows="10" cols="80"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Виберіть категорію</label>
+                            <select class="form-control" id="category">
+                                <option>Без категорії</option>
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label for="exampleInputFile">Виберіть зображення для прев'ю</label>
                             <input class="form-control-file" id="exampleInputFile" type="file" aria-describedby="fileHelp"><small class="form-text text-muted" id="fileHelp">Це зображення буде виводитись</small>
@@ -41,6 +48,7 @@
     </div>
 </div>
 <script>
+    // $('#demoSelect').select2();
     // Replace the <textarea id="editor1"> with a CKEditor 4
     // instance, using default configuration.
     CKEDITOR.replace('newsAdd', {
