@@ -45,6 +45,7 @@
                     <a class="nav-link" href="{{ url('/news') }}">Новини</a>
                     <a class="nav-link" href="#">Для батьків</a>
                     <a class="nav-link disabled" href="#">Авторизація</a>
+                    <a class="nav-link disabled" href="/register">Реєстрація</a>
                 </nav>
             </div>
         </div>

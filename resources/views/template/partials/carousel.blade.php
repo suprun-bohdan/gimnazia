@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-12 allNews text-center">
-        <a href="news.php" class="badge badge-info">Переглянути всі новини</a>
+        <a href="{{ url('/news') }}" class="badge badge-info">Переглянути всі новини</a>
     </div>
 </div>
 <div class="row">

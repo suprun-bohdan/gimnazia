@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSettingsTable extends Migration
+class CreatePagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::table('settings', function (Blueprint $table) {
-            $table->increments('set_id')->primary();
-            $table->string('value');
-            $table->string('data');
-            $table->boolean('use')->default(0);
+        Schema::create('pages', function (Blueprint $table) {
+            $table->increments('page_id');
+            $table->string('title');
+            $table->string('tags');
+            $table->longText('text');
+            $table->integer('likes');
             $table->timestamps();
         });
     }
@@ -29,8 +30,6 @@ class CreateSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::table('settings', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('pages');
     }
 }
