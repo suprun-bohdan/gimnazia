@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ImageUploader;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Client\Response;
+
 
 class NewsController extends Controller
 {
@@ -26,14 +29,18 @@ class NewsController extends Controller
      */
     public function create(Request $request)
     {
-        dd($request->all());
-/*        $post = Post::create([
+        $p_img = $request->file('preview_image')->store('images');
+
+        $post = Post::create([
             'title' => $request->title,
             'category_id' => $request->category_id,
             'text' => $request->text,
             'tags' => $request->tags,
+            'p_img' => $p_img,
             'author_id' => Auth::id(),
-        ]);*/
+        ]);
+
+        return redirect()->back();
     }
 
     /**
