@@ -1,7 +1,9 @@
 <?php
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,11 +30,14 @@ if (config('app.login')):
 endif;
 
 Route::post('/upload-image', 'CkeditorController@uploadImage')->name('ckUploadImage');
-Route::prefix('admin')->group(function (){
-    Route::get('/', 'Admin\AdminController@index')->name('admin');
-    Route::get('/news/create', 'Admin\AdminController@news')->name('newsAdd');
-    Route::prefix('settings')->group(function () {
-        Route::get('/', 'Admin\AdminController@settings')->name('settings');
+
+Route::group(['middleware' => 'admin'], function () {
+    Route::prefix('admin')->group(function () {
+        Route::get('/', 'Admin\AdminController@index')->name('admin');
+        Route::get('/news/create', 'Admin\AdminController@news')->name('newsAdd');
+        Route::prefix('settings')->group(function () {
+            Route::get('/', 'Admin\AdminController@settings')->name('settings');
+        });
     });
 });
 
