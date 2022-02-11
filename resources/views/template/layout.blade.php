@@ -44,8 +44,12 @@
                     <a class="nav-link" href="#">Вступ</a>
                     <a class="nav-link" href="{{ url('/news') }}">Новини</a>
                     <a class="nav-link" href="#">Для батьків</a>
+                    @if(config('app.login') == true)
                     <a class="nav-link disabled" href="#">Авторизація</a>
-                    <a class="nav-link disabled" href="/register">Реєстрація</a>
+                    @endif
+                    @if(config('app.register') == true)
+                        <a class="nav-link disabled" href="/register">Реєстрація</a>
+                    @endif
                 </nav>
             </div>
         </div>
