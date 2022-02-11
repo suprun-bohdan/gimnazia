@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Contracts\Validation\Factory;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 class CkeditorController extends Controller
 {
     /**
@@ -80,5 +81,20 @@ class CkeditorController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function uploadImage(Request $request, Factory $validator)
+    {
+        if($request->hasFile('upload')) {
+            $originName = $request->file('upload')->getClientOriginalName();
+            $fileName = pathinfo($originName, PATHINFO_FILENAME);
+            $extension = $request->file('upload')->getClientOriginalExtension();
+            $fileName = $fileName.'_'.time().'.'.$extension;
+            $request->file('upload')->move(public_path('images'), $fileName);
+            $CKEditorFuncNum = $request->input('CKEditorFuncNum');
+            $url = asset('images/'.$fileName);
+            $msg = 'Image successfully uploaded';
+            return response()->json([ 'fileName' => $msg, 'uploaded' => true, 'url' => $url, ]);
+        }
     }
 }
