@@ -1,12 +1,16 @@
 @extends('template.layout')
 @section('title', 'Головна')
 @section('content')
+    @if($sliders == true) :
+
     <div class="row">
         <div class="col-12">
     @include('template.partials.slider')
         </div>
     </div>
     <hr>
+    @endif
+    @if($lastNews === true) :
     <div class="row">
         <div class="col-12">
             <div class="heading red">
@@ -18,5 +22,6 @@
     </div>
     @include('template.partials.carousel')
     <hr>
+    @endif
     @include('template.partials.address')
 @endsection

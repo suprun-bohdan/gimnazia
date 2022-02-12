@@ -16,10 +16,6 @@
 <div class="row">
     <div class="col-12">
         <div class="news-slider">
-
-            @if(count( (array) $lastNews)  < 3)
-                <h3>{{ $lastNews['error'] }}</h3>
-            @else
                 @foreach($lastNews as $last)
                     <div>
                         <div class="card" style="width: auto;">
@@ -32,7 +28,6 @@
                         </div>
                     </div>
                 @endforeach
-            @endif
         </div>
     </div>
 </div>
