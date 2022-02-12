@@ -36,10 +36,10 @@ class SettingController extends Controller
         if (!empty($request->file('data'))) :
             $p_img = $request->file('data')->store("img/{$folderName}", 'public');
         endif;
-        if (!empty($request->file('data'))) {
+        if ($p_img !== null) {
             Setting::create([
                 'value' => $request->value,
-                'data' => $request->$p_img,
+                'data' => $p_img,
             ]);
         } else {
             Setting::create([
