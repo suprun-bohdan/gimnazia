@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\VisitorController;
 use Illuminate\Http\Request;
@@ -16,7 +17,8 @@ class AdminController extends Controller
 
     public function news()
     {
-        return view('admin.newsAdd');
+        $categories = Category::all();
+        return view('admin.newsAdd', ['categories' => $categories]);
     }
 
     public function settings()

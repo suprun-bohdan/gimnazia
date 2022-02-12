@@ -108,6 +108,7 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Post::destroy($id);
+        return \redirect()->back();
     }
 }

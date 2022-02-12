@@ -44,6 +44,7 @@ Route::group(['middleware' => 'admin'], function () {
         Route::prefix('news')->group(function () {
             Route::get('/create', 'Admin\AdminController@news')->name('newsAdd');
             Route::post('/create', 'Admin\NewsController@create')->name('newsCreate');
+            Route::post('/destroy/{id}', 'Admin\NewsController@destroy')->name('newsDestroy');
         });
         Route::prefix('settings')->group(function () {
             Route::get('/', 'Admin\AdminController@settings')->name('settings');
@@ -55,13 +56,19 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/view');
             Route::post('/update');
         });
-        Route::prefix('settings')->group(function(){
+        Route::prefix('settings')->group(function () {
             Route::get('/show', 'Admin\SettingController@show')->name('showSettings');
             Route::get('/create', 'Admin\SettingController@create')->name('createSettings');
             Route::post('/create', 'Admin\SettingController@createField')->name('createField');
             Route::get('/edit/{id}', 'Admin\SettingController@editField')->name('editField');
             Route::post('/edit', 'Admin\SettingController@edit')->name('editFieldPost');
             Route::get('/destroy/{id}', 'Admin\SettingController@destroy')->name('destroyField');
+        });
+
+        Route::prefix('ctagories')->group(function () {
+            Route::get('/show', 'CategoryController@index')->name('categories');
+            Route::post('/show', 'CategoryController@create')->name('categoriesCreate');
+            Route::get('/destroy/{id}', 'CategoryController@destroy')->name('categoryDestroy');
         });
     });
 });
