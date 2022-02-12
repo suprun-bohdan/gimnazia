@@ -14,8 +14,10 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
+if (!auth()->check()) {
+    Route::get('/make-admin', 'MakeAdminController@index');
+}
 Route::get('/install', 'InstallController@index');
-
 if (config('app.register')):
     if (!auth()->check()) :
         Route::get('/register', 'UserController@register');

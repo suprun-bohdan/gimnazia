@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-group">
                         <label for="login">Введіть логін</label>
-                        <input type="text" id="login" name="login" class="form-control" value="{{ 'login' }}">
+                        <input type="text" id="login" name="login" class="form-control" value="{{ old('login') }}">
                     </div>
                     <div class="form-group">
                         <label for="email">Введіть email</label>
