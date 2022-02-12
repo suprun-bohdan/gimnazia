@@ -180,8 +180,9 @@ figcaption {
     padding-top: 30px;
 }
 
-.card img {
+.card-img-top {
     object-fit: cover;
+    height: 180px;
 }
 
 .card {
