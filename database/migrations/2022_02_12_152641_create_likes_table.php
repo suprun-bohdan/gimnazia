@@ -18,6 +18,7 @@ class CreateLikesTable extends Migration
             $table->integer('like')->default(0);
             $table->integer('post_id')->nullable();
             $table->ipAddress('ip')->nullable();
+            $table->string('sessid')->nullable();
             $table->integer('user_id')->nullable();
             $table->timestamps();
         });

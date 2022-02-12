@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Like;
 use App\Post;
 use Carbon\Carbon;
 use http\Client\Curl\User;
@@ -20,6 +21,7 @@ class PostController extends Controller
         $date = date_create($post->time);
         $date = Carbon::parse($date)->format('d-m-Y H:i:s');
         Visitor::visitorAdd($request, $post->id);
-        return view('template.post', ['post' => $post, 'author' => $author, 'date' => $date, 'visitors' => $visitors]);
+        $like = Like::all()->where('post_id', $post_id)->count();
+        return view('template.post', ['post' => $post, 'author' => $author, 'date' => $date, 'visitors' => $visitors, 'like' => $like]);
     }
 }
