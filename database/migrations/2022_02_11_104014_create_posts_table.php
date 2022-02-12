@@ -22,6 +22,7 @@ class CreatePostsTable extends Migration
             $table->integer('visitors')->default(0);
             $table->string('tags')->nullable();
             $table->integer('author_id')->nullable();
+            $table->string('sessid')->nullable();
             $table->timestamp('time')->nullable();
             $table->timestamps();
         });

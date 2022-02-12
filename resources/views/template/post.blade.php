@@ -12,10 +12,35 @@
             </div>
             <hr>
             <span>Автор: {{ $author->first_name }} {{ $author->last_name }} | Дата створення: {{ $date }} | Переглядів: {{ $visitors }} | <a
-                    href="#">Перейти вверх</a></span>
+                    href="#">Перейти вверх</a></span>  | <input type="button" class='like btn btn-info btn-sm' value="Подобається" /> </input>
+            Лайків: <span id="likes">{{ $like }}</span>
+            </div>
+
         </div>
     </div>
 
     <!-- END CONTENT-->
+    <script>
+        $(function () {
+            $('.like').click(function () { likeFunction(this); });
+        });
 
+        function likeFunction(caller) {
+            // var postId = caller.parentElement.getAttribute('postid');
+
+            $.ajax({
+                type: "POST",
+                url: "{{ route('like') }}",
+                data: {
+                    post_id : {{ $post->id }},
+                    user_id : {{ Auth::id() }},
+                    sess_id : "{{ Session::getId() }}",
+                },
+                success: function (data) {
+                    console.log(data.countPerPost)
+                    $('#likes').html(data.countPerPost).show()
+                }
+            });
+        }
+    </script>
 @endsection
