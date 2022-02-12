@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ImageUploader;
 use App\Post;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Client\Response;
@@ -28,8 +29,17 @@ class NewsController extends Controller
      */
     public function create(Request $request)
     {
+        $p_img = null;
+        $time = null;
         $folderName = date('Y-m-d');
-        $p_img = $request->file('preview_image')->store("img/{$folderName}", 'public');
+        if (!empty($request->file('preview_image'))) :
+            $p_img = $request->file('preview_image')->store("img/{$folderName}", 'public');
+        endif;
+
+        if (!empty($request->time)) {
+            $time = $request->time . " " . date("H:i:s", $_SERVER['REQUEST_TIME']);
+            $time = Carbon::parse($time)->format('Y-m-d H:i:s');
+        }
 
         $post = Post::create([
             'title' => $request->title,
@@ -38,6 +48,7 @@ class NewsController extends Controller
             'tags' => $request->tags,
             'p_img' => $p_img,
             'author_id' => Auth::id(),
+            'time' => $time,
         ]);
 
         return redirect()->back();
