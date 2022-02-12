@@ -34,6 +34,8 @@ Route::post('/upload-image', 'CkeditorController@uploadImage')->name('ckUploadIm
 Route::group(['middleware' => 'admin'], function () {
     Route::prefix('admin')->group(function () {
         Route::get('/', 'Admin\AdminController@index')->name('admin');
+        Route::get('/slider', 'Admin\SliderController@index')->name('slider');
+        Route::post('/slider/create', 'Admin\SliderController@store')->name('sliderCreate');
 
         Route::prefix('news')->group(function () {
             Route::get('/create', 'Admin\AdminController@news')->name('newsAdd');
