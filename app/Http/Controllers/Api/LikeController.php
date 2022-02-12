@@ -17,9 +17,9 @@ class LikeController extends Controller
         }
         $ip = request()->getClientIp();
         $like = 1;
-        $check = Like::where('sessid', $request->sess_id . "sdasd")->first();
+        $check = Like::where('sessid', $request->sess_id)->first();
         $countPerPost = Like::all()->where('post_id')->count();
-        if ($check !== null) {
+        if ($check == null) {
             Like::create([
                 'like' => $like,
                 'ip' => $ip,
@@ -38,7 +38,7 @@ class LikeController extends Controller
                 'alert' => 'Like from ' . $request->sess_id . ' isset',
                 'count' => $countPerPost,
             ];
-            return response()->json($info, 401);
+            return response()->json($info, 400);
         }
 
     }
