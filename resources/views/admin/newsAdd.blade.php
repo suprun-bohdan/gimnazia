@@ -30,7 +30,10 @@
                         <div class="form-group">
                             <label for="category">Виберіть категорію</label>
                             <select class="form-control" name="category_id" id="category">
-                                <option selected value="1">Без категорії</option>
+                                <option value="0">Без категорії</option>
+                                @foreach($categories as $c)
+                                    <option value="{{ $c->id }}">{{ $c->category_name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
