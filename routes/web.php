@@ -55,6 +55,7 @@ else :
 
     Route::get('/', 'IndexController@index')->name('index');
     Route::get('/news', 'IndexController@news');
+    Route::get('/post/{post_id}', 'PostController@index')->name('post');
 
 
 endif;
