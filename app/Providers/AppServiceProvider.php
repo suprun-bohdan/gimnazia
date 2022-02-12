@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Http\Controllers\Api\GitController;
+use App\Post;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -26,5 +28,12 @@ class AppServiceProvider extends ServiceProvider
     {
         $tag = GitController::getLastVersionTag();
         \view()->share('tag', $tag);
+        $lastNews = [
+            'error' => 'Записи новин відсутні'
+        ];
+        if (Post::all()->count() > 6) {
+            $lastNews = Post::getLastNews(6);
+        }
+        \view()->share('lastNews', $lastNews);
     }
 }

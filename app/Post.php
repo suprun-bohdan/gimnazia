@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Post extends Model
 {
@@ -11,4 +12,10 @@ class Post extends Model
     ];
 
     protected $table = "posts";
+
+    public static function getLastNews($limit)
+    {
+        $news = DB::table('posts')->orderBy('created_at', 'desc')->limit($limit);
+        return $news;
+    }
 }

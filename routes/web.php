@@ -42,6 +42,13 @@ Route::group(['middleware' => 'admin'], function () {
         Route::prefix('settings')->group(function () {
             Route::get('/', 'Admin\AdminController@settings')->name('settings');
         });
+
+        Route::prefix('page')->group(function () {
+            Route::get('/create', 'Admin\PageController@index');
+            Route::post('/create', 'Admin\PageController@store')->name('pageCreate');
+            Route::post('/view');
+            Route::post('/update');
+        });
     });
 });
 
@@ -56,6 +63,7 @@ else :
     Route::get('/', 'IndexController@index')->name('index');
     Route::get('/news', 'IndexController@news');
     Route::get('/post/{post_id}', 'PostController@index')->name('post');
+    Route::get('/page/{page_id}', 'PageController@index')->name('page');
 
 
 endif;

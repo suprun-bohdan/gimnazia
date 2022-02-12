@@ -64,6 +64,9 @@
                     @if(config('app.register') == true)
                         @if(Auth::check())
                             <a class="nav-link disabled" href="/logout">Вихід</a>
+                            @if(Auth::user()->role)
+                                <a class="nav-link disabled" href="/admin">Адмін панель</a>
+                            @endif
                         @endif
                     @endif
                 </nav>
