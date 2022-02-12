@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Client\Response;
+use Illuminate\Support\Facades\Redirect;
 
 
 class NewsController extends Controller
@@ -51,7 +52,7 @@ class NewsController extends Controller
             'time' => $time,
         ]);
 
-        return redirect()->back();
+        return Redirect::away(route('post', $post->id));
     }
 
     /**

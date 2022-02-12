@@ -1,5 +1,5 @@
 @extends('template.layout')
-@section('title', 'Новина')
+@section('title', 'Новини')
 @section('content')
     <!-- CONTENT-->
     <div class="row">
@@ -11,7 +11,8 @@
                 {!!$post->text !!}
             </div>
             <hr>
-            <span>Автор: {{ $author->first_name }} {{ $author->last_name }} | Дата створення: {{ $date }} | Переглядів: {{ $visitors }}</span>
+            <span>Автор: {{ $author->first_name }} {{ $author->last_name }} | Дата створення: {{ $date }} | Переглядів: {{ $visitors }} | <a
+                    href="#">Перейти вверх</a></span>
         </div>
     </div>
 

@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/install', 'InstallController@index');
+
 if (config('app.register')):
     if (!auth()->check()) :
         Route::get('/register', 'UserController@register');
@@ -46,10 +48,13 @@ Route::group(['middleware' => 'admin'], function () {
         });
 
         Route::prefix('page')->group(function () {
-            Route::get('/create', 'Admin\PageController@index');
+            Route::get('/create', 'Admin\PageController@index')->name('create');
             Route::post('/create', 'Admin\PageController@store')->name('pageCreate');
             Route::post('/view');
             Route::post('/update');
+        });
+        Route::prefix('settings')->group(function(){
+            Route::get('/show', 'Admin\SettingController@show')->name('showSettings');
         });
     });
 });

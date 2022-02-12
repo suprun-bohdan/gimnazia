@@ -27,7 +27,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="preview_text">Опис</label>
-                                <textarea name="preview_text" id="preview_text" rows="10" cols="80"></textarea>
+                                <textarea name="preview_text" maxlength="254" id="preview_text" rows="10" cols="80"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="img_url">Виберіть зображення для прев'ю</label>
