@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 if (!auth()->check()) {
     Route::get('/make-admin', 'MakeAdminController@index');
 }
-Route::get('/install', 'InstallController@index');
+Route::get('/install', 'InstallController@install');
 if (config('app.register')):
     if (!auth()->check()) :
         Route::get('/register', 'UserController@register');
@@ -57,6 +57,11 @@ Route::group(['middleware' => 'admin'], function () {
         });
         Route::prefix('settings')->group(function(){
             Route::get('/show', 'Admin\SettingController@show')->name('showSettings');
+            Route::get('/create', 'Admin\SettingController@create')->name('createSettings');
+            Route::post('/create', 'Admin\SettingController@createField')->name('createField');
+            Route::get('/edit/{id}', 'Admin\SettingController@editField')->name('editField');
+            Route::post('/edit', 'Admin\SettingController@edit')->name('editFieldPost');
+            Route::get('/destroy/{id}', 'Admin\SettingController@destroy')->name('destroyField');
         });
     });
 });

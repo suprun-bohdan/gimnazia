@@ -15,7 +15,7 @@ class SettingController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -25,7 +25,29 @@ class SettingController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.settings.create');
+    }
+
+    public function createField(Request $request)
+    {
+        $p_img = null;
+        $time = null;
+        $folderName = date('Y-m-d');
+        if (!empty($request->file('data'))) :
+            $p_img = $request->file('data')->store("img/{$folderName}", 'public');
+        endif;
+        if (!empty($request->file('data'))) {
+            Setting::create([
+                'value' => $request->value,
+                'data' => $request->$p_img,
+            ]);
+        } else {
+            Setting::create([
+                'value' => $request->value,
+                'data' => $request->data,
+            ]);
+        }
+        return redirect()->route('showSettings');
     }
 
     /**
@@ -47,8 +69,18 @@ class SettingController extends Controller
      */
     public function show(Setting $setting)
     {
-        Setting::all();
-        return view('admin.settings.show');
+        $settings = Setting::all();
+
+        return view('admin.settings.show', ['settings' => $settings]);
+    }
+
+    public function edit(Request $request)
+    {
+        $setting = Setting::find($request->id);
+        $setting->value = $request->value;
+        $setting->data = $request->data;
+        $setting->save();
+        return redirect()->route('showSettings');
     }
 
     /**
@@ -57,9 +89,11 @@ class SettingController extends Controller
      * @param  \App\Setting  $setting
      * @return \Illuminate\Http\Response
      */
-    public function edit(Setting $setting)
+    public function editField($id)
     {
-        //
+        $setting = Setting::where('id', $id)->first();
+
+        return view('admin.settings.edit', ['setting' => $setting]);
     }
 
     /**
@@ -80,8 +114,9 @@ class SettingController extends Controller
      * @param  \App\Setting  $setting
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Setting $setting)
+    public function destroy($id)
     {
-        //
+        Setting::destroy($id);
+        return redirect()->route('showSettings');
     }
 }

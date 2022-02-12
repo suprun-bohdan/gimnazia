@@ -40,6 +40,11 @@
                     <li><a class="treeview-item" href="/guide"><i class="icon fa fa-comments-o"></i> Онлайн чат</a></li>
                 </ul>
             </li>
-            <li><a class="app-menu__item" href="{{ route('settings') }}"><i class="app-menu__icon fa fa-cog" aria-hidden="true"></i><span class="app-menu__label">Налаштування</span></a></li>
+            <li class="treeview"><a class="app-menu__item" href="{{ route('settings') }}" data-toggle="treeview"><i class="app-menu__icon fa fa-cog"></i><span class="app-menu__label">Налаштування</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a class="treeview-item" href="{{ route('createSettings') }}"><i class="icon fa fa-file-word-o"></i> Додати налаштування</a></li>
+                    <li><a class="treeview-item" href="{{ route('showSettings') }}"><i class="icon fa fa-file-code-o"></i> Показати всі налаштування</a></li>
+                </ul>
+            </li>
         </ul>
     </aside>
