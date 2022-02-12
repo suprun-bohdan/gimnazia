@@ -94,11 +94,11 @@
             <!-- Links -->
             <ul class="list-unstyled">
                 <li class="social">
-                    <a href="#!"><i class="fa fa-facebook-square"
+                    <a href="https://{{ $fb->data ?? "fb.com" }}" target="_blank"><i class="fa fa-facebook-square"
                                     aria-hidden="true"></i></a>
-                    <a href="#!"><i class="fa fa-instagram"
+                    <a href="https://{{ $ig->data ?? "instagram.com"}}" target="_blank"><i class="fa fa-instagram"
                                     aria-hidden="true"></i></a>
-                    <a href="#!"><i class="fa fa-youtube-play"
+                    <a href="https://{{ $youtube ?? "youtube.com" }}" target="_blank"><i class="fa fa-youtube-play"
                                     aria-hidden="true"></i></a>
                 </li>
                 <li class="footer-contact">

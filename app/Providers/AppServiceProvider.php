@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Http\Controllers\Api\GitController;
 use App\Post;
+use App\Setting;
 use App\Slider;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -44,5 +45,13 @@ class AppServiceProvider extends ServiceProvider
             }
             \view()->share('lastNews', $lastNews);
         endif;
+
+        if (Schema::hasTable('settings')) {
+            $fb = Setting::where('value', 'fb')->first();
+            $ig = Setting::where('value', 'ig')->first();
+        }
+
+        view()->share('fb', $fb);
+        view()->share('ig', $ig);
     }
 }

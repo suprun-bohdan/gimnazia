@@ -32,34 +32,15 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach($settings as $setting)
                                     <tr>
-                                        <td>1</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td><i class="fa fa-edit"></i></td>
-                                        <td><i class="fa fa-remove"></i></td>
+                                        <td>{{ $setting->id }}</td>
+                                        <td>{{ $setting->value }}</td>
+                                        <td>{{ $setting->data }}</td>
+                                        <td><a href="{{ route('editField', $setting->id) }}"><i class="fa fa-edit"></i></a></td>
+                                        <td><a href="{{ route('destroyField', $setting->id) }}"><i class="fa fa-remove"></i></a></td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td><i class="fa fa-edit"></i></td>
-                                        <td><i class="fa fa-remove"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td><i class="fa fa-edit"></i></td>
-                                        <td><i class="fa fa-remove"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td><i class="fa fa-edit"></i></td>
-                                        <td><i class="fa fa-remove"></i></td>
-                                    </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
