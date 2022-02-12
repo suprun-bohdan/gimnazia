@@ -17,6 +17,7 @@ class CreateVisitorsTable extends Migration
             $table->id();
             $table->integer('visitor')->default(0);
             $table->integer('post_id')->nullable();
+            $table->string('sessid')->nullable();
             $table->ipAddress('ip')->nullable();
             $table->timestamps();
         });
