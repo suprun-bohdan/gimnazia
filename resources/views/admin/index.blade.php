@@ -31,7 +31,7 @@
             <div class="widget-small warning coloured-icon"><i class="icon fa fa-eye fa-3x"></i>
                 <div class="info">
                     <h4>Переглядів</h4>
-                    <p><b>10</b></p>
+                    <p><b>{{ $visitorsCount }}</b></p>
                 </div>
             </div>
         </div>
