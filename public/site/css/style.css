@@ -203,3 +203,9 @@ figcaption {
     padding-top: 15px;
     padding-bottom: 15px;
 }
+
+.d-block {
+    object-fit: cover;
+    max-height: 500px;
+    position: relative;
+}
