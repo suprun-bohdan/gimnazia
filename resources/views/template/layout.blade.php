@@ -12,7 +12,7 @@
     <!--    <link rel="stylesheet" href="css/owl.theme.default.min.css">-->
     <script src="https://use.fontawesome.com/646c13d065.js"></script>
     <title>ЗЗСО - @yield('title')</title>
-    <link href="{{ asset('site') }}/img/index.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+    <link href="{{ asset('storage/') . '/' .$favicon->data ?? asset('site/img/index.ico') }}" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 </head>
 <body>
 <script src="{{ asset('site/js/jquery-3.6.0.min.js') }}"></script>
@@ -34,8 +34,13 @@
         <div class="row">
             <div class="col-12 text-center">
                 <a href="/">
-                    <img src="{{ asset('site/img/logo-uk.png') }}"
-                         alt="Вашківецька гімназія" id="header-logo">
+                    @if(isset($logo->data))
+
+                    <img src="{{ asset('storage/') . '/' . $logo->data }}"
+                         @else
+                             <img src="{{  asset('site/img/logo-uk.png')  }}"
+                                  @endif
+                         alt="{{ $full_sitename->data ?? "Вашківецький ЗЗСО І-ІІІ ступенів ім. Бажанського" }}" id="header-logo">
                 </a>
             </div>
         </div>

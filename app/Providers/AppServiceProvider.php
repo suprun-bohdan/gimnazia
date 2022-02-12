@@ -49,9 +49,17 @@ class AppServiceProvider extends ServiceProvider
         if (Schema::hasTable('settings')) {
             $fb = Setting::where('value', 'fb')->first();
             $ig = Setting::where('value', 'ig')->first();
+            $favicon = Setting::where('value', 'favicon')->first();
+            $sitename = Setting::where('value', 'sitename')->first();
+            $full_sitename = Setting::where('value', 'full_sitename')->first();
+            $logo = Setting::where('value', 'logo')->first();
         }
 
         view()->share('fb', $fb);
         view()->share('ig', $ig);
+        view()->share('favicon', $favicon);
+        view()->share('sitename', $sitename);
+        view()->share('full_sitename', $full_sitename);
+        view()->share('logo', $logo);
     }
 }
