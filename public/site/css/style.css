@@ -175,3 +175,17 @@ figcaption {
     font-family: e-Ukraine-Thin;
     font-weight: lighter;
 }
+
+.news-cards {
+    padding-top: 30px;
+}
+
+.card img {
+    object-fit: cover;
+}
+
+.card {
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+}
