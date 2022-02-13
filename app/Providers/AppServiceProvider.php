@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Http\Controllers\Api\GitController;
+use App\Nav;
 use App\Post;
 use App\Setting;
 use App\Slider;
@@ -60,6 +61,11 @@ class AppServiceProvider extends ServiceProvider
             view()->share('sitename', $sitename);
             view()->share('full_sitename', $full_sitename);
             view()->share('logo', $logo);
+        }
+
+        if (Schema::hasTable('navs')) {
+            $navs = Nav::all();
+            view()->share('navs', $navs);
         }
 
     }

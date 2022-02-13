@@ -253,3 +253,8 @@ figcaption {
     text-decoration: none;
     color: grey;
 }
+
+.dropdown-menu {
+    border: none;
+    border-radius: 0 0 0 0;
+}

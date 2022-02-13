@@ -77,6 +77,12 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/show', 'CategoryController@create')->name('categoriesCreate');
             Route::get('/destroy/{id}', 'CategoryController@destroy')->name('categoryDestroy');
         });
+        Route::prefix('navs')->group(function (){
+            Route::get('/', 'NavsController@index')->name('navPage');
+            Route::post('/', 'NavsController@store')->name('navAdd');
+            Route::get('/edit/{id}', 'NavsController@edit')->name('navEdit');
+            Route::get('/remove/{id}', 'NavsController@destroy')->name('navRemove');
+        });
     });
 });
 

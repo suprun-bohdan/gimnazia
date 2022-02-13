@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Page extends Model
+class Nav extends Model
 {
     protected $fillable = [
-        'title', 'text', 'time', 'p_img'
-    ];
+        'value', 'uri'
+        ];
 }
