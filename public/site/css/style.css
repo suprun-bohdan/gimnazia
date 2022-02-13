@@ -258,3 +258,7 @@ figcaption {
     border: none;
     border-radius: 0 0 0 0;
 }
+
+.btn:focus, .btn.focus {
+    box-shadow: none;
+}
