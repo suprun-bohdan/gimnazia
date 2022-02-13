@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ImageUploader;
 use App\Post;
@@ -9,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Client\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 
@@ -21,6 +23,8 @@ class NewsController extends Controller
      */
     public function index()
     {
+        $posts = Post::all();
+        return view('admin.news.list', ['posts' => $posts]);
     }
 
     /**

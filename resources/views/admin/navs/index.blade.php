@@ -50,23 +50,23 @@
                                 <input class="form-control" name="value" maxlength="254" id="value" type="text">
                             </div>
                             <div class="form-group">
-                                <label for="page">Виберіть сторінку</label>
-                                <select id="select" class="form-control" name="uri" id="page">
-                                    <option value="">Не приєднувати</option>
+                                <label for="uri">Виберіть сторінку</label>
+                                <select id="uri" class="form-control" name="uri" id="uri">
                                     @foreach($pages as $p)
-                                        <option value="{{ $p->page_id }}">{{ $p->title }}</option>
-                                    @endforeach
-                                    @foreach($navs as $n)
-                                        <option value="{{ $n->id }}">{{ $n->value }}</option>
+                                        <option value="{{ route('page', $p->page_id) }}">{{ $p->title }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="parent_id">Приєднати до</label>
-                                <select id="select" class="form-control" name="parent_id" id="parent_id">
+                                <select id="parent_id" class="form-control" name="parent_id" id="parent_id">
+                                    <option value="0">Не приєднувати</option>
                                     @foreach($pages as $p)
-                                        <option value="{{ route('page', $p->page_id) }}">{{ $p->title }}</option>
+                                        <option value="{{ $p->page_id }}">{{ $p->title }}</option>
                                     @endforeach
+                                    @foreach($navs as $n)
+                                        <option value="{{ $n->id }}">{{ $n->value }}</option>
+                                @endforeach
                                 </select>
                             </div>
                             <script>

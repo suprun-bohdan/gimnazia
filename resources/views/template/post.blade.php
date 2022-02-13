@@ -20,10 +20,10 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
     <div class="row">
-        <div class="col-10 text-center">
+        <div class="col-10">
             <h2>{{ $post->title }}</h2>
             <hr>
-            <img class="img-fluid" src="{{ Storage::url($post->p_img) }}" alt="{{ $post->title }}">
+            <img class="img-fluid rounded mx-auto d-block" src="{{ Storage::url($post->p_img) }}" alt="{{ $post->title }}">
             <div class="post-content">
                 {!!$post->text !!}
             </div>
