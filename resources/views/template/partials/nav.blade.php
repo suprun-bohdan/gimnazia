@@ -1,7 +1,7 @@
 <?php
 use App\Nav;
-$dataset = Nav::getNav();
-print_r($dataset);
+$datasets = Nav::getNav();
+dd($datasets);
 ?>
 <nav class="nav justify-content-center">
     @if(!isset($navs))
@@ -14,7 +14,7 @@ print_r($dataset);
         <a class="nav-link" href="#">Для батьків</a>
         <a class="nav-link" href="{{ url('/news') }}">Новини</a>
         <div class="btn-group">
-{{--            @foreach($dataset[0] as $data)
+{{--            @foreach($datasets as $data)
             <button type="button" class="btn nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{ $data }}
             </button>

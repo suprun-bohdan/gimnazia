@@ -22,7 +22,7 @@ class Nav extends Model
                 }
                 else {
 
-                    $a[$v['id']] =  $v = [ 'value' => $v['value'], 'uri' => $v['uri']];
+                    $a[$v['id']] =  $v = [ 'value' => $v['value'], 'uri' => $v['uri'] ];
                 }
             }
         }
@@ -31,7 +31,8 @@ class Nav extends Model
 
     public static function getNav()
     {
-        $resultSql = DB::table('navs')->get();
+//        $resultSql = Nav::all()->collect();
+        $resultSql = DB::table('navs')->get()->collect();
         $navs = [];
         foreach($resultSql as $object)
         {
