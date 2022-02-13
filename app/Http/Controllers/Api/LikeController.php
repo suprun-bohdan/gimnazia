@@ -17,9 +17,10 @@ class LikeController extends Controller
         }
         $ip = request()->getClientIp();
         $like = 1;
-        $check = Like::where('sessid', $request->sess_id)->first();
+        $checkLike = Like::where('sessid', $request->sess_id)->first();
+        $checkPost = Like::where('post_id', $request->post_id)->first();
         $countPerPost = Like::all()->where('post_id')->count();
-        if ($check == null) {
+        if ($checkLike == null or $checkPost === null) {
             Like::create([
                 'like' => $like,
                 'ip' => $ip,

@@ -28,6 +28,10 @@
                             <textarea name="text" id="newsAdd" rows="10" cols="80"></textarea>
                         </div>
                         <div class="form-group">
+                            <label for="description">Короткий опис</label>
+                            <textarea class="form-control" maxlength="160" name="description" id="description" rows="2" cols="2"  aria-describedby="descriptionHelp"></textarea><small class="form-text text-muted" id="descriptionHelp">Кількість символів обмежена до 160</small>
+                        </div>
+                        <div class="form-group">
                             <label for="category">Виберіть категорію</label>
                             <select class="form-control" name="category_id" id="category">
                                 <option value="0">Без категорії</option>

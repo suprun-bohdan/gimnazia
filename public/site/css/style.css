@@ -209,3 +209,47 @@ figcaption {
     max-height: 500px;
     position: relative;
 }
+
+.news-cards a {
+    color: #117a8b;
+    text-decoration: none;
+}
+
+.news-cards a:hover {
+    color: red;
+}
+
+.card-img-top {
+    border-radius: 15px 15px 15px 15px;
+}
+
+.card-body {
+    padding: 0.50rem;
+}
+
+.card-title {
+    font-size: 1rem;
+}
+
+.card-text {
+    font-size: 0.75rem;
+}
+
+.recommended {
+    font-size: 11px;
+}
+
+.recommended-url {
+    text-decoration: none;
+    color: grey;
+}
+
+.recommended-url:hover {
+    text-decoration: none;
+    color: grey;
+}
+
+.recommended-url:active {
+    text-decoration: none;
+    color: grey;
+}

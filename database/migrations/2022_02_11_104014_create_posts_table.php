@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->integer('category_id');
             $table->longText('text');
+            $table->text('description')->nullable();
             $table->string('p_img')->nullable();
             $table->integer('visitors')->default(0);
             $table->string('tags')->nullable();

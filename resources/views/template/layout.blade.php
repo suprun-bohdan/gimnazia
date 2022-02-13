@@ -8,11 +8,14 @@
     <link rel="stylesheet" href="{{ asset('site/css/style.css') }}">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
-    <!--    <link rel="stylesheet" href="css/owl.carousel.min.css">-->
-    <!--    <link rel="stylesheet" href="css/owl.theme.default.min.css">-->
     <script src="https://use.fontawesome.com/646c13d065.js"></script>
     <title>ЗЗСО - @yield('title')</title>
-    <link href="{{ asset('storage/') . '/' .$favicon->data ?? asset('site/img/index.ico') }}" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+    @if(isset($favicon->data))
+        <link href="{{ asset('storage/') . '/' . $favicon->data ?? asset('site/img/index.ico') }}" rel="shortcut icon"
+              type="image/vnd.microsoft.icon"/>
+    @else
+        <link href="{{ asset('site/img/index.ico') }}" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
+    @endif
 </head>
 <body>
 <script src="{{ asset('site/js/jquery-3.6.0.min.js') }}"></script>

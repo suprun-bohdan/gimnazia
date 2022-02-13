@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class Post extends Model
 {
     protected $fillable = [
-        'title', 'text', 'time', 'p_img', 'tags', 'category_id', 'author_id'
+        'title', 'text', 'time', 'p_img', 'tags', 'category_id', 'author_id', 'description'
     ];
 
     protected $table = "posts";
