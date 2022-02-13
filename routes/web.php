@@ -50,13 +50,10 @@ Route::group(['middleware' => 'admin'], function () {
 
         Route::prefix('news')->group(function () {
             Route::get('/create', 'Admin\AdminController@news')->name('newsAdd');
+            Route::get('/list', 'Admin\NewsController@index')->name('newsList');
             Route::post('/create', 'Admin\NewsController@create')->name('newsCreate');
             Route::post('/destroy/{id}', 'Admin\NewsController@destroy')->name('newsDestroy');
         });
-        Route::prefix('settings')->group(function () {
-            Route::get('/', 'Admin\AdminController@settings')->name('settings');
-        });
-
         Route::prefix('page')->group(function () {
             Route::get('/create', 'Admin\PageController@index')->name('create');
             Route::post('/create', 'Admin\PageController@store')->name('pageCreate');
@@ -64,6 +61,7 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/update');
         });
         Route::prefix('settings')->group(function () {
+            Route::get('/site', 'Admin\AdminController@settings')->name('settings');
             Route::get('/show', 'Admin\SettingController@show')->name('showSettings');
             Route::get('/create', 'Admin\SettingController@create')->name('createSettings');
             Route::post('/create', 'Admin\SettingController@createField')->name('createField');
@@ -80,7 +78,6 @@ Route::group(['middleware' => 'admin'], function () {
         Route::prefix('navs')->group(function (){
             Route::get('/', 'NavsController@index')->name('navPage');
             Route::post('/', 'NavsController@store')->name('navAdd');
-            Route::get('/edit/{id}', 'NavsController@edit')->name('navEdit');
             Route::get('/remove/{id}', 'NavsController@destroy')->name('navRemove');
         });
     });
