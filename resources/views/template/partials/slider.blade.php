@@ -5,12 +5,12 @@
         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner">
-        @foreach($sliders as $slide)
-            <div class="carousel-item">
-                <img class="d-block w-100" src="{{ Storage::url($slide->img_url) }}" alt="First slide">
-                <span>text</span>
-            </div>
-        @endforeach
+            @foreach($sliders as $slide)
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="{{ Storage::url($slide->img_url) }}" alt="First slide">
+                    <span>text</span>
+                </div>
+            @endforeach
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

@@ -41,8 +41,9 @@ class NavsController extends Controller
     public function store(Request $request)
     {
         Nav::create([
-            'value' => $request->value,
-            'uri' => $request->uri,
+            'value' => htmlspecialchars($request->value),
+            'uri' => htmlspecialchars($request->uri),
+            'parent_id' => $request->parent_id,
         ]);
 
         return redirect()->route('navPage');
@@ -90,7 +91,7 @@ class NavsController extends Controller
      */
     public function destroy($id)
     {
-        Nav::where('nav_id', $id)->delete();
+        Nav::where('id', $id)->delete();
         return redirect()->route('navPage');
     }
 }

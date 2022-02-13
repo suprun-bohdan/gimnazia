@@ -1,3 +1,8 @@
+<?php
+use App\Nav;
+$dataset = Nav::getNav();
+print_r($dataset);
+?>
 <nav class="nav justify-content-center">
     @if(!isset($navs))
         @foreach($navs as $nav)
@@ -9,16 +14,16 @@
         <a class="nav-link" href="#">Для батьків</a>
         <a class="nav-link" href="{{ url('/news') }}">Новини</a>
         <div class="btn-group">
+{{--            @foreach($dataset[0] as $data)
             <button type="button" class="btn nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Action
+                {{ $data }}
             </button>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Separated link</a>
+                @foreach($data as $k => $v)
+                <a class="dropdown-item" href="{{ $k['uri'] }}">{{ $v['value'] }}</a>
+                @endforeach
             </div>
+            @endforeach--}}
         </div>
     @endif
     @if(config('app.login') == true)

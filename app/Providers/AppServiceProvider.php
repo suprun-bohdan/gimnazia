@@ -67,6 +67,5 @@ class AppServiceProvider extends ServiceProvider
             $navs = Nav::all();
             view()->share('navs', $navs);
         }
-
     }
 }

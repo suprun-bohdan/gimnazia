@@ -28,6 +28,15 @@
                                 <label for="value">Посилання</label>
                                 <input class="form-control" name="uri" maxlength="254" id="value" type="text">
                             </div>
+                            <div class="form-group">
+                                <label for="parent_id">Приєднати до</label>
+                                <select id="select" class="form-control" name="parent_id" id="parent_id">
+                                    <option selected="selected" value="0">Не приєднувати</option>
+                                    @foreach($navs as $n)
+                                        <option value="{{ $n->id }}">{{ $n->value }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="tile-footer">
                                 <button type="submit" class="btn btn-primary">Додати</button>
                             </div>
@@ -42,12 +51,27 @@
                             </div>
                             <div class="form-group">
                                 <label for="page">Виберіть сторінку</label>
-                                <select class="form-control" name="uri" id="page">
+                                <select id="select" class="form-control" name="uri" id="page">
+                                    <option value="">Не приєднувати</option>
+                                    @foreach($pages as $p)
+                                        <option value="{{ $p->page_id }}">{{ $p->title }}</option>
+                                    @endforeach
+                                    @foreach($navs as $n)
+                                        <option value="{{ $n->id }}">{{ $n->value }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="parent_id">Приєднати до</label>
+                                <select id="select" class="form-control" name="parent_id" id="parent_id">
                                     @foreach($pages as $p)
                                         <option value="{{ route('page', $p->page_id) }}">{{ $p->title }}</option>
                                     @endforeach
                                 </select>
                             </div>
+                            <script>
+                                function testo(){ return $("select#select").val("3");
+                            </script>
                             <div class="tile-footer">
                                 <button type="submit" class="btn btn-primary">Додати</button>
                             </div>
@@ -67,16 +91,18 @@
                         <th>#</th>
                         <th>Заголовок</th>
                         <th>Посилання</th>
+                        <th>Головне ID</th>
                         <th>Дія</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($navs as $n)
                         <tr>
-                            <td>{{ $n->nav_id }}</td>
+                            <td>{{ $n->id }}</td>
                             <td>{{ $n->value }}</td>
                             <td><a href="{{ $n->uri }}">( перейти )</a></td>
-                            <td><a href="{{ route('navRemove', $n->nav_id) }}"><i class="fa fa-remove"></i></a>  |  <a href="#"><i class="fa fa-edit"></i></a></td>
+                            <td><a href="">{{ $n->parent_id }}</a></td>
+                            <td><a href="{{ route('navRemove', $n->id) }}"><i class="fa fa-remove"></i></a>  |  <a href="#"><i class="fa fa-edit"></i></a></td>
                         </tr>
                     @endforeach
                     </tbody>
