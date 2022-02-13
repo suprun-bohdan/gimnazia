@@ -14,9 +14,11 @@ class CreateNavsTable extends Migration
     public function up()
     {
         Schema::create('navs', function (Blueprint $table) {
-            $table->increments('nav_id');
+            $table->increments('id');
             $table->string('value');
             $table->string('uri');
+            $table->integer('parent_id')->nullable();
+            $table->integer('sort')->default(1);
             $table->timestamps();
         });
     }

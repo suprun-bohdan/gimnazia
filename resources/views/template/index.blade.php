@@ -1,7 +1,7 @@
 @extends('template.layout')
 @section('title', 'Головна')
 @section('content')
-    @if($sliders == true) :
+    @if(isset($sliders) and $sliders == true) :
 
     <div class="row">
         <div class="col-12">
@@ -10,7 +10,7 @@
     </div>
     <hr>
     @endif
-    @if($lastNews === true) :
+    @if(isset($lastNews) and $lastNews === true) :
     <div class="row">
         <div class="col-12">
             <div class="heading red">
