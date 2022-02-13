@@ -35,7 +35,7 @@
                     <a href="{{ route('post', ['post_id' => $post->id]) }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $post->title }}</h5>
-                            <p class="card-text">{{ $post->description }}</p>
+                            <p class="card-text">{{ substr($post->description, 0, 160) . "..." }}</p>
                         </div>
                     </a>
                 </div>

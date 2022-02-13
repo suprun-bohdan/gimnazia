@@ -16,8 +16,9 @@ class Visitor extends Model
 
     public static function visitorAdd(Request $request, $post_id) {
         $visitor = 1;
-        $check = Visitor::where('sessid', $request->sess_id)->first();
-        if ($check == null) :
+        $checkLike = Visitor::where('sessid', $request->sess_id)->first();
+        $checkPost = Visitor::where('post_id', $request->post_id)->first();
+        if ($checkLike == null or $checkPost == null) :
         Visitor::create([
             'post_id' => $post_id,
             'visitor' => $visitor,

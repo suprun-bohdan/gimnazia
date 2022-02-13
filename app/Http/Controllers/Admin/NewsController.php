@@ -49,6 +49,7 @@ class NewsController extends Controller
             'tags' => $request->tags,
             'p_img' => $p_img,
             'author_id' => Auth::id(),
+            'description' => $request->description,
             'time' => $time,
         ]);
 

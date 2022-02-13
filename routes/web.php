@@ -14,6 +14,13 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
+if (config('app.debug'))
+{
+    Route::get('/info', function () {
+       phpinfo();
+    });
+}
+
 if (!auth()->check()) {
     Route::get('/make-admin', 'MakeAdminController@index');
 }
