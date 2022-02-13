@@ -1,7 +1,6 @@
 <?php
 use App\Nav;
 $datasets = Nav::getNav();
-dd($datasets);
 ?>
 <nav class="nav justify-content-center">
     @if(!isset($navs))
@@ -13,18 +12,38 @@ dd($datasets);
         <a class="nav-link" href="#">Вступ</a>
         <a class="nav-link" href="#">Для батьків</a>
         <a class="nav-link" href="{{ url('/news') }}">Новини</a>
-        <div class="btn-group">
-{{--            @foreach($datasets as $data)
+
+{{--
+            <pre>
+                <? print_r($datasets) ?>
+            </pre>
+--}}
+
+            <?php
+            foreach ($datasets as $k => $v) {
+                echo "<ul style='font-weight: bold'>";
+                echo $k;
+                foreach ($v as $item) {
+                    echo "<li style='font-weight: lighter'>";
+                    echo $item['value'] . " | " .$item['uri'];
+                    echo "</li>";
+                }
+                echo "</ul>";
+            }
+
+            ?>
+            @foreach($datasets as $k => $v)
+            <div class="btn-group">
             <button type="button" class="btn nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{ $data }}
+                {{ $k }}
             </button>
             <div class="dropdown-menu">
-                @foreach($data as $k => $v)
-                <a class="dropdown-item" href="{{ $k['uri'] }}">{{ $v['value'] }}</a>
+                @foreach($v as $item)
+                <a class="dropdown-item" href="{{ $item['uri'] }}">{{ $item['value'] }}</a>
                 @endforeach
             </div>
-            @endforeach--}}
-        </div>
+            </div>
+            @endforeach
     @endif
     @if(config('app.login') == true)
         @if(!Auth::check())

@@ -13,11 +13,12 @@ class Nav extends Model
 
     public static function CreateTree($array, $sub = 0)
     {
-        $a = array();
+        $a = [];
         foreach ($array as $v) {
             if ($sub == $v['parent_id']) {
                 $b = Nav::CreateTree($array, $v['id']);
                 if (!empty($b)) {
+
                     $a[$v['value']] = $b;
                 }
                 else {
