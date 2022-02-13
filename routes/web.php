@@ -80,6 +80,12 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/', 'NavsController@store')->name('navAdd');
             Route::get('/remove/{id}', 'NavsController@destroy')->name('navRemove');
         });
+
+        Route::prefix('teams')->group(function (){
+            Route::get('/', 'Admin\TeamController@indexAdmin')->name('teamAdmin');
+            Route::post('/create', 'Admin\TeamController@store')->name('teamCreate');
+            Route::get('/destroy/{id}', 'Admin\TeamController@destroy')->name('teamDestroy');
+        });
     });
 });
 
@@ -95,7 +101,7 @@ else :
     Route::get('/news', 'IndexController@news');
     Route::get('/post/{post_id}', 'PostController@index')->name('post');
     Route::get('/page/{page_id}', 'PageController@index')->name('page');
-
+    Route::get('/team', 'Admin\TeamController@index')->name('team');
 
 endif;
 
