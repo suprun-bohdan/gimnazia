@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Page;
+use App\Nav;
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
+use App\Page;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class PageController extends Controller
+class NavsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +17,9 @@ class PageController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.create');
+        $pages = Page::all();
+        $navs = Nav::all();
+        return view('admin.navs.index', ['navs' => $navs, 'pages' => $pages]);
     }
 
     /**
@@ -37,35 +40,21 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-        $p_img = null;
-        $time = null;
-        $folderName = date('Y-m-d');
-        if (!empty($request->file('preview_image'))) :
-            $p_img = $request->file('preview_image')->store("img/{$folderName}", 'public');
-        endif;
-
-        if (!empty($request->time)) {
-            $time = $request->time . " " . date("H:i:s", $_SERVER['REQUEST_TIME']);
-            $time = Carbon::parse($time)->format('Y-m-d H:i:s');
-        }
-
-        $page = Page::create([
-            'title' => $request->title,
-            'text' => $request->text,
-            'p_img' => $p_img,
-            'time' => $time,
+        Nav::create([
+            'value' => $request->value,
+            'uri' => $request->uri,
         ]);
 
-        return redirect()->route('page', $page->id);
+        return redirect()->route('navPage');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Page  $page
+     * @param  \App\Nav  $nav
      * @return \Illuminate\Http\Response
      */
-    public function show(Page $page)
+    public function show(Nav $nav)
     {
         //
     }
@@ -73,10 +62,10 @@ class PageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Page  $page
+     * @param  \App\Nav  $nav
      * @return \Illuminate\Http\Response
      */
-    public function edit(Page $page)
+    public function edit(Nav $nav)
     {
         //
     }
@@ -85,10 +74,10 @@ class PageController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Page  $page
+     * @param  \App\Nav  $nav
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Page $page)
+    public function update(Request $request, Nav $nav)
     {
         //
     }
@@ -96,11 +85,12 @@ class PageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Page  $page
+     * @param  \App\Nav  $nav
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Page $page)
+    public function destroy($id)
     {
-        //
+        Nav::where('nav_id', $id)->delete();
+        return redirect()->route('navPage');
     }
 }
