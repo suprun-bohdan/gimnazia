@@ -23,7 +23,7 @@
             </nav>
         </div>
     </div>
-    <form action="#" method="get" class="search_form news"><div class="input-group f_search"><input type="text" style="border: 1px solid green" class="form-control" name="q"><span class="input-group-btn" style="display:inline;margin-left:-5px;"><button class="btn btn_search_form" style="border: 1px solid green">Пошук</button></span></div></form>
+    <form action="{{ route('search') }}" method="get" class="search_form news"><div class="input-group f_search"><input type="text" style="border: 1px solid green" class="form-control" name="q"><span class="input-group-btn" style="display:inline;margin-left:-5px;"><button class="btn btn_search_form" style="border: 1px solid green">Пошук</button></span></div></form>
     <div class="row news-cards">
         @if(count($posts) === 0)
         @else
