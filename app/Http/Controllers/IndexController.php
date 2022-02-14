@@ -15,7 +15,7 @@ class IndexController extends Controller
 
     public function news()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(3);
         return view('template.news', ['posts' => $posts]);
     }
 }

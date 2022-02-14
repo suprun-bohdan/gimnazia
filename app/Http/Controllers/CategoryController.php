@@ -31,7 +31,7 @@ class CategoryController extends Controller
     }
 
     public function sort($category_id) {
-        $posts = DB::table('posts')->where('category_id', $category_id)->get();
+        $posts = DB::table('posts')->where('category_id', $category_id)->paginate(6);
         $categories = Category::all();
         return view('template.news', ['posts' => $posts, 'categories' => $categories]);
     }
