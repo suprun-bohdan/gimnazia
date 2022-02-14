@@ -16,15 +16,11 @@ class Visitor extends Model
 
     public static function visitorAdd(Request $request, $post_id) {
         $visitor = 1;
-        $checkLike = Visitor::where('sessid', $request->sess_id)->first();
-        $checkPost = Visitor::where('post_id', $request->post_id)->first();
-        if ($checkLike == null or $checkPost == null) :
         Visitor::create([
             'post_id' => $post_id,
             'visitor' => $visitor,
             'ip' => $request->ip(),
             'sessid' => $request->session()->get('key')
         ]);
-        endif;
     }
 }
