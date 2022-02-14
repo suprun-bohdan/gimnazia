@@ -15,11 +15,10 @@
     <div class="row">
         <div class="col-12" id="news-categories">
             <nav class="nav news-nav justify-content-center">
-                <a class="nav-link active" href="#">Всі новини</a>
-                <a class="nav-link" href="#">Анонси</a>
-                <a class="nav-link" href="#">Діяльність школи</a>
-                <a class="nav-link" href="#">Для батьків</a>
-                <a class="nav-link" href="#">Для педагогів</a>
+                <a class="nav-link active" href="{{ route('category', 0) }}">Без рубрик</a>
+                @foreach($categories as $category)
+                <a class="nav-link active" href="{{ route('category', $category->id) }}">{{ $category->category_name }}</a>
+                @endforeach
             </nav>
         </div>
     </div>

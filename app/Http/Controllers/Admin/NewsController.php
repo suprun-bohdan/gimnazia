@@ -24,7 +24,8 @@ class NewsController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('admin.news.list', ['posts' => $posts]);
+        $categories = Category::all();
+        return view('admin.news.list', ['posts' => $posts, 'categories' => $categories]);
     }
 
     /**
