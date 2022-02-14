@@ -8,10 +8,14 @@
     <link rel="stylesheet" href="{{ asset('site/css/style.css') }}">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
-    <!--    <link rel="stylesheet" href="css/owl.carousel.min.css">-->
-    <!--    <link rel="stylesheet" href="css/owl.theme.default.min.css">-->
     <script src="https://use.fontawesome.com/646c13d065.js"></script>
     <title>ЗЗСО - @yield('title')</title>
+    @if(isset($favicon->data))
+        <link href="{{ asset('storage/') . '/' . $favicon->data ?? asset('site/img/index.ico') }}" rel="shortcut icon"
+              type="image/vnd.microsoft.icon"/>
+    @else
+        <link href="{{ asset('site/img/index.ico') }}" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
+    @endif
 </head>
 <body>
 <script src="{{ asset('site/js/jquery-3.6.0.min.js') }}"></script>
@@ -21,31 +25,40 @@
     <header>
         <div class="row">
             <div class="col-6">
-                <a class="btn btn-info lang ua" href="#">UA</a>
-                <a class="btn btn-info lang en" href="#">EN</a>
+{{--                <a class="btn btn-info lang ua" href="#">UA</a>--}}
+{{--                <a class="btn btn-info lang en" href="#">EN</a>--}}
             </div>
             <div class="col-6 text-right">
-                <a class="btn btn-info lang" href="#">Учнівський куток</a>
+{{--                @if(Auth::check()->role)
+                    <a class="btn btn-info lang" href="{{ route('admin') }}">Адмін панель</a>
+                @endif--}}
             </div>
         </div>
         <div class="row">
             <div class="col-12 text-center">
                 <a href="/">
-                    <img src="{{ asset('site/img/logo-uk.png') }}"
-                         alt="Вашківецька гімназія" id="header-logo">
+                    @if(isset($logo->data))
+
+                    <img src="{{ asset('storage/') . '/' . $logo->data }}"
+                         @else
+                             <img src="{{  asset('site/img/logo-uk.png')  }}"
+                                  @endif
+                         alt="{{ $full_sitename->data ?? "Вашківецький ЗЗСО І-ІІІ ступенів ім. Бажанського" }}" id="header-logo">
                 </a>
             </div>
         </div>
+        @if(auth()->check())
         <hr>
         <div class="row">
             <div class="col-12 text-center">
-                <nav class="nav justify-content-center">
-                    <a class="nav-link active" href="#">Про школу</a>
-                    <a class="nav-link" href="#">Вступ</a>
-                    <a class="nav-link" href="{{ url('/news') }}">Новини</a>
-                    <a class="nav-link" href="#">Для батьків</a>
-                    <a class="nav-link disabled" href="#">Авторизація</a>
-                </nav>
+                    Вітаємо Вас на сайті {{ Auth::user()->first_name  }} {{ Auth::user()->last_name }}
+            </div>
+        </div>
+        @endif
+        <hr>
+        <div class="row">
+            <div class="col-12 text-center">
+                @include('template.partials.nav')
             </div>
         </div>
     </header>
@@ -61,20 +74,23 @@
                 <li>
                     <a href="#!" class="font-weight-bold">Вакансії</a>
                 </li>
+                <li>
+                    <p>2022 - <?= date('Y') ?>. Всі права належать «Вашківецька
+                        гімназія»
+                        При використанні матеріалів посилання на сайт обов`язкове.</p>
+                </li>
             </ul>
-            <p><?= date('Y') ?> - 2021. Всі права належать «Вашківецька
-                гімназія»
-                При використанні матеріалів посилання на сайт обов`язкове.</p>
+
         </div>
         <div class="col-4">
             <!-- Links -->
             <ul class="list-unstyled">
                 <li class="social">
-                    <a href="#!"><i class="fa fa-facebook-square"
+                    <a href="https://{{ $fb->data ?? "fb.com" }}" target="_blank"><i class="fa fa-facebook-square"
                                     aria-hidden="true"></i></a>
-                    <a href="#!"><i class="fa fa-instagram"
+                    <a href="https://{{ $ig->data ?? "instagram.com"}}" target="_blank"><i class="fa fa-instagram"
                                     aria-hidden="true"></i></a>
-                    <a href="#!"><i class="fa fa-youtube-play"
+                    <a href="https://{{ $youtube ?? "youtube.com" }}" target="_blank"><i class="fa fa-youtube-play"
                                     aria-hidden="true"></i></a>
                 </li>
                 <li class="footer-contact">

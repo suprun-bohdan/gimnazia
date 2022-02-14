@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-12 allNews text-center">
-        <a href="news.php" class="badge badge-info">Переглянути всі новини</a>
+        <a href="{{ url('/news') }}" class="badge badge-info">Переглянути всі новини</a>
     </div>
 </div>
 <div class="row">
@@ -16,66 +16,18 @@
 <div class="row">
     <div class="col-12">
         <div class="news-slider">
-            <div>
-                <div class="card" style="width: auto;">
-                    <img class="card-img-top" src="/img/286x180.svg"
-                         alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on
-                            the card title and make up the bulk of the card's
-                            content.</p>
+                @foreach($lastNews as $last)
+                    <div>
+                        <div class="card" style="width: auto;">
+                            <img class="card-img-top" src="{{ Storage::url($last->p_img) }}"
+                                 alt="{{ $last->title }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $last->title }}</h5>
+                                <p class="card-text">{{ $last->description }}</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div>
-                <div class="card" style="width: auto;">
-                    <img class="card-img-top" src="/img/286x180.svg"
-                         alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on
-                            the card title and make up the bulk of the card's
-                            content.</p>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <div class="card" style="width: auto;">
-                    <img class="card-img-top" src="/img/286x180.svg"
-                         alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on
-                            the card title and make up the bulk of the card's
-                            content.</p>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <div class="card" style="width: auto;">
-                    <img class="card-img-top" src="/img/286x180.svg"
-                         alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on
-                            the card title and make up the bulk of the card's
-                            content.</p>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <div class="card" style="width: auto;">
-                    <img class="card-img-top" src="/img/286x180.svg"
-                         alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on
-                            the card title and make up the bulk of the card's
-                            content.</p>
-                    </div>
-                </div>
-            </div>
+                @endforeach
         </div>
     </div>
 </div>

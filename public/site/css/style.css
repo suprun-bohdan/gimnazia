@@ -4,22 +4,22 @@
 
 @font-face {
     font-family: e-UkraineHead-Thin;
-    src: url(/public/site/fonts/e-UkraineHead-Thin.ttf);
+    src: url(/site/fonts/e-UkraineHead-Thin.ttf);
 }
 
 @font-face {
     font-family: e-Ukraine-Light;
-    src: url(/public/site/fonts/e-Ukraine-Light.ttf);
+    src: url(/site/fonts/e-Ukraine-Light.ttf);
 }
 
 @font-face {
     font-family: e-UkraineHead-UltraLight;
-    src: url(/public/site/fonts/e-UkraineHead-UltraLight.ttf);
+    src: url(/site/fonts/e-UkraineHead-UltraLight.ttf);
 }
 
 @font-face {
     font-family: e-Ukraine-Thin;
-    src: url(/public/site/fonts/e-Ukraine-Thin.ttf);
+    src: url(/site/fonts/e-Ukraine-Thin.ttf);
 }
 
 body {
@@ -174,4 +174,91 @@ figcaption {
     font-size: 16px;
     font-family: e-Ukraine-Thin;
     font-weight: lighter;
+}
+
+.news-cards {
+    padding-top: 30px;
+}
+
+.card-img-top {
+    object-fit: cover;
+    height: 180px;
+}
+
+.card {
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+}
+
+.post-content {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.bottom-title-post {
+    height: 30px;
+    text-align: left;
+    background-color: #f4f4f4;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.d-block {
+    object-fit: cover;
+    max-height: 500px;
+    position: relative;
+}
+
+.news-cards a {
+    color: #117a8b;
+    text-decoration: none;
+}
+
+.news-cards a:hover {
+    color: red;
+}
+
+.card-img-top {
+    border-radius: 15px 15px 15px 15px;
+}
+
+.card-body {
+    padding: 0.50rem;
+}
+
+.card-title {
+    font-size: 1rem;
+}
+
+.card-text {
+    font-size: 0.75rem;
+}
+
+.recommended {
+    font-size: 11px;
+}
+
+.recommended-url {
+    text-decoration: none;
+    color: grey;
+}
+
+.recommended-url:hover {
+    text-decoration: none;
+    color: grey;
+}
+
+.recommended-url:active {
+    text-decoration: none;
+    color: grey;
+}
+
+.dropdown-menu {
+    border: none;
+    border-radius: 0 0 0 0;
+}
+
+.btn:focus, .btn.focus {
+    box-shadow: none;
 }
