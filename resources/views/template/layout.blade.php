@@ -74,10 +74,26 @@
                 <li>
                     <a href="#!" class="font-weight-bold">Вакансії</a>
                 </li>
+                <li>
+                    <p>2022 - <?= date('Y') ?>. Всі права належать «Вашківецька
+                        гімназія»
+                        При використанні матеріалів посилання на сайт обов`язкове.</p>
+                </li>
+                <li>
+
+                    <!-- HostCiti.net --><a href="http://hostciti.net/" title="hostciti.net" target="_blank" onclick="this.href='http://hostciti.net/stat/?ch=stat'+'&r='+escape(window.location.href.slice(7));" >
+                        <script type="text/javascript" language="javascript"><!--
+Coun='<img src="http://hostciti.net/stat/stat.php?i=206&col=ffffff&tc=ffffff';
+                            iD=document; Coun+='&d='+(screen.colorDepth?screen.colorDepth:screen.pixelDepth)
+                                +"&w="+screen.width+'&h='+screen.height;
+                            iH=window.location.href.slice(7);
+                            Coun+='&r='+escape(iH);
+                            Coun+='&n='+escape(iD.referrer.slice(7));
+                            iD.write(Coun+'" width="128" height="19" border="0" />');
+                        </script></a><!-- End of HostCiti.net counter -->
+                </li>
             </ul>
-            <p>2022 - <?= date('Y') ?>. Всі права належать «Вашківецька
-                гімназія»
-                При використанні матеріалів посилання на сайт обов`язкове.</p>
+
         </div>
         <div class="col-4">
             <!-- Links -->
