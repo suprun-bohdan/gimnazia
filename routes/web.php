@@ -99,6 +99,7 @@ else :
 
     Route::get('/', 'IndexController@index')->name('index');
     Route::get('/news', 'IndexController@news');
+    Route::get('/news', 'SearchController@index')->name('search');
     Route::get('/post/{post_id}', 'PostController@index')->name('post');
     Route::get('/page/{page_id}', 'PageController@index')->name('page');
     Route::get('/team', 'Admin\TeamController@index')->name('team');
