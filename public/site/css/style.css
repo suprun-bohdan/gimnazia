@@ -262,3 +262,18 @@ figcaption {
 .btn:focus, .btn.focus {
     box-shadow: none;
 }
+
+.slider-description {
+    display: block;
+    position: absolute;
+    font-size: 25px;
+    z-index: 1000;
+    align-content: center;
+    right: 1;
+    bottom: 35px;
+    margin-left: 90px;
+    padding: 5px 100px;
+    background-color: darkgray;
+    color: white;
+    opacity: 0.9;
+}
