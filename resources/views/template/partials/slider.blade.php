@@ -6,10 +6,14 @@
     </ol>
     <div class="carousel-inner">
             @foreach($sliders as $slide)
+            <a href="{{ $slide->url ?? "#" }}">
                 <div class="carousel-item">
                     <img class="d-block w-100" src="{{ Storage::url($slide->img_url) }}" alt="First slide">
-                    <span>text</span>
+                    @if(!empty($slide->preview_text))
+                    <span class="slider-description">{{ $slide->preview_text }}</span>
+                    @endif
                 </div>
+            </a>
             @endforeach
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
