@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
@@ -17,6 +18,7 @@ class SearchController extends Controller
             ->orWhere('text', 'LIKE', "%{$query}%")
             ->orWhere('description', 'LIKE', "%{$query}%")
             ->get();
-        return view('template.news', ['posts' => $posts]);
+        $categories = Category::all();
+        return view('template.news', ['posts' => $posts, 'categories' => $categories]);
     }
 }
