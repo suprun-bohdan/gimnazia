@@ -3,3 +3,5 @@ vg
 public/storage
 storage/app
 .env
+public/images/
+public/storage/
