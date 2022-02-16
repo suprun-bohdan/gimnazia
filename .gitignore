@@ -2,3 +2,4 @@
 vg
 public/storage
 storage/app
+.env
