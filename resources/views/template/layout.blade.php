@@ -9,7 +9,11 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
     <script src="https://use.fontawesome.com/646c13d065.js"></script>
-    <title>ЗЗСО - @yield('title')</title>
+    @if(isset($sitename) && !empty($sitename))
+        <title>{{ $sitename->data }} - @yield('title')</title>
+    @else
+        <title>Школа - @yield('title')</title>
+    @endif
     @if(isset($favicon->data))
         <link href="{{ asset('storage/') . '/' . $favicon->data ?? asset('site/img/index.ico') }}" rel="shortcut icon"
               type="image/vnd.microsoft.icon"/>
@@ -37,13 +41,14 @@
         <div class="row">
             <div class="col-12 text-center">
                 <a href="/">
-                    @if(isset($logo->data))
+                        @if(isset($logo->data))
 
-                    <img src="{{ asset('storage/') . '/' . $logo->data }}"
-                         @else
-                             <img src="{{  asset('site/img/logo-uk.png')  }}"
-                                  @endif
-                         alt="{{ $full_sitename->data ?? "Вашківецький ЗЗСО І-ІІІ ступенів ім. Бажанського" }}" id="header-logo">
+                            <img src="{{ asset('storage/') . '/' . $logo->data }}"
+                        @else
+                            <img src="{{  asset('site/img/logo-uk.png')  }}"
+                                 @endif
+                                 alt="{{ $full_sitename->data ?? "Вашківецький ЗЗСО І-ІІІ ступенів ім. Бажанського" }}"
+
                 </a>
             </div>
         </div>
