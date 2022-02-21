@@ -51,15 +51,15 @@ class UserController extends Controller
         ]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->route('index');
+            return redirect('/');
         };
 
-        return redirect()->route('index');
+        return redirect()->back();
     }
 
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('index');
+        return redirect('/login');
     }
 }
