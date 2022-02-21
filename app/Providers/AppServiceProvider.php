@@ -54,6 +54,7 @@ class AppServiceProvider extends ServiceProvider
             $sitename = Setting::where('value', 'sitename')->first();
             $full_sitename = Setting::where('value', 'full_sitename')->first();
             $logo = Setting::where('value', 'logo')->first();
+            $only_sitename = Setting::where('value', 'only_sitename')->first();
 
             view()->share('fb', $fb);
             view()->share('ig', $ig);
@@ -61,6 +62,7 @@ class AppServiceProvider extends ServiceProvider
             view()->share('sitename', $sitename);
             view()->share('full_sitename', $full_sitename);
             view()->share('logo', $logo);
+            view()->share('only_sitename', (bool) $only_sitename);
         }
 
         if (Schema::hasTable('navs')) {
