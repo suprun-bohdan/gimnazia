@@ -2,6 +2,8 @@
 vg
 public/storage
 storage/app
-.env
+/.env
 public/images/
 public/storage/
+/vendor
+
