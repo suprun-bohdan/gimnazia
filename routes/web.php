@@ -107,9 +107,6 @@ else :
 
 endif;
 
-<<<<<<< HEAD
-=======
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@index');
 });
->>>>>>> admin
