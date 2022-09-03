@@ -182,7 +182,7 @@ figcaption {
 
 .card-img-top {
     object-fit: cover;
-    height: 180px;
+    height: 100%;
 }
 
 .card {
