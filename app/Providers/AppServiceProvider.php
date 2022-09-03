@@ -31,21 +31,21 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $tag = GitController::getLastVersionTag();
-
+        \view()->share('tag', $tag);
         $lastNewsStatus = false;
         $sliders = false;
         if (Schema::hasTable('sliders')) :
             if (Slider::all()->count() > 0) {
                 $sliders = Slider::all();
+                $lastNewsStatus = true;
             }
-
+            \view()->share('sliders', $sliders);
         endif;
         if (Schema::hasTable('posts')) :
             if (Post::all()->count() > 6) {
                 $lastNews = Post::getLastNews(6);
-                $lastNewsStatus = true;
             }
-
+            \view()->share('lastNews', $lastNews);
         endif;
 
         if (Schema::hasTable('settings')) {
@@ -57,9 +57,6 @@ class AppServiceProvider extends ServiceProvider
             $logo = Setting::where('value', 'logo')->first();
             $only_sitename = Setting::where('value', 'only_sitename')->first();
 
-            view()->share('tag', $tag);
-            view()->share('lastNews', $lastNews);
-            view()->share('sliders', $sliders);
             view()->share('fb', $fb);
             view()->share('ig', $ig);
             view()->share('favicon', $favicon);
