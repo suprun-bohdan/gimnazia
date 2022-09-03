@@ -9,7 +9,7 @@
             <div class="carousel-item">
                 <img class="d-block w-100" src="{{ Storage::url($slide->img_url) }}" alt="First slide">
                 @if(!empty($slide->preview_text))
-                    @if($_SERVER['HTTPS'])
+                    @if(isset($_SERVER['HTTPS']))
                         <a href="https://{{ $slide->url ?? "#" }}"><span class="slider-description">{{ $slide->preview_text }}</span></a>
                     @else
                         <a href="http://{{ $slide->url ?? "#" }}"><span class="slider-description">{{ $slide->preview_text }}</span></a>
