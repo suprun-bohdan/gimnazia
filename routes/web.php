@@ -106,7 +106,3 @@ else :
     Route::get('/team', 'Admin\TeamController@index')->name('team');
 
 endif;
-
-Route::prefix('admin')->group(function () {
-    Route::get('/', 'AdminController@index');
-});
