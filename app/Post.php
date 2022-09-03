@@ -15,6 +15,6 @@ class Post extends Model
 
     public static function getLastNews($limit)
     {
-        return DB::table('posts')->orderBy('created_at', 'desc')->limit($limit);
+        return Post::orderBy('created_at', 'desc')->paginate($limit);
     }
 }
