@@ -70,7 +70,7 @@ Route::group(['middleware' => 'admin'], function () {
             Route::get('/destroy/{id}', 'Admin\SettingController@destroy')->name('destroyField');
         });
 
-        Route::prefix('ctagories')->group(function () {
+        Route::prefix('categories')->group(function () {
             Route::get('/show', 'CategoryController@index')->name('categories');
             Route::post('/show', 'CategoryController@create')->name('categoriesCreate');
             Route::get('/destroy/{id}', 'CategoryController@destroy')->name('categoryDestroy');
