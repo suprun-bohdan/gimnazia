@@ -80,7 +80,7 @@
                     <a href="#!" class="font-weight-bold">Вакансії</a>
                 </li>
                 <li>
-                    <p>{{ date('Y') }}. Всі права належать «{{ $sitename->data || "Школа" }}»
+                    <p>{{ date('Y') }}. Всі права належать «<? if (isset($sitename->data)) : echo $sitename->data; else : "Школі"; endif; ?>»
                         При використанні матеріалів посилання на сайт обов`язкове.</p>
                 </li>
             </ul>
