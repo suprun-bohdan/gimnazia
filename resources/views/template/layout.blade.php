@@ -29,36 +29,36 @@
     <header>
         <div class="row">
             <div class="col-6">
-{{--                <a class="btn btn-info lang ua" href="#">UA</a>--}}
-{{--                <a class="btn btn-info lang en" href="#">EN</a>--}}
+                {{--                <a class="btn btn-info lang ua" href="#">UA</a>--}}
+                {{--                <a class="btn btn-info lang en" href="#">EN</a>--}}
             </div>
             <div class="col-6 text-right">
-{{--                @if(Auth::check()->role)
-                    <a class="btn btn-info lang" href="{{ route('admin') }}">Адмін панель</a>
-                @endif--}}
+                {{--                @if(Auth::check()->role)
+                                    <a class="btn btn-info lang" href="{{ route('admin') }}">Адмін панель</a>
+                                @endif--}}
             </div>
         </div>
         <div class="row">
             <div class="col-12 text-center">
                 <a href="/">
-                        @if(isset($logo->data))
+                    @if(isset($logo->data))
 
-                            <img src="{{ asset('storage/') . '/' . $logo->data }}"
-                        @else
-                            <img src="{{  asset('site/img/logo-uk.png')  }}"
-                                 @endif
-                                 alt="{{ $full_sitename->data ?? "Вашківецький ЗЗСО І-ІІІ ступенів ім. Бажанського" }}"
+                        <img src="{{ asset('storage/') . '/' . $logo->data }}"
+                    @else
+                        <img src="{{  asset('site/img/logo-uk.png')  }}"
+                             @endif
+                             alt="{{ $full_sitename->data ?? "Вашківецький ЗЗСО І-ІІІ ступенів ім. Бажанського" }}"
 
                 </a>
             </div>
         </div>
         @if(auth()->check())
-        <hr>
-        <div class="row">
-            <div class="col-12 text-center">
+            <hr>
+            <div class="row">
+                <div class="col-12 text-center">
                     Вітаємо Вас на сайті {{ Auth::user()->first_name  }} {{ Auth::user()->last_name }}
+                </div>
             </div>
-        </div>
         @endif
         <hr>
         <div class="row">
@@ -80,7 +80,9 @@
                     <a href="#!" class="font-weight-bold">Вакансії</a>
                 </li>
                 <li>
-                    <p>{{ date('Y') }}. Всі права належать «<? if (isset($sitename->data)) : echo $sitename->data; else : "Школі"; endif; ?>»
+                    <p>{{ date('Y') }}. Всі права належать
+                        «<? if (isset($sitename->data)) : echo $sitename->data; else : "Школі"; endif; ?>».
+                        <br>
                         При використанні матеріалів посилання на сайт обов`язкове.</p>
                 </li>
             </ul>
@@ -91,11 +93,11 @@
             <ul class="list-unstyled">
                 <li class="social">
                     <a href="https://{{ $fb->data ?? "#" }}" target="_blank"><i class="fa fa-facebook-square"
-                                    aria-hidden="true"></i></a>
+                                                                                aria-hidden="true"></i></a>
                     <a href="https://{{ $ig->data ?? "#"}}" target="_blank"><i class="fa fa-instagram"
-                                    aria-hidden="true"></i></a>
+                                                                               aria-hidden="true"></i></a>
                     <a href="https://{{ $youtube ?? "#" }}" target="_blank"><i class="fa fa-youtube-play"
-                                    aria-hidden="true"></i></a>
+                                                                               aria-hidden="true"></i></a>
                 </li>
                 <li class="footer-contact">
                     <p>Вашківці, вул.Бажанського, 9, Вижницький р-н., Чернівецька обл.
