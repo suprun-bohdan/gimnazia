@@ -32,12 +32,11 @@ class AppServiceProvider extends ServiceProvider
     {
         $tag = GitController::getLastVersionTag();
         \view()->share('tag', $tag);
-        $lastNewsStatus = false;
+        $lastNews = false;
         $sliders = false;
         if (Schema::hasTable('sliders')) :
             if (Slider::all()->count() > 0) {
                 $sliders = Slider::all();
-                $lastNewsStatus = true;
             }
             \view()->share('sliders', $sliders);
         endif;
