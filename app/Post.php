@@ -15,9 +15,6 @@ class Post extends Model
 
     public static function getLastNews($limit)
     {
-        $news = DB::table('posts')->orderBy('created_at', 'desc')->limit($limit);
-        dd($news->p_img);
-        die();
-        return $news;
+        return DB::table('posts')->orderBy('created_at', 'desc')->limit($limit);
     }
 }
