@@ -16,18 +16,18 @@
 <div class="row">
     <div class="col-12">
         <div class="news-slider">
-                @foreach($lastNews as $last)
-                    <div>
-                        <div class="card" style="width: auto;">
-                            <img class="card-img-top" src="{{ Storage::url($last->p_img) }}"
-                                 alt="{{ $last->title }}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $last->title }}</h5>
-                                <p class="card-text">{{ $last->description }}</p>
-                            </div>
+            @foreach($lastNews as $last)
+                <div>
+                    <div class="card" style="width: auto;">
+                        <img class="card-img-top" src="{{$last->p_img }}"
+                             alt="{{ $last->title }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $last->title }}</h5>
+                            <p class="card-text">{{ $last->description }}</p>
                         </div>
                     </div>
-                @endforeach
+                </div>
+            @endforeach
         </div>
     </div>
 </div>

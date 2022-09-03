@@ -5,6 +5,7 @@ use App\Nav;
 $datasets = Nav::getNav();
 ?>
 <nav class="nav justify-content-center">
+    <a class="nav-link" href="{{ url('/') }}">Головна</a>
     @if(!isset($navs))
         @foreach($navs as $nav)
             <a class="nav-link" href="{{ $nav->uri }}">{{ $nav->value }}</a>
