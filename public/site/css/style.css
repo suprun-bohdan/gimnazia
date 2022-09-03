@@ -206,7 +206,7 @@ figcaption {
 
 .d-block {
     object-fit: cover;
-    max-height: 500px;
+    /*max-height: 500px;*/
     position: relative;
 }
 
