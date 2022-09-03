@@ -10,7 +10,7 @@
     </div>
     <hr>
     @endif
-    @if(isset($lastNews))
+    @if(isset($lastNews) and $lastNewsStatus === true)
     <div class="row">
         <div class="col-12">
             <div class="heading red">

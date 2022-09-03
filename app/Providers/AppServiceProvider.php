@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $tag = GitController::getLastVersionTag();
 
-        $lastNews = false;
+        $lastNewsStatus = false;
         $sliders = false;
         if (Schema::hasTable('sliders')) :
             if (Slider::all()->count() > 0) {
@@ -43,6 +43,7 @@ class AppServiceProvider extends ServiceProvider
         if (Schema::hasTable('posts')) :
             if (Post::all()->count() > 6) {
                 $lastNews = Post::getLastNews(6);
+                $lastNewsStatus = true;
             }
 
         endif;
