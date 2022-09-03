@@ -119,6 +119,9 @@
                         <figcaption>
                             Реалізуємо Ваші ідеї!
                         </figcaption>
+                        <figcaption>
+                            +38 (068) 578 67 48
+                        </figcaption>
                     </figure>
                 </li>
                 <li>
