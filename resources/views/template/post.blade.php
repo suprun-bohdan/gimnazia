@@ -48,6 +48,10 @@
                         <td>
                             <img class="img-fluid recommended-image" src="{{ Storage::url($r->p_img) }}">
                             <br>
+                            <p>
+                                {{ $r->description }}
+                            </p>
+                            <br>
                             <a class="recommended-url" href="{{ route('post', $r->id) }}">Читати далі</a>
                             <hr>
                         </td>
