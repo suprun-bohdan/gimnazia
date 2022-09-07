@@ -22,7 +22,7 @@ class PostController extends Controller
         $date = Carbon::parse($date)->format('d-m-Y H:i:s');
         Visitor::visitorAdd($request, $post->id);
         $like = Like::all()->where('post_id', $post_id)->count();
-        $recommendeds = Post::where('category_id', $post->category_id)->limit(5)->get();
+        $recommendeds = Post::where('category_id', $post->category_id)->limit(12)->get();
 //        $recommendeds = DB::table('posts')->where('category_id', $post->category_id)->get();
         return view('template.post', ['post' => $post, 'author' => $author, 'date' => $date, 'visitors' => $visitors, 'like' => $like, 'recommendeds' => $recommendeds]);
     }
