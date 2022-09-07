@@ -41,7 +41,7 @@ class AppServiceProvider extends ServiceProvider
             \view()->share('sliders', $sliders);
         endif;
         if (Schema::hasTable('posts')) :
-            if (Post::all()->count() > 6) {
+            if (Post::all()->count() > 5) {
                 $lastNews = Post::getLastNews(6);
             }
             \view()->share('lastNews', $lastNews);
