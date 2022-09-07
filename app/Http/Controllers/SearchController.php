@@ -17,7 +17,7 @@ class SearchController extends Controller
             ->where('title', 'LIKE', "%{$query}%")
             ->orWhere('text', 'LIKE', "%{$query}%")
             ->orWhere('description', 'LIKE', "%{$query}%")
-            ->paginate(3);
+            ->paginate(12);
         $categories = Category::all();
         return view('template.news', ['posts' => $posts, 'categories' => $categories]);
     }
