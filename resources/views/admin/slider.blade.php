@@ -31,7 +31,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="img_url">Виберіть зображення для прев'ю</label>
-                                <input class="form-control-file" id="img_url" name="img_url" type="file" aria-describedby="fileHelp"><small class="form-text text-muted" id="fileHelp">Це зображення буде виводитись</small>
+                                <input class="form-control-file" id="img_url" name="img_url" accept="image/*" type="file" aria-describedby="fileHelp"><small class="form-text text-muted" id="fileHelp">Це зображення буде виводитись</small>
                             </div>
                             {{ csrf_field() }}
 
