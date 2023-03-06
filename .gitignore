@@ -9,3 +9,4 @@ public/storage/
 /.env
 composer.lock
 /composer.lock
+.env.dev
