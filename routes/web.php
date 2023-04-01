@@ -62,6 +62,7 @@ Route::group(['middleware' => 'admin'], function () {
             Route::get('/view', 'Admin\PageController@view')->name('page.view');
             Route::post('/update');
             Route::get('/destroy/{id}', 'Admin\PageController@destroy')->name('page.destroy');
+            Route::get('/fileDestroy/{page_id}/{id}', 'Admin\PageController@fileDestroy')->name('page.file.destroy');
         });
         Route::prefix('settings')->group(function () {
             Route::get('/site', 'Admin\AdminController@settings')->name('settings');
