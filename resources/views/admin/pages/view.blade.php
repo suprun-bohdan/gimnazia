@@ -8,18 +8,18 @@ use App\Category as Category
     <script type="text/javascript" src="{{ asset('js') }}/plugins/bootstrap-datepicker.min.js"></script>
     <div class="app-title">
         <div>
-            <h1><i class="fa fa-edit"></i> Список новин</h1>
+            <h1><i class="fa fa-edit"></i> Список сторінок</h1>
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
             <li class="breadcrumb-item">Новини</li>
-            <li class="breadcrumb-item"><a href="#">Список новин</a></li>
+            <li class="breadcrumb-item"><a href="#">Список сторінок</a></li>
         </ul>
     </div>
     <div class="row">
         <div class="col-md-12">
             <div class="tile">
-                <h3 class="tile-title">Список новин</h3>
+                <h3 class="tile-title">Список сторінок</h3>
                 <table class="table">
                     <thead>
                     <tr>

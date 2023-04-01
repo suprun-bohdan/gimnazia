@@ -40,9 +40,10 @@ class PageController extends Controller
         $p_img = null;
         $time = null;
         $folderName = date('Y-m-d');
-        if (!empty($request->file('preview_image'))) :
+
+        if (!empty($request->file('preview_image'))) {
             $p_img = $request->file('preview_image')->store("img/{$folderName}", 'public');
-        endif;
+        }
 
         if (!empty($request->time)) {
             $time = $request->time . " " . date("H:i:s", $_SERVER['REQUEST_TIME']);
@@ -55,8 +56,20 @@ class PageController extends Controller
             'p_img' => $p_img,
             'time' => $time,
         ]);
+        $files = [];
+        if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $file) {
+                $fileName = $file->getClientOriginalName();
+                $filePath = $file->storeAs("pages/{$page->id}", $fileName, 'public');
+                $files[] = $filePath;
+            }
+        }
 
-        return redirect()->route('page', $page->id);
+        $page_id = $page->id;
+        $page->files = json_encode($files);
+        $page->save(['page_id' => $page->id]);
+
+        return redirect()->back();
     }
 
     /**

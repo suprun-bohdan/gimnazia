@@ -29,14 +29,43 @@
                             </div>
                             <div class="form-group">
                                 <label for="preview_image">Виберіть зображення для прев'ю</label>
-                                <input class="form-control-file" id="preview_image" name="preview_image" type="file" aria-describedby="fileHelp"><small class="form-text text-muted" id="fileHelp">Це зображення буде виводитись</small>
+                                <input class="form-control-file" id="preview_image" name="preview_image" type="file" aria-describedby="fileHelp"><small class="form-text text-muted" id="fileHelp">Це зображення буде виводитись в якості прев'ю</small>
                             </div>
                             {{ csrf_field() }}
-
+                            <div id="filesDiv" class="form-group">
+                            </div>
                             <div class="tile-footer">
-                                <button class="btn btn-primary" type="submit">Зберегти</button>
+                                <button class="btn btn-primary" type="submit">Зберегти</button> | <button onclick="addFileInput(event)">Додати документ</button>
                             </div>
                         </form>
+                        <script>
+                            let fileIndex = 1;
+
+                            function addFileInput(event) {
+                                event.preventDefault();
+                                let filesDiv = document.getElementById("filesDiv");
+                                let newInput = document.createElement("input");
+                                newInput.setAttribute("type", "file");
+                                newInput.setAttribute("name", "files[]");
+                                newInput.setAttribute("id", "files" + fileIndex);
+                                newInput.setAttribute("class", "form-control-file");
+                                newInput.setAttribute("aria-describedby", "fileHelp");
+                                newInput.setAttribute("multiple", "multiple");
+
+                                let newLabel = document.createElement("label");
+                                newLabel.setAttribute("for", "files" + fileIndex);
+                                newLabel.innerHTML = "Документ " + fileIndex + ":";
+
+                                filesDiv.appendChild(newLabel);
+                                filesDiv.appendChild(newInput);
+
+                                fileIndex++;
+                            }
+
+                            let addButton = document.getElementById("addButton");
+                            addButton.addEventListener("click", addFileInput);
+                        </script>
+
                     </div>
                 </div>
             </div>
