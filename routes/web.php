@@ -1,5 +1,5 @@
 <?php
-
+use Spatie\Sitemap\SitemapGenerator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -101,7 +101,11 @@ if (config('app.suspended') == true) :
     });
 else :
 
+    Route::get('/sitemap.xml', function () {
+        SitemapGenerator::create(config('app.url'))->writeToFile(public_path('sitemap.xml'));
 
+        return 'Sitemap generated';
+    });
     Route::get('/', 'IndexController@index')->name('index');
 //    Route::get('/news', 'IndexController@news');
     Route::get('/news', 'SearchController@index')->name('search');
@@ -111,3 +115,4 @@ else :
     Route::get('/team', 'Admin\TeamController@index')->name('team');
 
 endif;
+
