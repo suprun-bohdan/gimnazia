@@ -70,7 +70,7 @@
                                 </select>
                             </div>
                             <script>
-                                function testo(){ return $("select#select").val("3");
+                                function testo(){ return $("select#select").val("3"); }
                             </script>
                             <div class="tile-footer">
                                 <button type="submit" class="btn btn-primary">Додати</button>
