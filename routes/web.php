@@ -54,13 +54,14 @@ Route::group(['middleware' => 'admin'], function () {
             Route::get('/create', 'Admin\AdminController@news')->name('newsAdd');
             Route::get('/list', 'Admin\NewsController@index')->name('newsList');
             Route::post('/create', 'Admin\NewsController@create')->name('newsCreate');
-            Route::post('/destroy/{id}', 'Admin\NewsController@destroy')->name('newsDestroy');
+            Route::get('/destroy/{id}', 'Admin\NewsController@destroy')->name('newsDestroy');
         });
         Route::prefix('page')->group(function () {
             Route::get('/create', 'Admin\PageController@index')->name('create');
             Route::post('/create', 'Admin\PageController@store')->name('pageCreate');
-            Route::post('/view');
+            Route::get('/view', 'Admin\PageController@view')->name('page.view');
             Route::post('/update');
+            Route::get('/destroy/{id}', 'Admin\PageController@destroy')->name('page.destroy');
         });
         Route::prefix('settings')->group(function () {
             Route::get('/site', 'Admin\AdminController@settings')->name('settings');

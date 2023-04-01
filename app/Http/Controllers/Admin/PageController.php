@@ -93,14 +93,37 @@ class PageController extends Controller
         //
     }
 
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Page  $page
+     * @return \Illuminate\Http\Response
+     */
+    public function view(Request $request, Page $page)
+    {
+        $pages = Page::all();
+        return view('admin.pages.view', ['pages'=> $pages]);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Page $page)
+    public function destroy($id)
     {
-        //
+
+        if (Page::where('page_id', $id)->delete()) {
+            return response()->json([
+                'message' => 'Сторінка успішно видалена!'
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Виникла непередбачена помилка!'
+            ], 200);
+        }
     }
 }
