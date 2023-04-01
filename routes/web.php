@@ -47,7 +47,7 @@ Route::group(['middleware' => 'admin'], function () {
         Route::get('/', 'Admin\AdminController@index')->name('admin');
         Route::get('/slider', 'Admin\SliderController@index')->name('slider');
         Route::get('/slider/list', 'Admin\SliderController@show')->name('sliderList');
-        Route::get('/slider/destroy', 'Admin\SliderController@destroy')->name('sliderList');
+        Route::get('/slider/destroy', 'Admin\SliderController@destroy')->name('slider.destroy');
         Route::post('/slider/create', 'Admin\SliderController@store')->name('sliderCreate');
 
         Route::prefix('news')->group(function () {
@@ -59,8 +59,9 @@ Route::group(['middleware' => 'admin'], function () {
         Route::prefix('page')->group(function () {
             Route::get('/create', 'Admin\PageController@index')->name('create');
             Route::post('/create', 'Admin\PageController@store')->name('pageCreate');
+            Route::get('/edit/{page_id}', 'Admin\PageController@edit')->name('page.edit');
             Route::get('/view', 'Admin\PageController@view')->name('page.view');
-            Route::post('/update');
+            Route::post('/update/{page_id}', 'Admin\PageController@update')->name('page.update');
             Route::get('/destroy/{id}', 'Admin\PageController@destroy')->name('page.destroy');
             Route::get('/fileDestroy/{page_id}/{id}', 'Admin\PageController@fileDestroy')->name('page.file.destroy');
         });
