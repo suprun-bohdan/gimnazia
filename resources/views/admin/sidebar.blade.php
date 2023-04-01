@@ -10,6 +10,7 @@
             <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Елементи</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a class="treeview-item" href="{{ route('slider') }}"><i class="icon fa fa-circle-o"></i> Додати слайдер</a></li>
+                    <li><a class="treeview-item" href="{{ route('sliderList') }}"><i class="icon fa fa-circle-o"></i> Список слайдерів</a></li>
                 </ul>
             </li>
             <li><a class="app-menu__item" href="charts.html"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Charts</span></a></li>
