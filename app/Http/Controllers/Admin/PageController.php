@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Page;
 use App\Http\Controllers\Controller;
+use App\Post;
 use Carbon\Carbon;
+use DB;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -58,14 +60,17 @@ class PageController extends Controller
         ]);
         $files = [];
         if ($request->hasFile('files')) {
-            foreach ($request->file('files') as $file) {
-                $fileName = $file->getClientOriginalName();
+            foreach ($request->file('files') as $key => $file) {
+                $fileName = utf8_encode($file->getClientOriginalName());
                 $filePath = $file->storeAs("pages/{$page->id}", $fileName, 'public');
-                $files[] = $filePath;
+                $tempArray = [
+                    'id' => $key,
+                    'path' => $filePath
+                ];
+                $files[] = $tempArray;
             }
         }
 
-        $page_id = $page->id;
         $page->files = json_encode($files);
         $page->save(['page_id' => $page->id]);
 
@@ -81,6 +86,22 @@ class PageController extends Controller
     public function show(Page $page)
     {
         //
+    }
+
+    public function fileDestroy($page_id, $id) {
+        $page = Page::where('page_id', $page_id)->first();
+        $files = json_decode($page->files, true);
+        $files = array_filter($files, function($file) use ($id) {
+            return $file['id'] != $id;
+        });
+        $page->update(['files' => json_encode($files)]);
+        $page->files = json_encode($files);
+        $result = $page->save();
+        if ($result) {
+            return redirect()->back();
+        } else {
+            return abort(500);
+        }
     }
 
     /**
