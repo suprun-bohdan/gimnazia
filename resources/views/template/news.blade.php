@@ -1,5 +1,5 @@
 @extends('template.layout')
-@section('title', 'Новинни')
+@section('title', 'Новини')
 @section('content')
     <!-- CONTENT-->
 
