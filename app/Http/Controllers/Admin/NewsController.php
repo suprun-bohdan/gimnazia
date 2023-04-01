@@ -35,6 +35,14 @@ class NewsController extends Controller
      */
     public function create(Request $request)
     {
+        $result = $request->validate([
+            'title' => 'required|max:255',
+            'text' => 'required',
+            'description' => 'required',
+            'category_id' => 'required',
+            'time' => 'required',
+        ]);
+
         $p_img = null;
         $time = null;
         $folderName = date('Y-m-d');
@@ -58,7 +66,8 @@ class NewsController extends Controller
             'time' => $time,
         ]);
 
-        return Redirect::away(route('post', $post->id));
+        return \response()->json($post, 200);
+//        return Redirect::away(route('post', $post->id));
     }
 
     /**
@@ -115,6 +124,9 @@ class NewsController extends Controller
     public function destroy($id)
     {
         Post::destroy($id);
-        return \redirect()->back();
+        return response()->json([
+            'message' => 'Запис успішно видалено!'
+        ], 200);
     }
+
 }
