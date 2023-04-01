@@ -18,18 +18,18 @@
         <div class="tile">
             <div class="row">
                 <div class="col-lg-12">
-                    <form method="post" action="{{ route('newsCreate') }}" enctype="multipart/form-data">
+                    <form method="post" id="add-news" action="{{ route('newsCreate') }}" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="news_title">Заголовок</label>
-                            <input class="form-control" name="title" id="news_title" type="text" aria-describedby="titleHelp" placeholder="Введіть заголовок"><small class="form-text text-muted" id="titleHelp">Кількість символів обмежена</small>
+                            <input class="form-control" title="Без заголовку стаття не буде додана!" name="title" id="news_title" type="text" aria-describedby="titleHelp" placeholder="Введіть заголовок"><small class="form-text text-muted" id="titleHelp">Кількість символів обмежена</small>
                         </div>
                         <div class="form-group">
                             <label for="newsAdd">Текст новини</label>
-                            <textarea name="text" id="newsAdd" rows="10" cols="80"></textarea>
+                            <textarea name="text" title="Будь ласка додайте текст для статті" id="newsAdd" rows="10" cols="80"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="description">Короткий опис</label>
-                            <textarea class="form-control" maxlength="160" name="description" id="description" rows="2" cols="2"  aria-describedby="descriptionHelp"></textarea><small class="form-text text-muted" id="descriptionHelp">Кількість символів обмежена до 160</small>
+                            <textarea title="Будь ласка впишіть короткий опис" class="form-control" maxlength="160" name="description" id="description" rows="2" cols="2"  aria-describedby="descriptionHelp"></textarea><small class="form-text text-muted" id="descriptionHelp">Кількість символів обмежена до 160</small>
                         </div>
                         <div class="form-group">
                             <label for="category">Виберіть категорію</label>
@@ -47,7 +47,7 @@
 
                         <div class="form-group">
                             <label for="createDate">Виберіть дату</label>
-                            <input class="form-control" id="createDate" name="time" type="text" placeholder="Виберіть дату">
+                            <input title="Будь ласка оберіть дату" class="form-control" id="createDate" name="time" type="text" placeholder="Виберіть дату">
                         </div>
                         {{ csrf_field() }}
 
@@ -74,6 +74,35 @@
             format: "yyyy-mm-dd",
             autoclose: true,
             todayHighlight: true
+        });
+    </script>
+    <script>
+        const form = document.querySelector('#add-news');
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const fileInput = form.querySelector('input[type="file"]');
+
+        form.addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            if (fileInput && fileInput.value) {
+                fileInput.classList.remove('is-invalid');
+            } else {
+                fileInput.classList.add('is-invalid');
+                return;
+            }
+
+            const formData = new FormData(form);
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
         });
     </script>
 @endsection
