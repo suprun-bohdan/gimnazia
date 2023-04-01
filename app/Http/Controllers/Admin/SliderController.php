@@ -59,7 +59,8 @@ class SliderController extends Controller
      */
     public function show(Slider $slider)
     {
-        //
+        $sliders = Slider::all();
+        return view('admin.sliderShow', ['sliders' => $sliders]);
     }
 
     /**
@@ -91,8 +92,13 @@ class SliderController extends Controller
      * @param  \App\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Slider $slider)
+    public function destroy(Request $request)
     {
-        //
+        $slider = Slider::destroy($request->id);
+        if ($slider) {
+            return response()->json('Removed', 200);
+        } else {
+            return response()->json('Error', 401);
+        }
     }
 }
