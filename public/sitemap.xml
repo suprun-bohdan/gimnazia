@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>http://gimnazia.os</loc>
+        <lastmod>2023-04-01T22:07:03+03:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>http://gimnazia.os/</loc>
+        <lastmod>2023-04-01T22:06:59+03:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>http://gimnazia.os/login</loc>
+        <lastmod>2023-04-01T22:07:03+03:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>http://gimnazia.os/register</loc>
+        <lastmod>2023-04-01T22:07:03+03:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+</urlset>

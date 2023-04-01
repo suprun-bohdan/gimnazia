@@ -26,12 +26,12 @@
     <div class="row news-cards">
             @foreach($posts as $post)
                 <div class="card" style="width: 18rem;">
-                    <a href="{{ route('post', ['post_id' => $post->id]) }}">
+                    <a href="{{ route('post', ['id' => $post->id]) }}">
                     <img class="card-img-top"
                          src="{{ Storage::url($post->p_img) }}"
                          alt="Card image cap">
                     </a>
-                    <a href="{{ route('post', ['post_id' => $post->id]) }}">
+                    <a href="{{ route('post', ['id' => $post->id]) }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $post->title }}</h5>
                             <p class="card-text">{{ substr($post->description, 0, 160) . "..." }}</p>
