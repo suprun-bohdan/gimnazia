@@ -16,10 +16,8 @@
             <li><a class="app-menu__item" href="charts.html"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Charts</span></a></li>
             <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Записи</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a class="treeview-item" href="{{ route('newsAdd') }}"><i class="icon fa fa-circle-o"></i> Стоврити запис</a></li>
-                    <li><a class="treeview-item" href="{{ route('categories') }}"><i class="icon fa fa-circle-o"></i> Категорії</a></li>
-                    <li><a class="treeview-item" href="form-samples.html"><i class="icon fa fa-circle-o"></i> Form Samples</a></li>
-                    <li><a class="treeview-item" href="form-notifications.html"><i class="icon fa fa-circle-o"></i> Form Notifications</a></li>
+                    <li><a class="treeview-item" href="{{ route('newsAdd') }}"><i class="icon fa fa-circle-o"></i> Додати новину</a></li>
+                    <li><a class="treeview-item" href="{{ route('newsList') }}"><i class="icon fa fa-circle-o"></i> Список новин</a></li>
                 </ul>
             </li>
             <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Меню</span><i class="treeview-indicator fa fa-angle-right"></i></a>
@@ -30,6 +28,7 @@
             <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Сторінки</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a class="treeview-item" href="{{ route('admin') }}/page/create"><i class="icon fa fa-circle-o"></i> Створити сторінку</a></li>
+                    <li><a class="treeview-item" href="{{ route('page.view') }}"><i class="icon fa fa-circle-o"></i> Список сторінок</a></li>
                 </ul>
             </li>
             <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Документація</span><i class="treeview-indicator fa fa-angle-right"></i></a>
