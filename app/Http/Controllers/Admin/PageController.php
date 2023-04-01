@@ -110,9 +110,10 @@ class PageController extends Controller
      * @param  \App\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function edit(Page $page)
+    public function edit($page_id)
     {
-        //
+        $page = Page::where('page_id', $page_id)->first();
+        return view('admin.pages.edit', ['page'=> $page]);
     }
 
     /**
@@ -122,10 +123,42 @@ class PageController extends Controller
      * @param  \App\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Page $page)
+    public function update(Request $request, $page_id)
     {
-        //
+        $page = Page::find($page_id);
+        $page->title = $request->input('title');
+        $page->text = $request->input('text');
+        if (!empty($page->p_img)) :
+            $page->p_img = $request->file('preview_image', $page->p_img);
+        endif;
+        $page->time = $request->time ? Carbon::parse($request->time)->format('Y-m-d H:i:s') : null;
+
+        $oldFiles = json_decode($page->files, true);
+
+        $newFiles = [];
+        if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $key => $file) {
+                $fileName = utf8_encode($file->getClientOriginalName());
+                $filePath = $file->storeAs("pages/{$page->id}", $fileName, 'public');
+                $tempArray = [
+                    'id' => $key,
+                    'path' => $filePath
+                ];
+                $newFiles[] = $tempArray;
+            }
+        }
+
+        $mergedFiles = array_merge($oldFiles, $newFiles);
+
+        if (!empty($newFiles)) {
+            $page->files = json_encode($mergedFiles);
+        }
+
+        $page->save();
+
+        return redirect()->route('page', $page_id);
     }
+
 
 
     /**

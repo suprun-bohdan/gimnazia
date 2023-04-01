@@ -35,7 +35,7 @@ use App\Category as Category
                             <td>{{ $p->page_id }}</td>
                             <td>{{ $p->title }}</td>
                             <td>{{ date('H:i:s d.m.Y', strtotime($p->created_at)) }}</td>
-                            <td><a href="#" id="{{ $p->page_id }}" onclick="pageDestroy(event)" data-url="{{ route('page.destroy', $p->page_id) }}"><i class="fa fa-remove"></i></a>  |  <a href="#"><i class="fa fa-edit"></i></a></td>
+                            <td><a href="#" id="{{ $p->page_id }}" onclick="pageDestroy(event)" data-url="{{ route('page.destroy', $p->page_id) }}"><i class="fa fa-remove"></i></a>  |  <a href="{{ route('page.edit', $p->page_id) }}"><i class="fa fa-edit"></i></a></td>
                         </tr>
                     @endforeach
                     </tbody>
