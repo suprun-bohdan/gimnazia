@@ -35,7 +35,7 @@
                             <div id="filesDiv" class="form-group">
                             </div>
                             <div class="tile-footer">
-                                <button class="btn btn-primary" type="submit">Зберегти</button> | <button onclick="addFileInput(event)">Додати документ</button>
+                                <button class="btn btn-primary" type="submit">Зберегти</button> | <button class="btn btn-info" onclick="addFileInput(event)">Додати документ</button>
                             </div>
                         </form>
                         <script>
