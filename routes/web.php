@@ -46,6 +46,8 @@ Route::group(['middleware' => 'admin'], function () {
     Route::prefix('admin')->group(function () {
         Route::get('/', 'Admin\AdminController@index')->name('admin');
         Route::get('/slider', 'Admin\SliderController@index')->name('slider');
+        Route::get('/slider/list', 'Admin\SliderController@show')->name('sliderList');
+        Route::get('/slider/destroy', 'Admin\SliderController@destroy')->name('sliderList');
         Route::post('/slider/create', 'Admin\SliderController@store')->name('sliderCreate');
 
         Route::prefix('news')->group(function () {
