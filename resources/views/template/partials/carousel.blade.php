@@ -21,7 +21,7 @@
                         <div class="card" style="width: auto;">
                             <img class="card-img-top" src="{{ Storage::url($last->p_img) }}"
                                  alt="{{ $last->title }}">
-                            <a href="{{ route('post', ['post_id' => $last->id]) }}">
+                            <a href="{{ route('post', ['id' => $last->id]) }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $last->title }}</h5>
                                 <p class="card-text">{{ $last->description }}</p>
