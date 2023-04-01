@@ -8,44 +8,34 @@ use App\Category as Category
     <script type="text/javascript" src="{{ asset('js') }}/plugins/bootstrap-datepicker.min.js"></script>
     <div class="app-title">
         <div>
-            <h1><i class="fa fa-edit"></i> Список новин</h1>
+            <h1><i class="fa fa-edit"></i> Список сторінок</h1>
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
             <li class="breadcrumb-item">Новини</li>
-            <li class="breadcrumb-item"><a href="#">Список новин</a></li>
+            <li class="breadcrumb-item"><a href="#">Список сторінок</a></li>
         </ul>
     </div>
     <div class="row">
         <div class="col-md-12">
             <div class="tile">
-                <h3 class="tile-title">Список новин</h3>
+                <h3 class="tile-title">Список сторінок</h3>
                 <table class="table">
                     <thead>
                     <tr>
                         <th>#</th>
                         <th>Заголовок</th>
-                        <th>Короткий опис</th>
-                        <th>Категорія</th>
-                        <th>Переглядів</th>
-                        <th>Лайків</th>
-                        <th>Автор</th>
                         <th>Час додавання</th>
                         <th>Дія</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($posts as $p)
+                    @foreach($pages as $p)
                         <tr>
-                            <td>{{ $p->id }}</td>
+                            <td>{{ $p->page_id }}</td>
                             <td>{{ $p->title }}</td>
-                            <td><a href="{{ $p->uri }}">( перейти )</a></td>
-                            <td>{{ ($category = Category::find($p->category_id)) ? $category->category_name : 'Без категорії' }}</td>
-                            <td></td>
-                            <td></td>
-                            <td>{{ User::find($p->author_id)->first_name}} {{ User::find($p->author_id)->last_name }}</td>
                             <td>{{ date('H:i:s d.m.Y', strtotime($p->created_at)) }}</td>
-                            <td><a href="#" id="{{ $p->id }}" onclick="newsDestroy(event)" data-url="{{ route('newsDestroy', $p->id) }}"><i class="fa fa-remove"></i></a>  |  <a href="#"><i class="fa fa-edit"></i></a></td>
+                            <td><a href="#" id="{{ $p->page_id }}" onclick="pageDestroy(event)" data-url="{{ route('page.destroy', $p->page_id) }}"><i class="fa fa-remove"></i></a>  |  <a href="{{ route('page.edit', $p->page_id) }}"><i class="fa fa-edit"></i></a></td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -54,7 +44,7 @@ use App\Category as Category
         </div>
     </div>
     <script>
-        function newsDestroy(event) {
+        function pageDestroy(event) {
             event.preventDefault();
 
             // Отримуємо id з атрибуту id посилання

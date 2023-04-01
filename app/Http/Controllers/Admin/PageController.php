@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Page;
 use App\Http\Controllers\Controller;
+use App\Post;
 use Carbon\Carbon;
+use DB;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -40,9 +42,10 @@ class PageController extends Controller
         $p_img = null;
         $time = null;
         $folderName = date('Y-m-d');
-        if (!empty($request->file('preview_image'))) :
+
+        if (!empty($request->file('preview_image'))) {
             $p_img = $request->file('preview_image')->store("img/{$folderName}", 'public');
-        endif;
+        }
 
         if (!empty($request->time)) {
             $time = $request->time . " " . date("H:i:s", $_SERVER['REQUEST_TIME']);
@@ -55,8 +58,23 @@ class PageController extends Controller
             'p_img' => $p_img,
             'time' => $time,
         ]);
+        $files = [];
+        if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $key => $file) {
+                $fileName = utf8_encode($file->getClientOriginalName());
+                $filePath = $file->storeAs("pages/{$page->id}", $fileName, 'public');
+                $tempArray = [
+                    'id' => $key,
+                    'path' => $filePath
+                ];
+                $files[] = $tempArray;
+            }
+        }
 
-        return redirect()->route('page', $page->id);
+        $page->files = json_encode($files);
+        $page->save(['page_id' => $page->id]);
+
+        return redirect()->back();
     }
 
     /**
@@ -70,15 +88,32 @@ class PageController extends Controller
         //
     }
 
+    public function fileDestroy($page_id, $id) {
+        $page = Page::where('page_id', $page_id)->first();
+        $files = json_decode($page->files, true);
+        $files = array_filter($files, function($file) use ($id) {
+            return $file['id'] != $id;
+        });
+        $page->update(['files' => json_encode($files)]);
+        $page->files = json_encode($files);
+        $result = $page->save();
+        if ($result) {
+            return redirect()->back();
+        } else {
+            return abort(500);
+        }
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function edit(Page $page)
+    public function edit($page_id)
     {
-        //
+        $page = Page::where('page_id', $page_id)->first();
+        return view('admin.pages.edit', ['page'=> $page]);
     }
 
     /**
@@ -88,9 +123,55 @@ class PageController extends Controller
      * @param  \App\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Page $page)
+    public function update(Request $request, $page_id)
     {
-        //
+        $page = Page::find($page_id);
+        $page->title = $request->input('title');
+        $page->text = $request->input('text');
+        if (!empty($page->p_img)) :
+            $page->p_img = $request->file('preview_image', $page->p_img);
+        endif;
+        $page->time = $request->time ? Carbon::parse($request->time)->format('Y-m-d H:i:s') : null;
+
+        $oldFiles = json_decode($page->files, true);
+
+        $newFiles = [];
+        if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $key => $file) {
+                $fileName = utf8_encode($file->getClientOriginalName());
+                $filePath = $file->storeAs("pages/{$page->id}", $fileName, 'public');
+                $tempArray = [
+                    'id' => $key,
+                    'path' => $filePath
+                ];
+                $newFiles[] = $tempArray;
+            }
+        }
+
+        $mergedFiles = array_merge($oldFiles, $newFiles);
+
+        if (!empty($newFiles)) {
+            $page->files = json_encode($mergedFiles);
+        }
+
+        $page->save();
+
+        return redirect()->route('page', $page_id);
+    }
+
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Page  $page
+     * @return \Illuminate\Http\Response
+     */
+    public function view(Request $request, Page $page)
+    {
+        $pages = Page::all();
+        return view('admin.pages.view', ['pages'=> $pages]);
     }
 
     /**
@@ -99,8 +180,17 @@ class PageController extends Controller
      * @param  \App\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Page $page)
+    public function destroy($id)
     {
-        //
+
+        if (Page::where('page_id', $id)->delete()) {
+            return response()->json([
+                'message' => 'Сторінка успішно видалена!'
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Виникла непередбачена помилка!'
+            ], 200);
+        }
     }
 }

@@ -1,5 +1,5 @@
 <?php
-
+use Spatie\Sitemap\SitemapGenerator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -46,19 +46,24 @@ Route::group(['middleware' => 'admin'], function () {
     Route::prefix('admin')->group(function () {
         Route::get('/', 'Admin\AdminController@index')->name('admin');
         Route::get('/slider', 'Admin\SliderController@index')->name('slider');
+        Route::get('/slider/list', 'Admin\SliderController@show')->name('sliderList');
+        Route::get('/slider/destroy', 'Admin\SliderController@destroy')->name('slider.destroy');
         Route::post('/slider/create', 'Admin\SliderController@store')->name('sliderCreate');
 
         Route::prefix('news')->group(function () {
             Route::get('/create', 'Admin\AdminController@news')->name('newsAdd');
             Route::get('/list', 'Admin\NewsController@index')->name('newsList');
             Route::post('/create', 'Admin\NewsController@create')->name('newsCreate');
-            Route::post('/destroy/{id}', 'Admin\NewsController@destroy')->name('newsDestroy');
+            Route::get('/destroy/{id}', 'Admin\NewsController@destroy')->name('newsDestroy');
         });
         Route::prefix('page')->group(function () {
             Route::get('/create', 'Admin\PageController@index')->name('create');
             Route::post('/create', 'Admin\PageController@store')->name('pageCreate');
-            Route::post('/view');
-            Route::post('/update');
+            Route::get('/edit/{page_id}', 'Admin\PageController@edit')->name('page.edit');
+            Route::get('/view', 'Admin\PageController@view')->name('page.view');
+            Route::post('/update/{page_id}', 'Admin\PageController@update')->name('page.update');
+            Route::get('/destroy/{id}', 'Admin\PageController@destroy')->name('page.destroy');
+            Route::get('/fileDestroy/{page_id}/{id}', 'Admin\PageController@fileDestroy')->name('page.file.destroy');
         });
         Route::prefix('settings')->group(function () {
             Route::get('/site', 'Admin\AdminController@settings')->name('settings');
@@ -96,13 +101,18 @@ if (config('app.suspended') == true) :
     });
 else :
 
+    Route::get('/sitemap.xml', function () {
+        SitemapGenerator::create(config('app.url'))->writeToFile(public_path('sitemap.xml'));
 
+        return 'Sitemap generated';
+    });
     Route::get('/', 'IndexController@index')->name('index');
 //    Route::get('/news', 'IndexController@news');
     Route::get('/news', 'SearchController@index')->name('search');
     Route::get('/categories/{category_id}', 'CategoryController@sort')->name('category');
-    Route::get('/post/{post_id}', 'PostController@index')->name('post');
-    Route::get('/page/{page_id}', 'PageController@index')->name('page');
+    Route::get('/post/{id}', 'PostController@index')->name('post');
+    Route::get('/page/{id}', 'PageController@index')->name('page');
     Route::get('/team', 'Admin\TeamController@index')->name('team');
 
 endif;
+

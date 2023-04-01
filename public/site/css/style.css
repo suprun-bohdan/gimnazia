@@ -277,3 +277,7 @@ figcaption {
     color: white;
     opacity: 0.9;
 }
+
+.carousel-link {
+    color: #117a8b;
+}
