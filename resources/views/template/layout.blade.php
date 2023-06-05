@@ -19,6 +19,13 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
     <script src="https://use.fontawesome.com/646c13d065.js"></script>
     @if(isset($sitename) && !empty($sitename))
+        <meta property="og:title" content="{{ $sitename->data }} - @yield('title')">
+    @endif
+    <meta property="og:description" content="Вашківецький заклад загальної середньої освіти І - ІІІ ступенів імені Івана Бажанського Вашківецької міської ради Вижницького району Чернівецької області. Ліцей з початковою школою та гімназією. Вашківецький ЗЗСО ім. І. Бажанського.">
+    <meta property="og:image" content="https://gimnazia.vashkivtsi.com.ua/storage/img/2023-03-06/RSQvDzSZm1pIeOsEYLmaIt9amfvfKJlyOe0k92oU.png">
+    <meta property="og:url" content="https://gimnazia.vashkivtsi.com.ua">
+    <meta property="og:type" content="website">
+    @if(isset($sitename) && !empty($sitename))
         <title>{{ $sitename->data }} - @yield('title')</title>
     @else
         <title>Школа - @yield('title')</title>
