@@ -66,7 +66,7 @@
                         <img src="{{  asset('site/img/logo-uk.png')  }}"
                              @endif
                              alt="{{ $full_sitename->data ?? "Вашківецький ЗЗСО І-ІІІ ступенів ім. Бажанського" }}"
-                    <h1 style="display: none"></h1>{{ $full_sitename->data }}</h1>
+                    <h1 style="display: none">{{ isset($full_sitename->data) }}</h1>
                 </a>
             </div>
         </div>
