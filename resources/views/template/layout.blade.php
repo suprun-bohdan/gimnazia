@@ -66,7 +66,6 @@
                         <img src="{{  asset('site/img/logo-uk.png')  }}"
                              @endif
                              alt="{{ $full_sitename->data ?? "Вашківецький ЗЗСО І-ІІІ ступенів ім. Бажанського" }}"
-                    <h1 style="display: none">Вашківецький ЗЗСО І-ІІІ ступенів ім. Бажанського</h1>
                 </a>
             </div>
         </div>
