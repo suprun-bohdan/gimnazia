@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="uk-UA">
 <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-018TX5F6V2"></script>
