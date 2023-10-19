@@ -61,7 +61,7 @@ class PageController extends Controller
         $files = [];
         if ($request->hasFile('files')) {
             foreach ($request->file('files') as $key => $file) {
-                $fileName = utf8_encode($file->getClientOriginalName());
+                $fileName = utf8_decode($file->getClientOriginalName());
                 $filePath = $file->storeAs("pages/{$page->id}", $fileName, 'public');
                 $tempArray = [
                     'id' => $key,
@@ -138,7 +138,7 @@ class PageController extends Controller
         $newFiles = [];
         if ($request->hasFile('files')) {
             foreach ($request->file('files') as $key => $file) {
-                $fileName = utf8_encode($file->getClientOriginalName());
+                $fileName = utf8_decode($file->getClientOriginalName());
                 $filePath = $file->storeAs("pages/{$page->id}", $fileName, 'public');
                 $tempArray = [
                     'id' => $key,
