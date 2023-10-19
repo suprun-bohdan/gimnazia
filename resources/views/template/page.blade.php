@@ -38,7 +38,7 @@
                 <tr>
                     <th>Назва файлу</th>
                     <th>Посилання</th>
-                    @if(auth()->user()->role == 1)
+                    @if(auth()->check() && auth()->user()->role == 1)
                         <th>Дії</th>
                     @endif
                 </tr>
