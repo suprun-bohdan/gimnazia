@@ -125,6 +125,9 @@
                         <a href="mailto:vashkivtsi.gimnazia@gmail.com">vashkivtsi.gimnazia@gmail.com</a>
                     </p>
                 </li>
+                <li style="opacity: 0.6; color: gray; filter: grayscale(100%);">
+                    <img src="https://freetools.seobility.net/widget/widget.png?url=gimnazia.vashkivtsi.com.ua" alt="Seobility Score for gimnazia.vashkivtsi.com.ua">
+                </li>
             </ul>
         </div>
         <div class="col-4">
