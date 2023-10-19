@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Post;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Support\Facades\Storage as Storage;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -59,10 +60,14 @@ class PageController extends Controller
             'time' => $time,
         ]);
         $files = [];
+
         if ($request->hasFile('files')) {
             foreach ($request->file('files') as $key => $file) {
-                $fileName = utf8_encode($file->getClientOriginalName());
-                $filePath = $file->storeAs("pages/{$page->id}", $fileName, 'public');
+                $fileName = $file->getClientOriginalName();
+                $filePath = "pages/".time()."/{$fileName}";
+
+                \Storage::put($filePath, file_get_contents($file));
+
                 $tempArray = [
                     'id' => $key,
                     'path' => $filePath
@@ -136,10 +141,14 @@ class PageController extends Controller
         $oldFiles = json_decode($page->files, true);
 
         $newFiles = [];
+
         if ($request->hasFile('files')) {
             foreach ($request->file('files') as $key => $file) {
-                $fileName = utf8_encode($file->getClientOriginalName());
-                $filePath = $file->storeAs("pages/{$page->id}", $fileName, 'public');
+                $fileName = $file->getClientOriginalName();
+                $filePath = "pages/".time()."/{$fileName}";
+
+                \Storage::put($filePath, file_get_contents($file));
+
                 $tempArray = [
                     'id' => $key,
                     'path' => $filePath
