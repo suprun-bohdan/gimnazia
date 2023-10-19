@@ -61,9 +61,7 @@ class PageController extends Controller
         $files = [];
         if ($request->hasFile('files')) {
             foreach ($request->file('files') as $key => $file) {
-                $originalFileName = $file->getClientOriginalName();
-                $fileName = mb_convert_encoding($originalFileName, 'UTF-8', 'auto'); // Перекодувати назву файлу в UTF-8
-                $fileName = preg_replace('/[\/:*?"<>|]/', '_', $fileName); // Замінити недопустимі символи на підкреслення
+                $fileName = utf8_encode($file->getClientOriginalName());
                 $filePath = $file->storeAs("pages/{$page->id}", $fileName, 'public');
                 $tempArray = [
                     'id' => $key,
@@ -140,15 +138,13 @@ class PageController extends Controller
         $newFiles = [];
         if ($request->hasFile('files')) {
             foreach ($request->file('files') as $key => $file) {
-                $originalFileName = $file->getClientOriginalName();
-                $fileName = mb_convert_encoding($originalFileName, 'UTF-8', 'auto'); // Перекодувати назву файлу в UTF-8
-                $fileName = preg_replace('/[\/:*?"<>|]/', '_', $fileName); // Замінити недопустимі символи на підкреслення
+                $fileName = utf8_encode($file->getClientOriginalName());
                 $filePath = $file->storeAs("pages/{$page->id}", $fileName, 'public');
                 $tempArray = [
                     'id' => $key,
                     'path' => $filePath
                 ];
-                $files[] = $tempArray;
+                $newFiles[] = $tempArray;
             }
         }
 
