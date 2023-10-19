@@ -34,9 +34,27 @@
                                     @foreach($sliders as $slider)
                                         <tr>
                                             <td>{{ $slider->id }}</td>
-                                            <td>{{ $slider->title }}</td>
-                                            <td>{{ $slider->preview_text }}</td>
-                                            <td><a href="{{ url($slider->url) }}">{{ url($slider->url) }}</a></td>
+                                            <td>
+                                                @if(isset($slider->title))
+                                                    {{ $slider->title }}
+                                                @else
+                                                    Значення відсутнє
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if(isset($slider->preview_text))
+                                                    {{ $slider->preview_text }}
+                                                @else
+                                                    Значення відсутнє
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if(isset($slider->url))
+                                                    {{ $slider->url }}
+                                                @else
+                                                    Значення відсутнє
+                                                @endif
+                                            </td>
                                             <td><img width="100" src="{{ Storage::url($slider->img_url) }}" alt="{{ $slider->img_url }}"></td>
                                             <td><a href="#" class="remove-slider" data-id="{{ $slider->id }}"><i class="fa fa-remove"></i></a></td>
                                         </tr>
