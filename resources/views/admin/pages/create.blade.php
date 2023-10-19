@@ -20,11 +20,11 @@
                     <div class="col-lg-12">
                         <form method="post" action="{{ route('pageCreate') }}" enctype="multipart/form-data">
                             <div class="form-group">
-                                <label for="news_title">Заголовок</label>
+                                <label for="news_title">Заголовок (обов'язкове поле)</label>
                                 <input class="form-control" name="title" id="news_title" type="text" aria-describedby="titleHelp" placeholder="Введіть заголовок"><small class="form-text text-muted" id="titleHelp">Кількість символів обмежена</small>
                             </div>
                             <div class="form-group">
-                                <label for="newsAdd">Текст сторінки</label>
+                                <label for="newsAdd">Текст сторінки (обов'язкове поле)</label>
                                 <textarea name="text" id="newsAdd" rows="10" cols="80" required></textarea>
                             </div>
                             <div class="form-group">
