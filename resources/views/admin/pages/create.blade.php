@@ -25,7 +25,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="newsAdd">Текст сторінки</label>
-                                <textarea name="text" id="newsAdd" rows="10" cols="80"></textarea>
+                                <textarea name="text" id="newsAdd" rows="10" cols="80" required></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="preview_image">Виберіть зображення для прев'ю</label>
