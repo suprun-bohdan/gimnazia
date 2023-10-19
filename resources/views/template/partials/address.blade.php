@@ -28,6 +28,14 @@
                 <td class="text-left"><a href="mailto:vashkivtsi.gimnazia@gmail.com">vashkivtsi.gimnazia@gmail.com</a>
                 </td>
             </tr>
+            <tr>
+                <td>
+
+                </td>
+                <td class="text-left">
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=НВК+Вашківцька+гімназія+Вашківці">Як добратись?</a>
+                </td>
+            </tr>
 
         </table>
     </div>
