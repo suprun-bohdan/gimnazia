@@ -30,10 +30,10 @@
     @else
         <title>Школа - @yield('title')</title>
     @endif
-    <meta name="description" content="Вашківецький заклад загальної середньої освіти І - ІІІ ступенів імені Івана Бажанського Вашківецької міської ради Вижницького району Чернівецької області. Ліцей з початковою школою та гімназією. Вашківецький ЗЗСО ім. І. Бажанського.">
+    <meta name="description" content="Вашківецький ЗЗСО І-ІІІ ступенів ім. Івана Бажанського: якісна освіта, глибокі традиції та сучасні підходи навчання. Запрошуємо дізнатися більше про життя нашої шкільної спільноти!">
     <meta name="keywords" content="навчання, освіта, початкова школа, середня школа, ліцей, гімназія, вашківці, вашківецька, ЗНО, батьки, учні, концерти, вижниця, чернівці, бажанського, бажанський">
     @if(isset($favicon->data))
-        <link href="{{ asset('storage/') . '/' . $favicon->data ?? asset('site/img/index.ico') }}" rel="shortcut icon"
+        <link href="{{ asset('storage/') . '/' . $favicon->data ?? asset('site/img/index.ico') }}" rel="shortcut icon"'
               type="image/vnd.microsoft.icon"/>
     @else
         <link href="{{ asset('site/img/index.ico') }}" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
