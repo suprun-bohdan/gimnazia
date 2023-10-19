@@ -281,3 +281,7 @@ figcaption {
 .carousel-link {
     color: #117a8b;
 }
+
+.custom-slider-style {
+    height: 500px !important;
+}

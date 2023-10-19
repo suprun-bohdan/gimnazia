@@ -7,7 +7,7 @@
     <div class="carousel-inner">
         @foreach($sliders as $slide)
             <div class="carousel-item">
-                <img class="d-block w-100" src="{{ Storage::url($slide->img_url) }}" alt="First slide">
+                <img class="d-block w-100 custom-slider-style" src="{{ Storage::url($slide->img_url) }}" alt="First slide">
                 @if(!empty($slide->preview_text))
                     @if(isset($_SERVER['HTTPS']))
                         <a href="https://{{ $slide->url ?? "#" }}"><span class="slider-description">{{ $slide->preview_text }}</span></a>
