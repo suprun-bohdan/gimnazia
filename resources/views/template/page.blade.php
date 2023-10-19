@@ -29,35 +29,42 @@
         {!! $page->text !!}
     </div>
     @if(!empty($files))
-    <div class="row">
-        <div class="col-4">
-            <span>Прикріплені файли</span>
-            <hr>
-            <table>
-                <thead>
-                <tr>
-                    <th>Назва файлу</th>
-                    <th>Посилання</th>
-                    @if(auth()->check() && auth()->user()->role == 1)
-                        <th>Дії</th>
-                    @endif
-                </tr>
-                </thead>
-                <tbody>
-                @foreach ($files as $file)
-                    <tr id="file-archive">
-                            <? $url = Storage::url($file->path) ?>
-                        <td>{{ basename($url) }}</td>
-                        <td><a href="{{ asset($url) }}" download="{{ basename($url) }}">Завантажити</a></td>
+        <div class="row">
+            <div class="col-4">
+                <span>Прикріплені файли</span>
+                <hr>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Назва файлу</th>
+                        <th>Посилання</th>
                         @if(auth()->check() && auth()->user()->role == 1)
-                            <td><a href="{{ route('page.file.destroy', ['page_id' => $page->page_id, 'id' => $file->id]) }}">Видалити</a>
-                            </td>
+                            <th>Дії</th>
                         @endif
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    @foreach ($files as $file)
+                        <tr id="file-archive">
+                                <? $url = Storage::url($file->path) ?>
+                                <?php
+                                $filename = basename($url);
+                                $extension = pathinfo($filename, PATHINFO_EXTENSION);
+                                $filenameWithoutExtension = preg_replace('/\\.[^.\\s]{3,4}$/', '', $filename);
+                                ?>
+
+                            <td>{{ basename($filenameWithoutExtension) }}</td>
+                            <td><a href="{{ asset($url) }}" download="{{ basename($url) }}">Завантажити</a></td>
+                            @if(auth()->check() && auth()->user()->role == 1)
+                                <td>
+                                    <a href="{{ route('page.file.destroy', ['page_id' => $page->page_id, 'id' => $file->id]) }}">Видалити</a>
+                                </td>
+                            @endif
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
     @endif
 @endsection
