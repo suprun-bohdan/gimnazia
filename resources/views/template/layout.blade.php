@@ -33,7 +33,7 @@
     <meta name="description" content="Вашківецький ЗЗСО ім. І. Бажанського: якісна освіта, глибокі традиції, сучасні методики. Відкрийте для себе нашу шкільну спільноту!">
         <meta name="keywords" content="вашківці, чернівці, вижниця, освіта, буковина, школа, бажанський, історія">
     @if(isset($favicon->data))
-        <link href="{{ asset('storage/') . '/' . $favicon->data ?? asset('site/img/index.ico') }}" rel="shortcut icon"'
+        <link href="{{ asset('storage/') . '/' . $favicon->data ?? asset('site/img/index.ico') }}" rel="shortcut icon"
               type="image/vnd.microsoft.icon"/>
     @else
         <link href="{{ asset('site/img/index.ico') }}" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
