@@ -10,3 +10,4 @@ public/storage/
 composer.lock
 /composer.lock
 .env.dev
+public/sitemap.xml
