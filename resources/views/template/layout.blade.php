@@ -58,6 +58,7 @@
         </div>
         <div class="row">
             <div class="col-12 text-center">
+                <h1 style="display: none">{{ $full_sitename->data ?? "Вашківецький ЗЗСО І-ІІІ ступенів ім. Бажанського" }}</h1>
                 <a href="/">
                     @if(isset($logo->data))
 
