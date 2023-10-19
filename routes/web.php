@@ -116,3 +116,13 @@ else :
 
 endif;
 
+
+Route::get('storage/pages/{file}', function ($file) {
+    $path = storage_path('app/pages/' . $file);
+
+    if (file_exists($path)) {
+        return response()->file($path);
+    } else {
+        abort(404);
+    }
+})->where('file', '.*');

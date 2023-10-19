@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Якщо запит спрямований на /storage/pages/, перенаправте його на відповідний файл в папці зберігання Laravel
+    RewriteRule ^storage/pages/(.*)$ storage/app/pages/$1 [L,NC]
+
+    # Перенаправлення всіх інших запитів на index.php
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
