@@ -49,7 +49,7 @@
                             <? $url = Storage::url($file->path) ?>
                         <td>{{ basename($url) }}</td>
                         <td><a href="{{ $url }}" download="{{ basename($url) }}">Завантажити</a></td>
-                        @if(auth()->user()->role == 1)
+                        @if(auth()->check() && auth()->user()->role == 1)
                             <td><a href="{{ route('page.file.destroy', ['page_id' => $page->page_id, 'id' => $file->id]) }}">Видалити</a>
                             </td>
                         @endif
