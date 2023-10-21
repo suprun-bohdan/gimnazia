@@ -28,7 +28,7 @@
                 {!!$post->text !!}
             </div>
             <hr>
-            <span>Автор: {{ $author->first_name }} {{ $author->last_name }} | Дата створення: {{ $date }} | Переглядів: {{ $visitors }} | <a
+            <span> Дата створення: {{ $date }} | Переглядів: {{ $visitors }} | <a
                     href="#">Перейти вверх</a></span> | <span class="like" style="cursor: pointer; color: red"><i class="fa fa-heart"></i></span>
             <span id="likes">{{ $like }}</span>
 
