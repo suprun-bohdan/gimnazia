@@ -15,6 +15,7 @@
     <div class="row">
         <div class="col-12" id="news-categories">
             <nav class="nav news-nav justify-content-center">
+                <a class="nav-link active" href="/news">Всі новини</a>
                 <a class="nav-link active" href="{{ route('category', 0) }}">Без рубрик</a>
                 @foreach($categories as $category)
                 <a class="nav-link active" href="{{ route('category', $category->id) }}">{{ $category->category_name }}</a>
