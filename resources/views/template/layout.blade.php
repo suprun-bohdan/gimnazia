@@ -132,19 +132,6 @@
         </div>
         <div class="col-4">
             <ul class="list-unstyled">
-                <li>
-                    <figure>
-                        <a href="https://www.bsc.cv.ua" target="_blank"><img src="{{ asset('site/img/BSC@0,1x.png') }}"
-                                                                             alt="BSC Group"
-                                                                             style="height: 35px; margin-top: 20px"></a>
-                        <figcaption>
-                            Реалізуємо Ваші ідеї!
-                        </figcaption>
-                        <figcaption>
-                            +38 (068) 578 67 48
-                        </figcaption>
-                    </figure>
-                </li>
             </ul>
         </div>
     </div>
