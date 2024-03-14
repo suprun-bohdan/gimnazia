@@ -65,8 +65,12 @@
                                         <option value="{{ $p->page_id }}">{{ $p->title }}</option>
                                     @endforeach
                                     @foreach($navs as $n)
-                                        <option value="{{ $n->id }}">{{ $n->value }}</option>
-                                @endforeach
+                                        @if($n->parent_id == 0)
+                                            <option value="{{ $n->id }}" style="font-weight: bold;">{{ $n->value }}</option>
+                                        @else
+                                            <option value="{{ $n->id }}">{{ $n->value }}</option>
+                                        @endif
+                                    @endforeach
                                 </select>
                             </div>
                             <script>
@@ -99,7 +103,7 @@
                     @foreach($navs as $n)
                         <tr>
                             <td>{{ $n->id }}</td>
-                            <td>{{ $n->value }}</td>
+                            <td @if($n->parent_id == 0) style="font-weight: bold;" @endif>{{ $n->value }}</td>
                             <td><a href="{{ $n->uri }}">( перейти )</a></td>
                             <td><a href="">{{ $n->parent_id }}</a></td>
                             <td><a href="{{ route('navRemove', $n->id) }}"><i class="fa fa-remove"></i></a>  |  <a href="#"><i class="fa fa-edit"></i></a></td>
