@@ -46,14 +46,13 @@
                     <tbody>
                     @foreach ($files as $file)
                         <tr id="file-archive">
-                                <? $url = Storage::url($file->path) ?>
-                                <?php
-                                $filename = basename($url);
-                                $extension = pathinfo($filename, PATHINFO_EXTENSION);
-                                $filenameWithoutExtension = preg_replace('/\\.[^.\\s]{3,4}$/', '', $filename);
-                                ?>
-
-                            <td>{{ basename($filenameWithoutExtension) }}</td>
+                            @php
+                                $url = Storage::url($file->path);
+                                $filename = \Illuminate\Support\Str::afterLast($url, '/');
+                                $filenameWithoutExtension = \Illuminate\Support\Str::beforeLast($filename, '.');
+                                $filenameWithoutExtension = urldecode($filenameWithoutExtension);
+                            @endphp
+                            <td>{{ $filenameWithoutExtension }}</td>
                             <td><a href="{{ asset($url) }}" download="{{ basename($url) }}">Завантажити</a></td>
                             @if(auth()->check() && auth()->user()->role == 1)
                                 <td>
