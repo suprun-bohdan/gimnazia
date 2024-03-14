@@ -24,7 +24,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        // Додайте цю лінію
+        $schedule->command('sitemap:generate')->twiceDaily(1, 13); // о 01:00 та 13:00
     }
 
     /**
