@@ -145,9 +145,6 @@
                         </figcaption>
                     </figure>
                 </li>
-                <li>
-                    <span>Версія сайту: {{ $tag }}</span>
-                </li>
             </ul>
         </div>
     </div>
