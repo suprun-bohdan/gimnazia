@@ -231,6 +231,11 @@ figcaption {
     font-size: 1rem;
 }
 
+.carousel-link:hover {
+    text-decoration: none;
+    color: red;
+}
+
 .card-text {
     font-size: 0.75rem;
 }
