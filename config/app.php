@@ -42,7 +42,7 @@ return [
     'debug' => env('APP_DEBUG', false),
     'suspended' => env('APP_SUSPENDED', false),
     'register' => env('APP_REGISTER', false),
-    'login' => env('APP_LOGIN', false),
+    'login' => env('APP_LOGIN', true),
     'gitToken' => env('APP_GIT_TOKEN', 'null'),
     /*
     |--------------------------------------------------------------------------

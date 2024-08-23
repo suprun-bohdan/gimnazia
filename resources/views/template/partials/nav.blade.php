@@ -33,16 +33,18 @@ $datasets = Nav::getNav();
             @endif
         @endforeach
     @endif
-    @if(config('app.login') == true)
+    @if(config('app.login'))
         @if(!Auth::check())
             <a class="nav-link disabled" href="/login">Авторизація</a>
-            <a class="nav-link disabled" href="/register">Реєстрація</a>
+            @if(config('app.register'))
+                <a class="nav-link disabled" href="/register">Реєстрація</a>
+            @endif
         @endif
     @endif
-    @if(config('app.register') == true)
+    @if(config('app.login'))
         @if(Auth::check())
             <a class="nav-link disabled" href="/logout">Вихід</a>
-            @if(Auth::user()->role)
+            @if(Auth::user()->role === 1)
                 <a class="nav-link disabled" href="/admin">Адмін панель</a>
             @endif
         @endif
