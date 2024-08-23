@@ -110,12 +110,15 @@
             <!-- Links -->
             <ul class="list-unstyled">
                 <li class="social">
-                    <a href="https://{{ $fb->data ?? "#" }}" target="_blank"><i class="fa fa-facebook-square"
-                                                                                aria-hidden="true"></i></a>
-                    <a href="https://{{ $ig->data ?? "#"}}" target="_blank"><i class="fa fa-instagram"
-                                                                               aria-hidden="true"></i></a>
-                    <a href="https://{{ $youtube ?? "#" }}" target="_blank"><i class="fa fa-youtube-play"
-                                                                               aria-hidden="true"></i></a>
+                    @if(!empty($fb->data))
+                        <a href="https://{{ $fb->data }}" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+                    @endif
+                    @if(!empty($ig->data))
+                        <a href="https://{{ $ig->data }}" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                    @endif
+                    @if(!empty($youtube))
+                        <a href="https://{{ $youtube }}" target="_blank"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
+                    @endif
                 </li>
                 <li class="footer-contact">
                     <p>Вашківці, вул.Бажанського, 9, Вижницький р-н., Чернівецька обл.
