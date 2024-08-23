@@ -61,12 +61,10 @@
                 <h1 style="display: none">{{ $full_sitename->data ?? "Вашківецький ЗЗСО І-ІІІ ступенів ім. Бажанського" }}</h1>
                 <a href="/">
                     @if(isset($logo->data))
-
-                        <img src="{{ asset('storage/') . '/' . $logo->data }}"
+                        <img src="{{ asset('storage/') . '/' . $logo->data }}" alt="{{ $full_sitename->data ?? 'Вашківецький ЗЗСО І-ІІІ ступенів ім. Бажанського' }}">
                     @else
-                        <img src="{{  asset('site/img/logo-uk.png')  }}"
-                             @endif
-                             alt="{{ $full_sitename->data ?? "Вашківецький ЗЗСО І-ІІІ ступенів ім. Бажанського" }}"
+                        <img src="{{ asset('site/img/logo-uk.png') }}" alt="{{ $full_sitename->data ?? 'Вашківецький ЗЗСО І-ІІІ ступенів ім. Бажанського' }}">
+                    @endif
                 </a>
             </div>
         </div>
