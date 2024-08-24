@@ -301,3 +301,8 @@ figcaption {
     border: transparent;
     border-radius: 0;
 }
+
+.header-logo-and-name {
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
