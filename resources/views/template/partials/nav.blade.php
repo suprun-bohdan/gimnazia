@@ -155,6 +155,14 @@
         padding: 0!important;
     }
 </style>
+
+<style>
+    .site-nav li {
+        display: flex!important;
+        align-items: center!important;
+    }
+</style>
+
 <div class="desktop-nav-container">
     <div class="main-navigation" role="navigation" aria-label="Головна навігація">
         <nav>
