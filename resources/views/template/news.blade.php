@@ -1,9 +1,9 @@
 @extends('template.layout')
 @section('title', 'Новини')
 @section('content')
-    <!-- CONTENT-->
+    <!-- CONTENT NEWS -->
 
-    <div class="row">
+    <div class="row" style="margin-top: 4%;">
         <div class="col-12">
             <div class="heading red">
                 <div>
