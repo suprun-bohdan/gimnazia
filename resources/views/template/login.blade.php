@@ -35,7 +35,7 @@
                         <input type="password" id="password" name="password" class="form-control">
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary" type="submit">Увійти</button>
+                        <button class="btn" id="login-button" type="submit">Увійти</button>
                     </div>
                 </form>
             </div>

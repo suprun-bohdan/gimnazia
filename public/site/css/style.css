@@ -290,3 +290,14 @@ figcaption {
 .custom-slider-style {
     height: 500px !important;
 }
+
+.content-page {
+    margin-top: 4%;
+}
+
+#login-button {
+    color: #ffffff;
+    background: rgba(0,180,213,.69);
+    border: transparent;
+    border-radius: 0;
+}
