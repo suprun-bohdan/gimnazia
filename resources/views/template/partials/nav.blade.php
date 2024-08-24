@@ -150,6 +150,10 @@
     .menu-col li a {
         font: var(--desktop-nav-font-menu-col);
     }
+
+    .desktop-nav-li-a-custom {
+        padding: 0!important;
+    }
 </style>
 <div class="desktop-nav-container">
     <div class="main-navigation" role="navigation" aria-label="Головна навігація">
@@ -162,7 +166,7 @@
                     @foreach($datasets as $key => $navItems)
                         @if(is_int($key))
                             <li role="none">
-                                <span><a href="{{ $navItems['uri'] }}" title="Перейти на {{ $navItems['value'] }}" role="menuitem">{{ $navItems['value'] }}</a></span>
+                                <span><a href="{{ $navItems['uri'] }}" class="desktop-nav-li-a-custom" title="Перейти на {{ $navItems['value'] }}" role="menuitem">{{ $navItems['value'] }}</a></span>
                             </li>
                         @else
                             <li role="none" aria-haspopup="true" aria-expanded="false">
