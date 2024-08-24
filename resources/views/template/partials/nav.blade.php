@@ -129,7 +129,7 @@
     }
 
     .desktop-nav-container ul li {
-        position: relative;
+        position: static;
         display: inline-block;
     }
 
@@ -153,6 +153,16 @@
 
     .desktop-nav-li-a-custom {
         padding: 0!important;
+    }
+
+    .submenu {
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        height: auto;
     }
 </style>
 
