@@ -16,7 +16,7 @@
 @extends('template.layout')
 @section('title', $pageTitle)
 @section('content')
-    <div class="row">
+    <div class="row content-page">
         <div class="col-12">
             <div class="heading red">
                 <div>
