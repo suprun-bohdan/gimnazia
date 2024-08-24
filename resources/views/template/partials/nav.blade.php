@@ -201,7 +201,7 @@
                                                         @php
                                                             $newUrl = str_replace(parse_url($item['uri'], PHP_URL_HOST), parse_url(config('app.url'), PHP_URL_HOST), $item['uri']);
                                                         @endphp
-                                                        <a href="{{ $newUrl }}" style="max-width: 100%" title="Перейти на {{ $item['value'] }}" role="menuitem">{{ $item['value'] }}</a>
+                                                        <a href="{{ $newUrl }}" style="width: 100%" title="Перейти на {{ $item['value'] }}" role="menuitem">{{ $item['value'] }}</a>
                                                     </li>
                                                 @endif
                                             @endforeach
