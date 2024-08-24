@@ -198,7 +198,7 @@
                                             @foreach($chunk as $item)
                                                 @if(isset($item['uri']))
                                                     <li role="none">
-                                                        <a href="{{ $item['uri'] }}" title="Перейти на {{ $item['value'] }}" role="menuitem">{{ $item['value'] }}</a>
+                                                        <a href="{{ $item['uri'] }}" style="max-width: 100%" title="Перейти на {{ $item['value'] }}" role="menuitem">{{ $item['value'] }}</a>
                                                     </li>
                                                 @endif
                                             @endforeach
