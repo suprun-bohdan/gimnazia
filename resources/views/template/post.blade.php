@@ -19,7 +19,7 @@
             js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
-    <div class="row">
+    <div class="row" style="margin-top: 4%">
         <div class="col-10">
             <h2>{{ $post->title }}</h2>
             <hr>
