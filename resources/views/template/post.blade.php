@@ -21,7 +21,7 @@
         }(document, 'script', 'facebook-jssdk'));</script>
     <div class="row" style="margin-top: 4%">
         <div class="col-10">
-            <h2>{{ $post->title }}</h2>
+            <h2 style="text-align: center">{{ $post->title }}</h2>
             <hr>
             <img class="img-fluid rounded mx-auto d-block" src="{{ Storage::url($post->p_img) }}" alt="{{ $post->title }}">
             <div class="post-content">
