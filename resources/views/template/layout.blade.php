@@ -76,7 +76,6 @@
                 </div>
             </div>
         @endif
-        <hr>
         <div class="row">
             <div class="col-12 text-center">
                 @include('template.partials.nav')
@@ -88,12 +87,12 @@
 </div>
 <!--END CONTAINER-->
 
-<footer class="container-fluid">
+<footer class="container">
     <div class="row text-center">
         <div class="col-4">
             <ul class="list-unstyled">
                 <li>
-                    <a href="#!" class="font-weight-bold">Вакансії</a>
+                    <a href="{{ config('app.app_url') }}/page/118" class="font-weight-bold">Вакансії</a>
                 </li>
                 <li>
                     <p>{{ date('Y') }}. Всі права належать
