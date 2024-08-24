@@ -306,3 +306,34 @@ figcaption {
     padding-top: 5%;
     padding-bottom: 5%;
 }
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: gray;
+    background-color: #fff;
+    border: none;
+}
+
+.page-link:hover {
+    z-index: 2;
+    color: black;
+    text-decoration: none;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+
+.page-link:focus {
+    z-index: 2;
+    outline: 0;
+    box-shadow: none;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #a0a0a1;
+}
