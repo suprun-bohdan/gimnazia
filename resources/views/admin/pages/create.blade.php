@@ -35,7 +35,7 @@
                             <div id="filesDiv" class="form-group">
                             </div>
                             <div class="tile-footer">
-                                <button class="btn btn-primary" type="submit">Зберегти</button> | <button class="btn btn-info" onclick="addFileInput(event)">Додати документ</button>
+                                <button id="saveButton" class="btn btn-primary" type="submit">Зберегти</button> | <button class="btn btn-info" onclick="addFileInput(event)">Додати документ</button>
                             </div>
                         </form>
                         <script>
@@ -80,6 +80,35 @@
             filebrowserUploadMethod: '{{ route('ckUploadImage') }}'
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const saveButton = document.getElementById('saveButton');
+            const titleInput = document.getElementById('news_title');
+
+            function validateForm() {
+                let titleValue = titleInput.value.trim();
+
+                let editorData = CKEDITOR.instances.newsAdd.getData();
+
+                let tempDiv = document.createElement("div");
+                tempDiv.innerHTML = editorData;
+                let textContent = (tempDiv.textContent || tempDiv.innerText || "").trim();
+
+                if (titleValue === "" || textContent === "") {
+                    saveButton.disabled = true;
+                } else {
+                    saveButton.disabled = false;
+                }
+            }
+
+            titleInput.addEventListener('input', validateForm);
+
+            CKEDITOR.instances.newsAdd.on('change', validateForm);
+
+            validateForm();
+        });
+    </script>
+
     <script>
         $('#createDate').datepicker({
             format: "yyyy-mm-dd",
