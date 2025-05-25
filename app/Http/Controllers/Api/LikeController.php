@@ -46,7 +46,7 @@ class LikeController extends Controller
 
     public static function getAllLikesCount()
     {
-        $likesCount = Like::all()->count();
+        $likesCount = Like::count();
         return $likesCount;
     }
 }

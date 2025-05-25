@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use DB;
 use Illuminate\Support\Facades\Storage as Storage;
 use Illuminate\Http\Request;
+use App\Jobs\StorePageFile;
 
 class PageController extends Controller
 {
@@ -66,7 +67,7 @@ class PageController extends Controller
                 $fileName = $file->getClientOriginalName();
                 $filePath = "pages/".time()."/{$fileName}";
 
-                \Storage::put($filePath, file_get_contents($file));
+                dispatch(new StorePageFile($file, $filePath));
 
                 $tempArray = [
                     'id' => $key,
@@ -94,7 +95,7 @@ class PageController extends Controller
     }
 
     public function fileDestroy($page_id, $id) {
-        $page = Page::where('page_id', $page_id)->first();
+        $page = Page::where('page_id', $page_id)->firstOrFail();
         $files = json_decode($page->files, true);
         $files = array_filter($files, function($file) use ($id) {
             return $file['id'] != $id;
@@ -117,7 +118,7 @@ class PageController extends Controller
      */
     public function edit($page_id)
     {
-        $page = Page::where('page_id', $page_id)->first();
+        $page = Page::where('page_id', $page_id)->firstOrFail();
         return view('admin.pages.edit', ['page'=> $page]);
     }
 
@@ -147,7 +148,7 @@ class PageController extends Controller
                 $fileName = $file->getClientOriginalName();
                 $filePath = "pages/".time()."/{$fileName}";
 
-                \Storage::put($filePath, file_get_contents($file));
+                dispatch(new StorePageFile($file, $filePath));
 
                 $tempArray = [
                     'id' => $key,
@@ -179,7 +180,7 @@ class PageController extends Controller
      */
     public function view(Request $request, Page $page)
     {
-        $pages = Page::all();
+        $pages = Page::select('id', 'title', 'time')->orderBy('time', 'desc')->paginate(20);
         return view('admin.pages.view', ['pages'=> $pages]);
     }
 
