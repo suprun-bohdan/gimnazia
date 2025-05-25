@@ -2,11 +2,15 @@ version: '3.8'
 
 services:
   app:
-    image: php:7.4-fpm
+    build:
+      context: .
+      dockerfile: docker/php-ssh.dockerfile
     container_name: gimnazia_app
     working_dir: /var/www
     volumes:
       - ./:/var/www
+    ports:
+      - "2224:22"
     networks:
       - gimnazia
     depends_on:
@@ -45,7 +49,7 @@ services:
     working_dir: /var/www
     volumes:
       - ./:/var/www
-    command: ["composer", "install"]
+    command: ["tail", "-f", "/dev/null"]
     networks:
       - gimnazia
 
