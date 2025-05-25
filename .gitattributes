@@ -3,3 +3,5 @@
 *.scss linguist-vendored
 *.js linguist-vendored
 CHANGELOG.md export-ignore
+*.sql filter=lfs diff=lfs merge=lfs -text
+docker/mysql/ibdata1 filter=lfs diff=lfs merge=lfs -text
