@@ -5,7 +5,8 @@
 !/storage/app
 !/storage/framework
 !/storage/logs
-
+docker/mysql/ibdata1
+docker/mysql/*.sql
 # середовище
 .env
 .env.*
