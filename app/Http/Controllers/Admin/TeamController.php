@@ -20,7 +20,7 @@ class TeamController extends Controller
 
     public function indexAdmin()
     {
-        $teams = Team::all();
+        $teams = Team::select('id', 'name', 'position')->paginate(20);
         return view('admin.teams.index', compact('teams'));
     }
 

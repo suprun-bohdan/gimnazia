@@ -15,13 +15,13 @@ class AdminController extends Controller
     {
         $visitorsCount = VisitorController::getAllVisitors();
         $likesCount = LikeController::getAllLikesCount();
-        $usersCount = User::all()->count();
+        $usersCount = User::count();
         return view('admin.index', ['visitorsCount' => $visitorsCount, 'likesCount' => $likesCount, 'usersCount' => $usersCount]);
     }
 
     public function news()
     {
-        $categories = Category::all();
+        $categories = Category::select('id', 'title')->get();
         return view('admin.newsAdd', ['categories' => $categories]);
     }
 

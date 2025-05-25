@@ -4,7 +4,7 @@ RUN apt update && apt install -y \
     openssh-server sudo unzip curl git zip htop && \
     mkdir -p /var/run/sshd
 
-RUN echo "memory_limit=512M" > /usr/local/etc/php/conf.d/memlimit.ini
+RUN echo "memory_limit=-1" > /usr/local/etc/php/conf.d/memlimit.ini
 
 RUN curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/local/bin/composer

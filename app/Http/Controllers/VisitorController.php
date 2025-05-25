@@ -10,7 +10,6 @@ class VisitorController extends Controller
 {
     public static function getAllVisitors()
     {
-        $visitors = Visitor::all()->count();
-        return $visitors;
+        return Visitor::count();
     }
 }
