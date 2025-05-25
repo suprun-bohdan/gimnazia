@@ -1,4 +1,6 @@
 <?php
+
+use Illuminate\Support\Facades\Log;
 use Spatie\Sitemap\SitemapGenerator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -14,6 +16,7 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/test', fn () => phpinfo());
 if (config('app.debug'))
 {
     Route::get('/info', function () {
