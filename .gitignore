@@ -1,14 +1,35 @@
-.env
-.idea
-vg
-public/storage
-storage/app
-public/images/
-public/storage/
+# базове
 /vendor
-/.env
+/node_modules
+/storage/*
+!/storage/app
+!/storage/framework
+!/storage/logs
+
+# середовище
+.env
+.env.*
+.idea
+*.log
+
+# скомпільовані
+/public/storage
+/public/images
+/public/sitemap.xml
+/public/hot
+/public/mix-manifest.json
+
+# composer
 composer.lock
-/composer.lock
-.env.dev
-public/sitemap.xml
-.htaccess
+composer.phar
+
+# mysql docker volume
+docker/mysql/*.frm
+docker/mysql/*.MYD
+docker/mysql/*.MYI
+docker/mysql/ib*
+docker/mysql/pbcv_vg
+
+# OS
+.DS_Store
+Thumbs.db
