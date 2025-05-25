@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   app:
+    image: gimnazia/php-ssh:8.1
     build:
       context: .
       dockerfile: docker/php-ssh.dockerfile
@@ -36,8 +37,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: pbcv_vg
-      MYSQL_USER: 29m~f2bXM
-      MYSQL_PASSWORD: пароль_тут
+      MYSQL_USER: pbcv_vg
+      MYSQL_PASSWORD: "!29m~f2bXM"
     volumes:
       - ./docker/mysql:/var/lib/mysql
     networks:
