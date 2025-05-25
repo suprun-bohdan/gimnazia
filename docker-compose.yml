@@ -63,6 +63,8 @@ services:
       MYSQL_PASSWORD: "!29m~f2bXM"
     volumes:
       - ./docker/mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
     networks:
       - gimnazia
 
