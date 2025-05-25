@@ -35,4 +35,3 @@ docker/mysql/pbcv_vg
 .DS_Store
 Thumbs.db
 docker/mysql/*
-!docker/mysql/*.sql
