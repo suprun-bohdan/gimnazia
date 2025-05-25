@@ -33,3 +33,5 @@ docker/mysql/pbcv_vg
 # OS
 .DS_Store
 Thumbs.db
+docker/mysql/*
+!docker/mysql/*.sql
