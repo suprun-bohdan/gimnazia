@@ -10,6 +10,7 @@ use App\Slider;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,6 +31,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+    	if (app()->environment('production')) {
+        	URL::forceScheme('https');
+    	}
+
         $tag = GitController::getLastVersionTag();
         \view()->share('tag', $tag);
         $lastNews = false;
