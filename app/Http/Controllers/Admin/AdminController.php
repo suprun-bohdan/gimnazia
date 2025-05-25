@@ -21,7 +21,7 @@ class AdminController extends Controller
 
     public function news()
     {
-        $categories = Category::select('id', 'title')->get();
+        $categories = Category::all();
         return view('admin.newsAdd', ['categories' => $categories]);
     }
 
