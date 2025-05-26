@@ -82,27 +82,44 @@
         const fileInput = form.querySelector('input[type="file"]');
 
         form.addEventListener('submit', async function (event) {
-            event.preventDefault();
+            event.preventDefault()
 
-            if (fileInput && fileInput.value) {
-                fileInput.classList.remove('is-invalid');
-            } else {
-                fileInput.classList.add('is-invalid');
-                return;
+            if (CKEDITOR.instances.newsAdd) {
+                CKEDITOR.instances.newsAdd.updateElement()
             }
 
-            const formData = new FormData(form);
+            if (fileInput && fileInput.value) {
+                fileInput.classList.remove('is-invalid')
+            } else {
+                fileInput.classList.add('is-invalid')
+                return
+            }
+
+            const formData = new FormData(form)
+
             try {
                 const response = await fetch(form.action, {
                     method: 'POST',
                     body: formData,
-                });
+                })
+
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    const error = await response.json()
+                    console.error('Server error:', error)
+                    alert('❌ помилка додавання: ' + (error?.error ?? 'невідома'))
+                    return
                 }
+
+                const result = await response.json()
+                console.log(result)
+                alert('✅ новину додано успішно')
+
+                form.reset()
+                CKEDITOR.instances.newsAdd.setData('')
             } catch (error) {
-                console.error('There was a problem with the fetch operation:', error);
+                console.error('There was a problem with the fetch operation:', error)
             }
-        });
+        })
+
     </script>
 @endsection
