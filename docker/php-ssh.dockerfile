@@ -4,7 +4,11 @@ RUN apt update && apt install -y \
     openssh-server sudo unzip curl git zip htop && \
     mkdir -p /var/run/sshd
 
-RUN echo "memory_limit=128M" > /usr/local/etc/php/conf.d/memlimit.ini
+RUN printf "\
+memory_limit=128M\n\
+upload_max_filesize=25M\n\
+post_max_size=30M\n\
+" > /usr/local/etc/php/conf.d/custom.ini
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 

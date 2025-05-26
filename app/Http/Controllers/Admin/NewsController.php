@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 
 
@@ -35,39 +36,44 @@ class NewsController extends Controller
      */
     public function create(Request $request)
     {
-        $result = $request->validate([
-            'title' => 'required|max:255',
-            'text' => 'required',
-            'description' => 'required',
-            'category_id' => 'required',
-            'time' => 'required',
-        ]);
+        try {
+            $result = $request->validate([
+                'title' => 'required|max:255',
+                'text' => 'required',
+                'description' => 'required',
+                'category_id' => 'required',
+                'time' => 'required',
+            ]);
 
-        $p_img = null;
-        $time = null;
-        $folderName = date('Y-m-d');
-        if (!empty($request->file('preview_image'))) :
-            $p_img = $request->file('preview_image')->store("img/{$folderName}", 'public');
-        endif;
+            $p_img = null;
+            $time = null;
+            $folderName = date('Y-m-d');
 
-        if (!empty($request->time)) {
-            $time = $request->time . " " . date("H:i:s", $_SERVER['REQUEST_TIME']);
-            $time = Carbon::parse($time)->format('Y-m-d H:i:s');
+            if ($request->hasFile('preview_image')) {
+                $p_img = $request->file('preview_image')->store("img/{$folderName}", 'public');
+            }
+
+            if (!empty($request->time)) {
+                $time = $request->time . " " . date("H:i:s", $_SERVER['REQUEST_TIME']);
+                $time = Carbon::parse($time)->format('Y-m-d H:i:s');
+            }
+
+            $post = Post::create([
+                'title' => $request->title,
+                'category_id' => $request->category_id,
+                'text' => $request->text,
+                'tags' => $request->tags,
+                'p_img' => $p_img,
+                'author_id' => Auth::id(),
+                'description' => $request->description,
+                'time' => $time,
+            ]);
+
+            return response()->json($post, 200);
+        } catch (\Throwable $e) {
+            Log::error('Post creation error', ['error' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
+            return response()->json(['error' => 'Не вдалося створити пост'], 500);
         }
-
-        $post = Post::create([
-            'title' => $request->title,
-            'category_id' => $request->category_id,
-            'text' => $request->text,
-            'tags' => $request->tags,
-            'p_img' => $p_img,
-            'author_id' => Auth::id(),
-            'description' => $request->description,
-            'time' => $time,
-        ]);
-
-        return \response()->json($post, 200);
-//        return Redirect::away(route('post', $post->id));
     }
 
     /**
