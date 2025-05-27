@@ -22,6 +22,12 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        if (app()->environment('production')) {
+            \Laravel\Horizon\Horizon::auth(fn($request) => auth()->check() && auth()->user()->is_admin);
+        } else {
+            \Laravel\Horizon\Horizon::auth(fn() => true);
+        }
+
         Log::info('memory peak: ' . round(memory_get_peak_usage(true) / 1024 / 1024, 2) . ' MB');
         if (app()->environment('production')) {
             URL::forceScheme('https');
