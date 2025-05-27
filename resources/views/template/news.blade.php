@@ -55,7 +55,7 @@
     <div class="row col-12 justify-content-center">
         <!-- Пагінація з описом -->
         <nav aria-label="Навігація сторінками">
-            {{ $posts->links() }}
+            {{ $posts->links('template.partials.pagination') }}
         </nav>
     </div>
     <!-- END CONTENT -->
