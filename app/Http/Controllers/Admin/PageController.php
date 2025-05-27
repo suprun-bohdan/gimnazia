@@ -176,11 +176,11 @@ class PageController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Page  $page
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function view(Request $request, Page $page)
     {
-        $pages = Page::select('id', 'title', 'time')->orderBy('time', 'desc')->paginate(20);
+        $pages = Page::select('page_id', 'title', 'time')->orderBy('time', 'desc')->paginate(20);
         return view('admin.pages.view', ['pages'=> $pages]);
     }
 
