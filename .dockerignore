@@ -5,6 +5,7 @@ cat <<EOF > .dockerignore
 .git
 #docker
 *.log
+docker/mysql
 EOF
 
 # 2 зупини і видали контейнери та оранки
