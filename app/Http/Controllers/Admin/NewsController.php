@@ -12,9 +12,11 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Client\Response;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Redis;
 
 
 class NewsController extends Controller
@@ -97,6 +99,13 @@ class NewsController extends Controller
                 'description' => $request->description,
                 'time' => $time,
             ]);
+
+            $redis = Redis::connection();
+            foreach ($redis->keys('search:*') as $key) {
+                $redis->del($key);
+            }
+
+            Cache::forget('categories:all');
 
             return response()->json($post, 200);
         } catch (\Throwable $e) {
