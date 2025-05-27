@@ -14,6 +14,8 @@ RUN sed -i 's|^listen = .*|listen = 0.0.0.0:9000|' /usr/local/etc/php-fpm.d/www.
 
 WORKDIR /var/www
 
+RUN mkdir -p /var/run && chmod 755 /var/run
+
 RUN mkdir -p storage/logs bootstrap/cache && \
     chown -R www-data:www-data /var/www && \
     chmod -R 775 storage bootstrap/cache
