@@ -6,17 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Page extends Model
 {
+    protected $table = 'pages';
     protected $primaryKey = 'page_id';
     public $incrementing = true;
     protected $keyType = 'int';
-    public $timestamps = true;
 
     protected $fillable = [
-        'title', 'text', 'time', 'p_img'
+        'title', 'text', 'time', 'p_img', 'files'
     ];
 
-    protected $casts = [
-        'files' => 'array'
-    ];
-
+    public function getKeyName(): string
+    {
+        return 'page_id';
+    }
 }
