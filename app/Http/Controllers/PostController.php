@@ -26,4 +26,5 @@ class PostController extends Controller
 //        $recommendeds = DB::table('posts')->where('category_id', $post->category_id)->get();
         return view('template.post', ['post' => $post, 'author' => $author, 'date' => $date, 'visitors' => $visitors, 'like' => $like, 'recommendeds' => $recommendeds]);
     }
+
 }
