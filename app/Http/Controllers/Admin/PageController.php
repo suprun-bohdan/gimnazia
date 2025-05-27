@@ -180,7 +180,9 @@ class PageController extends Controller
      */
     public function view(Request $request, Page $page)
     {
-        $pages = Page::select('page_id', 'title', 'time')->orderBy('time', 'desc')->paginate(20);
+        $pages = Page::select('page_id', 'title', 'time', 'created_at')
+            ->orderByDesc('time')
+            ->paginate(20);
         return view('admin.pages.view', ['pages'=> $pages]);
     }
 
