@@ -14,21 +14,24 @@ class StorePageFile implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected UploadedFile $file;
+    protected string $tmpPath;
     protected string $filePath;
 
-    public function __construct(UploadedFile $file, string $filePath)
+    public function __construct(string $tmpPath, string $filePath)
     {
-        $this->file = $file;
+        $this->tmpPath = $tmpPath;
         $this->filePath = $filePath;
     }
 
-    public function handle()
+    public function handle(): void
     {
-        Storage::disk('public')->putFileAs(
-            dirname($this->filePath),
-            $this->file,
-            basename($this->filePath)
-        );
+        $file = storage_path('app/' . $this->tmpPath);
+        if (file_exists($file)) {
+            Storage::disk('public')->put(
+                $this->filePath,
+                file_get_contents($file)
+            );
+            unlink($file);
+        }
     }
 }
