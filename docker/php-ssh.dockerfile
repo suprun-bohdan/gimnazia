@@ -22,7 +22,8 @@ RUN mkdir -p storage/logs bootstrap/cache && \
 
 COPY docker/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
 COPY docker/supervisor/conf.d/ /etc/supervisor/conf.d/
-
+COPY docker/start-php-fpm.sh /usr/local/bin/start-php-fpm.sh
+RUN chmod +x /usr/local/bin/start-php-fpm.sh
 EXPOSE 9000 22
 
 CMD ["supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
