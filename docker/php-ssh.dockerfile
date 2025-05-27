@@ -12,7 +12,9 @@ post_max_size=30M\n\
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN docker-php-ext-install pdo pdo_mysql exif
+# потрібні розширення для laravel + черг
+RUN docker-php-ext-install pdo pdo_mysql exif pcntl \
+    && pecl install redis && docker-php-ext-enable redis
 
 RUN id -u gimnazia 2>/dev/null || ( \
     useradd -ms /bin/bash gimnazia && \

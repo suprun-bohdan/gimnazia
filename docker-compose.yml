@@ -52,6 +52,15 @@ services:
 #    networks:
 #      - gimnazia
 
+  redis:
+    image: redis:alpine
+    container_name: gimnazia_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - gimnazia
+
   mysql:
     image: mysql:5.7
     container_name: gimnazia_mysql

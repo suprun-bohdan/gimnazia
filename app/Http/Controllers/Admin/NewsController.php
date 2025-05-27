@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ImageUploader;
+use App\Jobs\StorePageFile;
 use App\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -50,8 +51,14 @@ class NewsController extends Controller
             $folderName = date('Y-m-d');
 
             if ($request->hasFile('preview_image')) {
-                $p_img = $request->file('preview_image')->store("img/{$folderName}", 'public');
+                $tmpPath = $request->file('preview_image')->store('tmp', 'local');
+                $folderName = date('Y-m-d');
+                $filePath = "img/{$folderName}/" . uniqid() . '.' . $request->file('preview_image')->getClientOriginalExtension();
+
+                StorePageFile::dispatch($tmpPath, $filePath);
+                $p_img = $filePath;
             }
+
 
             if (!empty($request->time)) {
                 $time = $request->time . " " . date("H:i:s", $_SERVER['REQUEST_TIME']);
