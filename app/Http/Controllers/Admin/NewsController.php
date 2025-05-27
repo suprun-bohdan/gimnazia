@@ -8,6 +8,7 @@ use App\Http\Controllers\ImageUploader;
 use App\Jobs\StorePageFile;
 use App\Post;
 use Carbon\Carbon;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Client\Response;
@@ -25,10 +26,31 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
-        $categories = Category::all();
-        return view('admin.news.list', ['posts' => $posts, 'categories' => $categories]);
+        $posts = Post::with(['category', 'author'])
+            ->select('id', 'title', 'category_id', 'author_id', 'created_at')
+            ->latest()
+            ->paginate(20);
+
+        $categories = Category::all(['id', 'category_name']);
+
+        return view('admin.news.list', compact('posts', 'categories'));
     }
+
+    public function ajaxSearch(Request $request): JsonResponse
+    {
+        $query = $request->get('q');
+
+        $posts = Post::with(['category', 'author'])
+            ->where('title', 'like', '%' . $query . '%')
+            ->latest()
+            ->limit(30)
+            ->get();
+
+        $html = view('admin.news.partials.table_rows', compact('posts'))->render();
+
+        return response()->json(['html' => $html]);
+    }
+
 
     /**
      * Show the form for creating a new resource.

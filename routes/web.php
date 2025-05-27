@@ -35,6 +35,7 @@ if (!Auth::check()) {
         Route::get('/logout', 'UserController@logout')->name('logout');
     }
 }
+Route::get('/admin/news/search', 'Admin\NewsController@ajaxSearch')->name('newsSearchAjax');
 
 Route::post('/upload-image', 'CkeditorController@uploadImage')->name('ckUploadImage');
 
