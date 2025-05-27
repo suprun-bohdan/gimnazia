@@ -18,6 +18,9 @@
         <div class="col-md-12">
             <div class="tile">
                 <h3 class="tile-title">Список сторінок</h3>
+                <div class="mb-3">
+                    <input type="text" id="page-search" class="form-control" placeholder="🔎 пошук по заголовку...">
+                </div>
                 <table class="table table-bordered table-hover">
                     <thead>
                     <tr>
@@ -27,7 +30,7 @@
                         <th>Дія</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="page-table-body">
                     @foreach($pages as $p)
                         <tr>
                             <td>{{ $p->page_id }}</td>
@@ -72,5 +75,26 @@
                 }
             });
         }
+    </script>
+    <script>
+        let searchTimeout = null;
+
+        $('#page-search').on('input', function () {
+            clearTimeout(searchTimeout);
+            const query = $(this).val();
+            searchTimeout = setTimeout(() => {
+                $.ajax({
+                    url: "{{ route('page.view') }}",
+                    method: 'GET',
+                    data: { q: query },
+                    success: function (response) {
+                        $('#page-table-body').html(response);
+                    },
+                    error: function (error) {
+                        console.error(error);
+                    }
+                });
+            }, 500);
+        });
     </script>
 @endsection

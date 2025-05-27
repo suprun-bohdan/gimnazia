@@ -178,12 +178,21 @@ class PageController extends Controller
      * @param  \App\Page  $page
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function view(Request $request, Page $page)
+    public function view(Request $request)
     {
-        $pages = Page::select('page_id', 'title', 'time', 'created_at')
-            ->orderByDesc('time')
-            ->paginate(20);
-        return view('admin.pages.view', ['pages'=> $pages]);
+        $query = Page::select('page_id', 'title', 'time')->orderByDesc('time');
+
+        if ($request->filled('q')) {
+            $query->where('title', 'like', '%' . $request->q . '%');
+        }
+
+        $pages = $query->paginate(20);
+
+        if ($request->ajax()) {
+            return view('admin.pages._table_rows', ['pages' => $pages]);
+        }
+
+        return view('admin.pages.view', ['pages' => $pages]);
     }
 
     /**
