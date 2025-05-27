@@ -22,54 +22,74 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        // horizon auth
         if (app()->environment('production')) {
             \Laravel\Horizon\Horizon::auth(fn($request) => auth()->check() && auth()->user()->is_admin);
+            URL::forceScheme('https');
         } else {
             \Laravel\Horizon\Horizon::auth(fn() => true);
         }
 
+        // memory log
         Log::info('memory peak: ' . round(memory_get_peak_usage(true) / 1024 / 1024, 2) . ' MB');
-        if (app()->environment('production')) {
-            URL::forceScheme('https');
-        }
 
-        View::share('tag', GitController::getLastVersionTag());
+        // git tag кеш на добу
+        View::share('tag', Cache::remember('git:last_version_tag', 86400, fn() => GitController::getLastVersionTag()));
 
-        $this->shareIfTableExists('sliders', function () {
-            return Slider::query()->exists() ? Slider::query()->get() : false;
-        });
+        // слайдери кеш на добу
+        $this->shareIfTableExists('sliders', fn() => Cache::remember('sliders', 86400, fn() => Slider::all()));
 
+        // останні новини кеш на добу
         $this->shareIfTableExists('posts', function () {
-            return Post::count() > 5 ? Post::getLastNews(6) : false;
+            if (Post::count() <= 5) {
+                return false;
+            }
+            return Cache::remember('last_news', 86400, fn() => Post::getLastNews(6));
         }, 'lastNews');
 
-        $this->shareSettings([
-            'fb', 'ig', 'favicon', 'sitename', 'full_sitename', 'logo', 'only_sitename'
-        ]);
+        // налаштування кеш на добу
+        $this->shareSettings(['fb', 'ig', 'favicon', 'sitename', 'full_sitename', 'logo', 'only_sitename']);
 
-        $this->shareIfTableExists('navs', fn () => Cache::remember('navs', 3600, fn () => Nav::all()));
+        // навігація кеш на добу
+        $this->shareIfTableExists('navs', fn() => Cache::remember('navs', 86400, fn() => Nav::all()));
+    }
+
+    protected function tableExists(string $table): bool
+    {
+        return Cache::remember("schema_has_table:$table", 86400, fn() => Schema::hasTable($table));
     }
 
     protected function shareIfTableExists(string $table, callable $resolver, string $viewKey = null): void
     {
-        if (!Schema::hasTable($table)) {
+        if (! $this->tableExists($table)) {
             return;
         }
-
-        $data = $resolver();
-        View::share($viewKey ?? $table, $data);
+        View::share($viewKey ?? $table, $resolver());
     }
 
     protected function shareSettings(array $keys): void
     {
-        if (!Schema::hasTable('settings')) {
+        if (! $this->tableExists('settings')) {
             return;
         }
 
-        $settings = Setting::whereIn('value', $keys)->get()->keyBy('value');
+        $settings = Cache::remember('settings_values', 86400, function () use ($keys) {
+            return Setting::whereIn('value', $keys)
+                ->get()
+                ->keyBy('value');
+        });
+
+        $viewData = [];
 
         foreach ($keys as $key) {
-            View::share($key, $key === 'only_sitename' ? isset($settings[$key]) : $settings[$key] ?? null);
+            $viewData[$key] = $key === 'only_sitename'
+                ? isset($settings[$key])
+                : ($settings[$key]->data ?? null);
         }
+
+        View::share($viewData);
     }
+
+
+
 }
