@@ -23,6 +23,12 @@ Route::get('/info', fn () => phpinfo())->middleware('debug');
 
 Route::get('/install', 'InstallController@install');
 
+Route::get('/page-files/{path}', function ($path) {
+    $fullPath = storage_path('app/pages/' . $path);
+    if (!file_exists($fullPath)) abort(404);
+    return response()->file($fullPath);
+})->where('path', '.*')->name('page.files');
+
 if (!Auth::check()) {
     Route::get('/make-admin', 'MakeAdminController@index');
     if (config('app.register')) {

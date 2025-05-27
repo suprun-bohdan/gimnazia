@@ -1,5 +1,5 @@
 @php
-    $pageTitle = 'сторінка';
+    use Illuminate\Support\Facades\Storage;$pageTitle = 'сторінка';
     if (isset($page->title))
         $pageTitle = $page->title;
 @endphp
@@ -47,13 +47,13 @@
                     @foreach ($files as $file)
                         <tr id="file-archive">
                             @php
-                                $url = Storage::url($file->path);
+                                $url = route('page.files', ['path' => $file->path]);
                                 $filename = \Illuminate\Support\Str::afterLast($url, '/');
                                 $filenameWithoutExtension = \Illuminate\Support\Str::beforeLast($filename, '.');
                                 $filenameWithoutExtension = urldecode($filenameWithoutExtension);
                             @endphp
                             <td>{{ $filenameWithoutExtension }}</td>
-                            <td><a href="{{ asset($url) }}" download="{{ basename($url) }}">Завантажити</a></td>
+                            <a href="{{ $url }}" download="{{ basename($file->path) }}">Завантажити</a>
                             @if(auth()->check() && auth()->user()->role == 1)
                                 <td>
                                     <a href="{{ route('page.file.destroy', ['page_id' => $page->page_id, 'id' => $file->id]) }}">Видалити</a>
