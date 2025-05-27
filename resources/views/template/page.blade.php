@@ -47,13 +47,13 @@
                     @foreach ($files as $file)
                         <tr id="file-archive">
                             @php
-                                $url = route('page.files', ['path' => $file->path]);
+                                $url = Storage::url($file->path);
                                 $filename = \Illuminate\Support\Str::afterLast($url, '/');
                                 $filenameWithoutExtension = \Illuminate\Support\Str::beforeLast($filename, '.');
                                 $filenameWithoutExtension = urldecode($filenameWithoutExtension);
                             @endphp
                             <td>{{ $filenameWithoutExtension }}</td>
-                            <a href="{{ $url }}" download="{{ basename($file->path) }}">Завантажити</a>
+                            <td><a href="{{ asset($url) }}" download="{{ basename($url) }}">Завантажити</a></td>
                             @if(auth()->check() && auth()->user()->role == 1)
                                 <td>
                                     <a href="{{ route('page.file.destroy', ['page_id' => $page->page_id, 'id' => $file->id]) }}">Видалити</a>
