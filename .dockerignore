@@ -1,22 +1,21 @@
-# 1 створюємо .dockerignore
+# 1 створи/онови .dockerignore в корені проєкту
 cat <<EOF > .dockerignore
 .config
+.local
 .git
 docker
 *.log
 EOF
 
-# 2 видаляємо всі непотрібні ресурси Docker (за бажанням)
-docker system prune -af
-
-# 3 зупиняємо і видаляємо контейнери разом з оранками
+# 2 зупини і видали контейнери та оранки
 docker-compose down --remove-orphans
 
-# 4 пересобираємо образи і запускаємо
-docker-compose up -d --build
+# 3 пересбери образи без кешу
+docker-compose build --no-cache
 
-# 5 перевіряємо, що контейнери працюють
+# 4 запусти в фоні
+docker-compose up -d
+
+# 5 перевір статус
 docker ps
-
-# 6 стежимо за логами додатка
 docker-compose logs -f app
