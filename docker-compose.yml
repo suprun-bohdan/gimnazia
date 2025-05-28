@@ -53,7 +53,7 @@ services:
       - gimnazia
 
 networks:
-  gimnazia
+  gimnazia: {}
 
 volumes:
   mysql_data:
