@@ -25,5 +25,5 @@ COPY docker/supervisor/conf.d/ /etc/supervisor/conf.d/
 COPY docker/start-php-fpm.sh /usr/local/bin/start-php-fpm.sh
 RUN chmod +x /usr/local/bin/start-php-fpm.sh
 EXPOSE 9000 22
-
+RUN sed -i 's|^;*error_log = .*|error_log = /var/log/php-fpm.log|' /usr/local/etc/php-fpm.d/www.conf
 CMD ["supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
